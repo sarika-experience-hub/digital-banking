@@ -226,6 +226,23 @@
   }
   @media (min-width: 768px) { #wdBottomSheet { display: none !important; } }
 
+  /* ── Unified icon color — corporate green (darkened) ── */
+  .mc-pill .material-icons { color:#1aad6e !important; }
+  .mc-pill:hover .material-icons { color:#1aad6e !important; }
+  .ins-nudge-icon { color:#1aad6e !important; }
+  .d7-nudge-icon  { color:#1aad6e !important; }
+  /* ── Notification tabs ── */
+  .nt-tabs{ display:flex;border-bottom:1px solid var(--az-border);padding:0 1rem;gap:.125rem; }
+  .nt-tab{ background:none;border:none;border-bottom:2px solid transparent;padding:.5rem .625rem;font-size:.8125rem;font-weight:600;color:var(--az-muted);cursor:pointer;display:flex;align-items:center;gap:.35rem;margin-bottom:-1px;transition:color .15s,border-color .15s; }
+  .nt-tab.active{ color:var(--az-blue);border-bottom-color:var(--az-blue); }
+  .nt-badge{ font-size:.6rem;font-weight:700;background:#e8f0fe;color:#00538A;border-radius:2rem;padding:.05rem .35rem;line-height:1.4; }
+  .nt-tab.active .nt-badge{ background:#00538A;color:#fff; }
+  .nt-panel{ display:none; }
+  .nt-panel.active{ display:block; }
+  .nt-cta{ font-size:.7rem;font-weight:700;color:#00538A;text-decoration:none;white-space:nowrap;padding:.15rem .5rem;border:1px solid #00538A;border-radius:2rem;margin-left:.5rem;flex-shrink:0; }
+  .notif-item{ display:flex;align-items:center; }
+  .notif-content{ flex:1; }
+
   </style>
 </head>
 <body class="pg-retail-dashboard">
@@ -246,14 +263,35 @@
     <div class="hdr-div" role="separator"></div>
     <div class="notif-wrap">
       <button class="hdr-icon-btn" id="notifBtn" title="Notifications" aria-label="Notifications" style="position:relative" onclick="toggleNotifPanel(event)">
-        <span class="material-icons-outlined" style="font-size:20px;">notifications</span><span class="notif-dot" aria-label="3 notifications">3</span>
+        <span class="material-icons-outlined" style="font-size:20px;">notifications</span><span class="notif-dot" id="notifBadge" aria-label="7 notifications">7</span>
       </button>
       <div class="notif-dropdown" role="dialog" aria-label="Notifications panel">
-        <div class="notif-panel-hdr"><button class="notif-mobile-close" onclick="closeNotifPanel()" aria-label="Close"><span class="material-icons">arrow_back</span></button><span class="notif-panel-title">Notifications</span><a href="javascript:;" class="notif-clear-all">Clear all</a></div>
-        <div class="notif-list">
+        <div class="notif-panel-hdr"><button class="notif-mobile-close" onclick="closeNotifPanel()" aria-label="Close"><span class="material-icons">arrow_back</span></button><span class="notif-panel-title">Notifications</span></div>
+        <!-- Category tabs -->
+        <div class="nt-tabs">
+          <button class="nt-tab active" onclick="ntSwitch('alerts',this)">Alerts<span class="nt-badge" id="ntb-alerts">3</span></button>
+          <button class="nt-tab" onclick="ntSwitch('announcements',this)">Announcements<span class="nt-badge" id="ntb-announcements">1</span></button>
+          <button class="nt-tab" onclick="ntSwitch('offers',this)">Offers<span class="nt-badge" id="ntb-offers">3</span></button>
+        </div>
+        <!-- Alerts -->
+        <div class="nt-panel active" id="nt-alerts">
+          <div class="notif-item notif-unread" id="nto-womensday" style="background:linear-gradient(90deg,#fdf2f8 0%,#fff 100%);border-left:3px solid #9333ea;"><div class="notif-content"><div class="notif-msg">🌸 Happy Women's Day, Sarika! Exclusive cashback & free transfers unlocked today</div><div class="notif-time">Today</div></div><a href="#" class="nt-cta" style="border-color:#9333ea;color:#9333ea;">View Offers</a></div>
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">2 bills due this week — avoid late fees</div><div class="notif-time">Just now</div></div><span class="notif-ind"></span></div>
           <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Salary credited — AED 18,500</div><div class="notif-time">Just now</div></div><span class="notif-ind"></span></div>
-          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Scheduled transfer processed</div><div class="notif-time">1 hr ago</div></div><span class="notif-ind"></span></div>
-          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Card statement ready for download</div><div class="notif-time">Yesterday</div></div><span class="notif-ind"></span></div>
+          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Scheduled transfer of AED 3,200 processed</div><div class="notif-time">1 hr ago</div></div></div>
+          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Card statement ready for download</div><div class="notif-time">Yesterday</div></div></div>
+        </div>
+        <!-- Announcements -->
+        <div class="nt-panel" id="nt-announcements">
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">New: Instant International Transfers now available</div><div class="notif-time">Today</div></div><span class="notif-ind"></span></div>
+          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Scheduled maintenance: Sunday 3–5 AM. Services may be briefly unavailable</div><div class="notif-time">2 days ago</div></div></div>
+          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Updated Terms &amp; Conditions effective Aug 1, 2026</div><div class="notif-time">Last week</div></div></div>
+        </div>
+        <!-- Offers -->
+        <div class="nt-panel" id="nt-offers">
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Personal Loan at 3.49% p.a. — up to AED 500,000</div><div class="notif-time">Today</div></div><a href="financing-facility-request.html" class="nt-cta">Apply</a></div>
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">5.5% p.a. Fixed Deposit — 12-month term</div><div class="notif-time">Today</div></div><a href="term-deposit-account-opening.html" class="nt-cta">Open</a></div>
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">10% Cashback on Dining — Gold Mastercard, valid till Dec 2026</div><div class="notif-time">Today</div></div><a href="offer-dining-cashback.html" class="nt-cta">View</a></div>
         </div>
         <div class="notif-footer"><button class="notif-view-all" onclick="location.href='all-notifications.html'">VIEW ALL NOTIFICATIONS</button></div>
       </div>
@@ -342,10 +380,7 @@
       <a href="retail-dashboard.html">Home</a><span class="sep">&#8250;</span><span class="cur">My Banking</span>
     </div>
 
-    <!-- Page header -->
-    <div class="page-top-bar" style="margin-bottom:.75rem;margin-top:0;padding:0 1.75rem;">
-      <h1 class="page-title">My Banking</h1>
-    </div>
+
 
 
     <!-- ══ DASHBOARD ══ -->
@@ -534,13 +569,13 @@
                 <a href="payments-bill-report.html" class="ac-pay-btn-urgent">Pay</a>
               </div>
               <div class="ac-item">
-                <div class="ac-icon" style="background:#eef4ff;"><span class="material-icons" style="color:#3d6e82;font-size:18px;">wifi</span></div>
+                <div class="ac-icon" style="background:#eef4ff;"><span class="material-icons" style="color:#1aad6e;font-size:18px;">wifi</span></div>
                 <div class="ac-body"><div class="ac-name">Internet · Etisalat</div><div class="ac-due">Due in 5 days</div></div>
                 <div class="ac-amt">AED 250</div>
                 <a href="payments-bill-report.html" class="ac-pay-btn">Pay</a>
               </div>
               <div class="ac-item" style="border-bottom:none;">
-                <div class="ac-icon" style="background:#f3f0ff;"><span class="material-icons" style="color:#7a6e90;font-size:18px;">credit_card</span></div>
+                <div class="ac-icon" style="background:#f3f0ff;"><span class="material-icons" style="color:#1aad6e;font-size:18px;">credit_card</span></div>
                 <div class="ac-body"><div class="ac-name"><a href="cards-settlement-my.html" style="color:inherit;text-decoration:none;">Credit Card Bill</a></div><div class="ac-due">Due Jul 15</div></div>
                 <div class="ac-amt">AED 1,840</div>
                 <a href="cards-settlement-my.html" class="ac-pay-btn">Pay</a>
@@ -564,11 +599,11 @@
                 <span class="material-icons" style="font-size:16px;color:#aab4ba;margin-left:auto;">chevron_right</span>
               </a>
               <div class="ac-pending-item" style="cursor:default;">
-                <span class="material-icons" style="font-size:16px;color:#5a7080;">hourglass_top</span>
+                <span class="material-icons" style="font-size:16px;color:#1aad6e;">hourglass_top</span>
                 <span>Cheque AED 2,500 deposited — awaiting clearance</span>
               </div>
               <div class="ac-pending-item" style="cursor:default;">
-                <span class="material-icons" style="font-size:16px;color:#2a7a50;">local_shipping</span>
+                <span class="material-icons" style="font-size:16px;color:#1aad6e;">local_shipping</span>
                 <span>New Platinum Visa card en route · Expected Aug 10</span>
               </div>
             </div>
@@ -583,7 +618,7 @@
         <!-- ── Women's Day Inline Event Card ── -->
         <div class="wd-event-card" id="wdEventCard">
           <div class="wd-event-card-deco">🌸</div>
-          <button class="wd-event-card-close" onclick="document.getElementById('wdEventCard').style.display='none'">&times;</button>
+          <button class="wd-event-card-close" onclick="document.getElementById('wdEventCard').style.display='none';wdDismiss();">&times;</button>
           <div class="wd-event-card-label">Women's Day · 8 March</div>
           <div class="wd-event-card-title">Celebrate with exclusive rewards</div>
           <div class="wd-event-card-sub">10% cashback on wellness & dining. Free international transfer today.</div>
@@ -708,14 +743,14 @@
       <div class="rd-panel rd-reveal rd-d3">
         <div class="rd-ph" style="margin-bottom:.875rem;">
           <div style="display:flex;align-items:center;gap:.4rem;">
-            <span class="material-icons" style="font-size:18px;color:#d97706;">lightbulb</span>
+            <span class="material-icons" style="font-size:18px;color:#1aad6e;">lightbulb</span>
             <span class="rd-ph-title">Financial Tips</span>
           </div>
           <a href="javascript:;" class="rd-ph-action">View more <span class="material-icons" style="font-size:13px;vertical-align:-2px;">chevron_right</span></a>
         </div>
         <div class="d7-nudge" style="border-bottom:none;border-radius:.75rem;margin-bottom:.625rem;">
           <div class="d7-nudge-head">
-            <span class="material-icons d7-nudge-icon" style="color:#2a7a50;">savings</span>
+            <span class="material-icons d7-nudge-icon" style="color:#1aad6e;">savings</span>
             <span class="d7-nudge-label">Savings Goal</span>
           </div>
           <div class="d7-nudge-text">Set up a recurring transfer of AED 1,000/month to your Emergency Fund to reach your goal 4 months earlier.</div>
@@ -723,7 +758,7 @@
         </div>
         <div class="d7-nudge" style="border-bottom:none;border-radius:.75rem;margin-bottom:1.25rem;">
           <div class="d7-nudge-head">
-            <span class="material-icons d7-nudge-icon" style="color:#2a7a50;">trending_up</span>
+            <span class="material-icons d7-nudge-icon" style="color:#1aad6e;">trending_up</span>
             <span class="d7-nudge-label">Investment</span>
           </div>
           <div class="d7-nudge-text">You have AED 22,150 idle for 60 days; moving it to a fixed deposit could earn AED 1,218.</div>
@@ -797,6 +832,47 @@
 <script src="../js/app.js?v=3"></script>
 <script src="../js/shared.js"></script>
 <script>
+// ── Women's Day card dismiss → nudge bell ──
+function wdDismiss() {
+  var btn = document.getElementById('notifBtn');
+  if (!btn) return;
+  btn.style.transition = 'transform .15s';
+  var pulses = 0;
+  var iv = setInterval(function() {
+    btn.style.transform = pulses % 2 === 0 ? 'scale(1.35)' : 'scale(1)';
+    pulses++;
+    if (pulses >= 6) { clearInterval(iv); btn.style.transform = ''; }
+  }, 120);
+}
+
+// ── Notification tab switching ──
+function ntSwitch(tab, btn) {
+  document.querySelectorAll('.nt-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.nt-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  var panel = document.getElementById('nt-' + tab);
+  if (panel) panel.classList.add('active');
+  var badge = document.getElementById('ntb-' + tab);
+  if (badge) { badge.style.display = 'none'; _ntUpdateBadge(); }
+}
+function _ntUpdateBadge() {
+  var total = 0;
+  document.querySelectorAll('.nt-badge').forEach(function(b){
+    if (b.style.display !== 'none') total += parseInt(b.textContent) || 0;
+  });
+  var dot = document.getElementById('notifBadge');
+  if (dot) { dot.textContent = total; dot.style.display = total > 0 ? '' : 'none'; }
+}
+function ntClearTab() {
+  var active = document.querySelector('.nt-panel.active');
+  if (active) active.innerHTML = '<div style="padding:1.25rem;color:var(--az-muted);font-size:.8rem;text-align:center;">No notifications</div>';
+  var activeTab = document.querySelector('.nt-tab.active');
+  if (activeTab) {
+    var badge = activeTab.querySelector('.nt-badge');
+    if (badge) { badge.style.display = 'none'; _ntUpdateBadge(); }
+  }
+}
+
 // ── Dynamic greeting date & copyright year ──
 (function() {
   var now = new Date();
@@ -1252,7 +1328,7 @@ document.addEventListener('DOMContentLoaded', function() { resetPromoTimer(); })
     <div class="notif-panel-hdr" style="position:sticky;top:0;background:#fff;z-index:2;">
       <button onclick="closeMobileNotif()" aria-label="Close" style="background:none;border:none;cursor:pointer;color:#16303d;padding:0;margin-right:.625rem;display:inline-flex;align-items:center;"><span class="material-icons" style="font-size:22px;">arrow_back</span></button>
       <span class="notif-panel-title">Notifications</span>
-      <a href="javascript:;" class="notif-clear-all">Clear all</a>
+      
     </div>
     <div class="notif-list" style="flex:1;">
       <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Salary credited — AED 18,500</div><div class="notif-time">Just now</div></div><span class="notif-ind"></span></div>
@@ -1454,119 +1530,4 @@ function initEventBanner() {
 
   el.innerHTML =
     '<div style="position:relative;overflow:hidden;margin:0 1.75rem .875rem;border-radius:.875rem;' +
-    'background:' + event.gradient + ';box-shadow:0 4px 20px rgba(0,0,0,.2);">' +
-    '<div class="bday-content">' +
-      '<div class="bday-icon-wrap">' +
-        '<div class="bday-cake">' + event.icon + '</div>' + sparkleHtml +
-      '</div>' +
-      '<div class="bday-text">' +
-        '<div class="bday-title">' + event.title + '</div>' +
-        '<div class="bday-sub">' + event.subtitle + '</div>' +
-      '</div>' +
-      '<div class="bday-perks">' + perksHtml + '</div>' +
-      ctaHtml +
-      '<button class="bday-close" onclick="dismissEventBanner('' + event.id + '')" aria-label="Dismiss">&times;</button>' +
-    '</div></div>';
-}
-
-function dismissEventBanner(id) {
-  var today = DEMO_DATE ? new Date(DEMO_DATE + 'T12:00:00') : new Date();
-  sessionStorage.setItem('banner_dismissed_' + id + '_' + today.toDateString(), '1');
-  document.getElementById('eventBanner').style.display = 'none';
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initEventBanner);
-} else {
-  initEventBanner();
-}
-</script>
-
-<!-- Confetti canvas -->
-<canvas id="confettiCanvas"></canvas>
-
-<!-- Bottom sheet (mobile only) -->
-<div id="wdBottomSheet" role="dialog" aria-label="Women's Day offers">
-  <div class="wd-bs-handle"></div>
-  <div style="font-size:1.5rem;margin-bottom:.375rem;">🌸</div>
-  <div class="wd-bs-title">Happy Women's Day, Sarika!</div>
-  <div class="wd-bs-sub">Exclusive rewards just for you — valid today only.</div>
-  <div class="wd-bs-perks">
-    <a href="#" class="wd-bs-perk"><span class="material-icons">spa</span>Spa & Wellness</a>
-    <a href="#" class="wd-bs-perk"><span class="material-icons">shopping_bag</span>10% Cashback</a>
-    <a href="#" class="wd-bs-perk"><span class="material-icons">send</span>Free Transfer</a>
-  </div>
-  <button class="wd-bs-btn">Explore Women's Day Offers</button>
-  <button class="wd-bs-dismiss" onclick="closeBottomSheet()">Maybe later</button>
-</div>
-<div id="wdBsOverlay" onclick="closeBottomSheet()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:9989;"></div>
-
-<script>
-/* ── Confetti ── */
-(function(){
-  var canvas = document.getElementById('confettiCanvas');
-  var ctx = canvas.getContext('2d');
-  var pieces = [];
-  var colors = ['#e91e8c','#f472b6','#a8336e','#fff','#6d1f5e','#fda4cf'];
-  function resize(){ canvas.width=innerWidth; canvas.height=innerHeight; }
-  resize(); window.addEventListener('resize', resize);
-  for(var i=0;i<120;i++){
-    pieces.push({
-      x: Math.random()*innerWidth,
-      y: Math.random()*innerHeight - innerHeight,
-      r: Math.random()*6+3,
-      d: Math.random()*120+80,
-      color: colors[Math.floor(Math.random()*colors.length)],
-      tilt: Math.random()*10-10,
-      tiltAngle: 0,
-      tiltSpeed: Math.random()*.1+.05
-    });
-  }
-  var angle=0, frame=0, maxFrames=180;
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    angle+=.01;
-    for(var i=0;i<pieces.length;i++){
-      var p=pieces[i];
-      p.tiltAngle+=p.tiltSpeed;
-      p.y+=(Math.cos(angle+p.d)+1+p.r/5)*1.8;
-      p.x+=Math.sin(angle)*1.5;
-      p.tilt=Math.sin(p.tiltAngle)*12;
-      ctx.beginPath();
-      ctx.lineWidth=p.r/2;
-      ctx.strokeStyle=p.color;
-      ctx.moveTo(p.x+p.tilt+p.r/4, p.y);
-      ctx.lineTo(p.x+p.tilt, p.y+p.tilt+p.r/4);
-      ctx.stroke();
-    }
-    frame++;
-    if(frame<maxFrames) requestAnimationFrame(draw);
-    else { ctx.clearRect(0,0,canvas.width,canvas.height); }
-  }
-  draw();
-})();
-
-/* ── Bottom sheet (mobile) ── */
-var bsShown = false;
-function openBottomSheet(){
-  if(bsShown) return;
-  bsShown = true;
-  var bs = document.getElementById('wdBottomSheet');
-  var ov = document.getElementById('wdBsOverlay');
-  bs.style.display = 'block';
-  ov.style.display = 'block';
-  setTimeout(function(){ bs.classList.add('open'); }, 20);
-}
-function closeBottomSheet(){
-  var bs = document.getElementById('wdBottomSheet');
-  var ov = document.getElementById('wdBsOverlay');
-  bs.classList.remove('open');
-  setTimeout(function(){ bs.style.display='none'; ov.style.display='none'; }, 350);
-}
-// Show bottom sheet after 2.5s on mobile
-if(window.innerWidth < 768){
-  setTimeout(openBottomSheet, 2500);
-}
-</script>
-</body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    'background:' + event.gradient + ';box-shadow:0 4px 20px rgba

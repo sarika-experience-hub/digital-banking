@@ -97,6 +97,22 @@
       .bday-banner { margin: 0 .5rem .625rem; }
       .bday-perk-btn { font-size: .7rem; padding: .2rem .6rem; }
     }
+    /* ── Unified icon color — corporate green (darkened) ── */
+    .mc-pill .material-icons { color:#1aad6e !important; }
+    .mc-pill:hover .material-icons { color:#1aad6e !important; }
+    .ins-nudge-icon { color:#1aad6e !important; }
+    .d7-nudge-icon  { color:#1aad6e !important; }
+    /* ── Notification tabs ── */
+    .nt-tabs{ display:flex;border-bottom:1px solid var(--az-border);padding:0 1rem;gap:.125rem; }
+    .nt-tab{ background:none;border:none;border-bottom:2px solid transparent;padding:.5rem .625rem;font-size:.8125rem;font-weight:600;color:var(--az-muted);cursor:pointer;display:flex;align-items:center;gap:.35rem;margin-bottom:-1px;transition:color .15s,border-color .15s; }
+    .nt-tab.active{ color:var(--az-blue);border-bottom-color:var(--az-blue); }
+    .nt-badge{ font-size:.6rem;font-weight:700;background:#e8f0fe;color:#00538A;border-radius:2rem;padding:.05rem .35rem;line-height:1.4; }
+    .nt-tab.active .nt-badge{ background:#00538A;color:#fff; }
+    .nt-panel{ display:none; }
+    .nt-panel.active{ display:block; }
+    .nt-cta{ font-size:.7rem;font-weight:700;color:#00538A;text-decoration:none;white-space:nowrap;padding:.15rem .5rem;border:1px solid #00538A;border-radius:2rem;margin-left:.5rem;flex-shrink:0; }
+    .notif-item{ display:flex;align-items:center; }
+    .notif-content{ flex:1; }
   </style>
 </head>
 <body class="pg-retail-dashboard">
@@ -117,14 +133,35 @@
     <div class="hdr-div" role="separator"></div>
     <div class="notif-wrap">
       <button class="hdr-icon-btn" id="notifBtn" title="Notifications" aria-label="Notifications" style="position:relative" onclick="toggleNotifPanel(event)">
-        <span class="material-icons-outlined" style="font-size:20px;">notifications</span><span class="notif-dot" aria-label="3 notifications">3</span>
+        <span class="material-icons-outlined" style="font-size:20px;">notifications</span><span class="notif-dot" id="notifBadge" aria-label="7 notifications">7</span>
       </button>
       <div class="notif-dropdown" role="dialog" aria-label="Notifications panel">
-        <div class="notif-panel-hdr"><button class="notif-mobile-close" onclick="closeNotifPanel()" aria-label="Close"><span class="material-icons">arrow_back</span></button><span class="notif-panel-title">Notifications</span><a href="javascript:;" class="notif-clear-all">Clear all</a></div>
-        <div class="notif-list">
+        <div class="notif-panel-hdr"><button class="notif-mobile-close" onclick="closeNotifPanel()" aria-label="Close"><span class="material-icons">arrow_back</span></button><span class="notif-panel-title">Notifications</span></div>
+        <!-- Category tabs -->
+        <div class="nt-tabs">
+          <button class="nt-tab active" onclick="ntSwitch('alerts',this)">Alerts<span class="nt-badge" id="ntb-alerts">3</span></button>
+          <button class="nt-tab" onclick="ntSwitch('announcements',this)">Announcements<span class="nt-badge" id="ntb-announcements">1</span></button>
+          <button class="nt-tab" onclick="ntSwitch('offers',this)">Offers<span class="nt-badge" id="ntb-offers">3</span></button>
+        </div>
+        <!-- Alerts -->
+        <div class="nt-panel active" id="nt-alerts">
+          <div class="notif-item notif-unread" id="nto-birthday" style="background:linear-gradient(90deg,#f0fdf8 0%,#fff 100%);border-left:3px solid #1aad6e;"><div class="notif-content"><div class="notif-msg">🎂 Happy Birthday, Sarika! Exclusive perks unlocked on your Gold Mastercard</div><div class="notif-time">Today</div></div><a href="offer-dining-cashback.html" class="nt-cta">View Perks</a></div>
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">2 bills due this week — avoid late fees</div><div class="notif-time">Just now</div></div><span class="notif-ind"></span></div>
           <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Salary credited — AED 18,500</div><div class="notif-time">Just now</div></div><span class="notif-ind"></span></div>
-          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Scheduled transfer processed</div><div class="notif-time">1 hr ago</div></div><span class="notif-ind"></span></div>
-          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Card statement ready for download</div><div class="notif-time">Yesterday</div></div><span class="notif-ind"></span></div>
+          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Scheduled transfer of AED 3,200 processed</div><div class="notif-time">1 hr ago</div></div></div>
+          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Card statement ready for download</div><div class="notif-time">Yesterday</div></div></div>
+        </div>
+        <!-- Announcements -->
+        <div class="nt-panel" id="nt-announcements">
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">New: Instant International Transfers now available</div><div class="notif-time">Today</div></div><span class="notif-ind"></span></div>
+          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Scheduled maintenance: Sunday 3–5 AM. Services may be briefly unavailable</div><div class="notif-time">2 days ago</div></div></div>
+          <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Updated Terms &amp; Conditions effective Aug 1, 2026</div><div class="notif-time">Last week</div></div></div>
+        </div>
+        <!-- Offers -->
+        <div class="nt-panel" id="nt-offers">
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Personal Loan at 3.49% p.a. — up to AED 500,000</div><div class="notif-time">Today</div></div><a href="financing-facility-request.html" class="nt-cta">Apply</a></div>
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">5.5% p.a. Fixed Deposit — 12-month term</div><div class="notif-time">Today</div></div><a href="term-deposit-account-opening.html" class="nt-cta">Open</a></div>
+          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">10% Cashback on Dining — Gold Mastercard, valid till Dec 2026</div><div class="notif-time">Today</div></div><a href="offer-dining-cashback.html" class="nt-cta">View</a></div>
         </div>
         <div class="notif-footer"><button class="notif-view-all" onclick="location.href='all-notifications.html'">VIEW ALL NOTIFICATIONS</button></div>
       </div>
@@ -213,9 +250,20 @@
       <a href="retail-dashboard.html">Home</a><span class="sep">&#8250;</span><span class="cur">My Banking</span>
     </div>
 
-    <!-- Page header -->
-    <div class="page-top-bar" style="margin-bottom:.75rem;margin-top:0;padding:0 1.75rem;">
-      <h1 class="page-title">My Banking</h1>
+    <!-- ── Good Morning Widget ── -->
+    <div class="rd-panel rd-reveal rd-d0 rd-alert-bar" style="margin:0 1.75rem .75rem;">
+      <div class="ab-greeting">
+        <span class="material-icons ab-greet-icon">wb_sunny</span>
+        <div>
+          <div class="ab-greet-name">Good morning, Sarika</div>
+          <div class="ab-greet-sub" id="abDate">Here's what needs your attention</div>
+        </div>
+      </div>
+      <div class="ab-chips">
+        <a href="payments-bill-report.html" class="ab-chip ab-chip-warn"><span class="material-icons">schedule</span>2 bills due this week</a>
+        <a href="transfer-pending-list.html" class="ab-chip ab-chip-info"><span class="material-icons">pending_actions</span>3 payments processing</a>
+        <a href="transfer-receipt.html" class="ab-chip ab-chip-success"><span class="material-icons">check_circle</span>Salary credited · AED 18,500</a>
+      </div>
     </div>
 
     <!-- Birthday Banner -->
@@ -234,28 +282,12 @@
           <a href="movie-tickets.html" class="bday-perk-btn"><span class="material-icons">local_movies</span>Movie Tickets</a>
         </div>
 
-        <button class="bday-close" onclick="this.closest('[style]').style.display='none'" aria-label="Dismiss">&times;</button>
+        <button class="bday-close" onclick="this.closest('[style]').style.display='none';bdayDismiss();" aria-label="Dismiss">&times;</button>
       </div>
     </div>
 
     <!-- ══ DASHBOARD ══ -->
     <div class="rd-wrap">
-
-      <!-- ── rd-d0: Smart Alert Bar ── -->
-      <div class="rd-panel rd-reveal rd-d0 rd-alert-bar">
-        <div class="ab-greeting">
-          <span class="material-icons ab-greet-icon">wb_sunny</span>
-          <div>
-            <div class="ab-greet-name">Good morning, Sarika</div>
-            <div class="ab-greet-sub" id="abDate">Here's what needs your attention</div>
-          </div>
-        </div>
-        <div class="ab-chips">
-          <a href="payments-bill-report.html" class="ab-chip ab-chip-warn"><span class="material-icons">schedule</span>2 bills due this week</a>
-          <a href="transfer-pending-list.html" class="ab-chip ab-chip-info"><span class="material-icons">pending_actions</span>3 payments processing</a>
-          <a href="transfer-receipt.html" class="ab-chip ab-chip-success"><span class="material-icons">check_circle</span>Salary credited · AED 18,500</a>
-        </div>
-      </div>
 
       <!-- ── Left column: actionable ── -->
       <div class="rd-left">
@@ -424,13 +456,13 @@
                 <a href="payments-bill-report.html" class="ac-pay-btn-urgent">Pay</a>
               </div>
               <div class="ac-item">
-                <div class="ac-icon" style="background:#eef4ff;"><span class="material-icons" style="color:#3d6e82;font-size:18px;">wifi</span></div>
+                <div class="ac-icon" style="background:#eef4ff;"><span class="material-icons" style="color:#1aad6e;font-size:18px;">wifi</span></div>
                 <div class="ac-body"><div class="ac-name">Internet · Etisalat</div><div class="ac-due">Due in 5 days</div></div>
                 <div class="ac-amt">AED 250</div>
                 <a href="payments-bill-report.html" class="ac-pay-btn">Pay</a>
               </div>
               <div class="ac-item" style="border-bottom:none;">
-                <div class="ac-icon" style="background:#f3f0ff;"><span class="material-icons" style="color:#7a6e90;font-size:18px;">credit_card</span></div>
+                <div class="ac-icon" style="background:#f3f0ff;"><span class="material-icons" style="color:#1aad6e;font-size:18px;">credit_card</span></div>
                 <div class="ac-body"><div class="ac-name"><a href="cards-settlement-my.html" style="color:inherit;text-decoration:none;">Credit Card Bill</a></div><div class="ac-due">Due Jul 15</div></div>
                 <div class="ac-amt">AED 1,840</div>
                 <a href="cards-settlement-my.html" class="ac-pay-btn">Pay</a>
@@ -454,11 +486,11 @@
                 <span class="material-icons" style="font-size:16px;color:#aab4ba;margin-left:auto;">chevron_right</span>
               </a>
               <div class="ac-pending-item" style="cursor:default;">
-                <span class="material-icons" style="font-size:16px;color:#5a7080;">hourglass_top</span>
+                <span class="material-icons" style="font-size:16px;color:#1aad6e;">hourglass_top</span>
                 <span>Cheque AED 2,500 deposited — awaiting clearance</span>
               </div>
               <div class="ac-pending-item" style="cursor:default;">
-                <span class="material-icons" style="font-size:16px;color:#2a7a50;">local_shipping</span>
+                <span class="material-icons" style="font-size:16px;color:#1aad6e;">local_shipping</span>
                 <span>New Platinum Visa card en route · Expected Aug 10</span>
               </div>
             </div>
@@ -589,14 +621,14 @@
       <div class="rd-panel rd-reveal rd-d3">
         <div class="rd-ph" style="margin-bottom:.875rem;">
           <div style="display:flex;align-items:center;gap:.4rem;">
-            <span class="material-icons" style="font-size:18px;color:#d97706;">lightbulb</span>
+            <span class="material-icons" style="font-size:18px;color:#1aad6e;">lightbulb</span>
             <span class="rd-ph-title">Financial Tips</span>
           </div>
           <a href="javascript:;" class="rd-ph-action">View more <span class="material-icons" style="font-size:13px;vertical-align:-2px;">chevron_right</span></a>
         </div>
         <div class="d7-nudge" style="border-bottom:none;border-radius:.75rem;margin-bottom:.625rem;">
           <div class="d7-nudge-head">
-            <span class="material-icons d7-nudge-icon" style="color:#2a7a50;">savings</span>
+            <span class="material-icons d7-nudge-icon" style="color:#1aad6e;">savings</span>
             <span class="d7-nudge-label">Savings Goal</span>
           </div>
           <div class="d7-nudge-text">Set up a recurring transfer of AED 1,000/month to your Emergency Fund to reach your goal 4 months earlier.</div>
@@ -604,7 +636,7 @@
         </div>
         <div class="d7-nudge" style="border-bottom:none;border-radius:.75rem;margin-bottom:1.25rem;">
           <div class="d7-nudge-head">
-            <span class="material-icons d7-nudge-icon" style="color:#2a7a50;">trending_up</span>
+            <span class="material-icons d7-nudge-icon" style="color:#1aad6e;">trending_up</span>
             <span class="d7-nudge-label">Investment</span>
           </div>
           <div class="d7-nudge-text">You have AED 22,150 idle for 60 days; moving it to a fixed deposit could earn AED 1,218.</div>
@@ -678,6 +710,48 @@
 <script src="../js/app.js?v=3"></script>
 <script src="../js/shared.js"></script>
 <script>
+// ── Birthday banner dismiss → nudge bell ──
+function bdayDismiss() {
+  // Briefly pulse the notification bell to hint perks are in notifications
+  var btn = document.getElementById('notifBtn');
+  if (!btn) return;
+  btn.style.transition = 'transform .15s';
+  var pulses = 0;
+  var iv = setInterval(function() {
+    btn.style.transform = pulses % 2 === 0 ? 'scale(1.35)' : 'scale(1)';
+    pulses++;
+    if (pulses >= 6) { clearInterval(iv); btn.style.transform = ''; }
+  }, 120);
+}
+
+// ── Notification tab switching ──
+function ntSwitch(tab, btn) {
+  document.querySelectorAll('.nt-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.nt-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  var panel = document.getElementById('nt-' + tab);
+  if (panel) panel.classList.add('active');
+  var badge = document.getElementById('ntb-' + tab);
+  if (badge) { badge.style.display = 'none'; _ntUpdateBadge(); }
+}
+function _ntUpdateBadge() {
+  var total = 0;
+  document.querySelectorAll('.nt-badge').forEach(function(b){
+    if (b.style.display !== 'none') total += parseInt(b.textContent) || 0;
+  });
+  var dot = document.getElementById('notifBadge');
+  if (dot) { dot.textContent = total; dot.style.display = total > 0 ? '' : 'none'; }
+}
+function ntClearTab() {
+  var active = document.querySelector('.nt-panel.active');
+  if (active) active.innerHTML = '<div style="padding:1.25rem;color:var(--az-muted);font-size:.8rem;text-align:center;">No notifications</div>';
+  var activeTab = document.querySelector('.nt-tab.active');
+  if (activeTab) {
+    var badge = activeTab.querySelector('.nt-badge');
+    if (badge) { badge.style.display = 'none'; _ntUpdateBadge(); }
+  }
+}
+
 // ── Dynamic greeting date & copyright year ──
 (function() {
   var now = new Date();
@@ -1133,7 +1207,7 @@ document.addEventListener('DOMContentLoaded', function() { resetPromoTimer(); })
     <div class="notif-panel-hdr" style="position:sticky;top:0;background:#fff;z-index:2;">
       <button onclick="closeMobileNotif()" aria-label="Close" style="background:none;border:none;cursor:pointer;color:#16303d;padding:0;margin-right:.625rem;display:inline-flex;align-items:center;"><span class="material-icons" style="font-size:22px;">arrow_back</span></button>
       <span class="notif-panel-title">Notifications</span>
-      <a href="javascript:;" class="notif-clear-all">Clear all</a>
+      
     </div>
     <div class="notif-list" style="flex:1;">
       <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Salary credited — AED 18,500</div><div class="notif-time">Just now</div></div><span class="notif-ind"></span></div>
@@ -1296,91 +1370,4 @@ const EVENTS = [
 ];
 
 /* ── Render engine ─────────────────────────────────────── */
-function initEventBanner() {
-  var el = document.getElementById('eventBanner');
-  if (!el) return;
-
-  var today = DEMO_DATE ? new Date(DEMO_DATE + 'T12:00:00') : new Date();
-
-  // Find highest-priority matching event (respecting gender filter)
-  var event = null;
-  for (var i = 0; i < EVENTS.length; i++) {
-    var e = EVENTS[i];
-    if (e.gender !== 'ALL' && e.gender !== USER.gender) continue;
-    if (!e.match(today)) continue;
-    if (!event || e.priority < event.priority) event = e;
-  }
-
-  // Nothing to show
-  if (!event) { el.style.display = 'none'; return; }
-
-  // Check if user dismissed this event today
-  var dismissKey = 'banner_dismissed_' + event.id + '_' + today.toDateString();
-  if (sessionStorage.getItem(dismissKey)) { el.style.display = 'none'; return; }
-
-  // Build perks HTML
-  var perksHtml = event.perks.map(function(p) {
-    return '<a href="' + p.href + '" class="bday-perk-btn">' +
-           '<span class="material-icons">' + p.icon + '</span>' + p.label + '</a>';
-  }).join('');
-
-  // Build CTA HTML
-  var ctaHtml = event.ctaText
-    ? '<a href="' + event.ctaHref + '" class="bday-cta" style="background:' + event.accentColor + ';box-shadow:0 3px 10px rgba(0,0,0,.2);">' + event.ctaText + '</a>'
-    : '';
-
-  // Sparkle animation
-  var sparkleHtml = event.sparkle
-    ? '<div class="bday-sparkle">' + event.sparkle + '</div>' : '';
-
-  el.innerHTML =
-    '<div style="position:relative;overflow:hidden;margin:0 1.75rem .875rem;border-radius:.875rem;' +
-    'background:' + event.gradient + ';box-shadow:0 4px 20px rgba(0,0,0,.2);">' +
-    '<div class="bday-content">' +
-      '<div class="bday-icon-wrap">' +
-        '<div class="bday-cake">' + event.icon + '</div>' + sparkleHtml +
-      '</div>' +
-      '<div class="bday-text">' +
-        '<div class="bday-title">' + event.title + '</div>' +
-        '<div class="bday-sub">' + event.subtitle + '</div>' +
-      '</div>' +
-      '<div class="bday-perks">' + perksHtml + '</div>' +
-      ctaHtml +
-      '<button class="bday-close" onclick="dismissEventBanner('' + event.id + '')" aria-label="Dismiss">&times;</button>' +
-    '</div></div>';
-}
-
-function dismissEventBanner(id) {
-  var today = DEMO_DATE ? new Date(DEMO_DATE + 'T12:00:00') : new Date();
-  sessionStorage.setItem('banner_dismissed_' + id + '_' + today.toDateString(), '1');
-  document.getElementById('eventBanner').style.display = 'none';
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initEventBanner);
-} else {
-  initEventBanner();
-}
-</script>
-
-<!-- WIP Modal -->
-<div id="wipModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:16px;padding:2rem 2.5rem;max-width:380px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative;">
-    <button onclick="document.getElementById('wipModal').style.display='none'" style="position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;font-size:20px;color:#8a979e;">&#x2715;</button>
-    <div style="width:56px;height:56px;border-radius:50%;background:#fff8e1;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    </div>
-    <div style="font-size:1.1rem;font-weight:700;color:#16303d;margin-bottom:.5rem;">Coming Soon</div>
-    <p style="font-size:.875rem;color:#556b76;line-height:1.6;margin-bottom:1.25rem;">This feature is currently under development and will be available shortly.</p>
-    <button onclick="document.getElementById('wipModal').style.display='none'" style="background:#16303d;color:#fff;border:none;border-radius:8px;padding:9px 28px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.02em;">OK</button>
-  </div>
-</div>
-<script>
-function showWip(){
-  var m=document.getElementById('wipModal');
-  m.style.display='flex';
-  m.addEventListener('click',function(e){if(e.target===m)m.style.display='none';},{once:true});
-}
-</script>
-</body>
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+function initEventBanner(
