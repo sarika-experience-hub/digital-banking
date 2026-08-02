@@ -27,7 +27,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  align-items: start;
+  align-items: stretch;
 }
 /* My Cards sits in the right sub-column */
 .rd-left .rd-d5 { grid-column: 2; grid-row: 1; }
@@ -102,7 +102,7 @@
   justify-content: space-between;
 }
 .rd-ph-left { display: flex; align-items: center; gap: .625rem; }
-.rd-ph-title { font-size: 17px; font-weight: 500; color: var(--az-navy); }
+.rd-ph-title { font-size: .75rem; font-weight: 700; color: var(--az-muted); text-transform: uppercase; letter-spacing: .08em; }
 .rd-ph-action {
   font-size: .75rem; color: var(--az-blue); font-weight: 500;
   text-decoration: none; display: flex; align-items: center; gap: .2rem;
@@ -116,8 +116,9 @@
 .bal-dark-top {
   background: #fff;
   border-bottom: none;
-  padding: 1.25rem 1.5rem 1.25rem;
+  padding: 1.25rem 1.5rem 1rem;
   position: relative;
+  flex-shrink: 0;
 }
 .bal-dark-top::after {
   content: '';
@@ -133,9 +134,9 @@
   margin-bottom: .875rem;
 }
 .bal-lbl {
-  font-size: .68rem; font-weight: 700;
+  font-size: .75rem; font-weight: 700;
   color: var(--az-muted);
-  text-transform: uppercase; letter-spacing: .09em;
+  text-transform: uppercase; letter-spacing: .08em;
 }
 .bal-sublbl {
   display: flex; align-items: center; gap: .35rem;
@@ -195,17 +196,17 @@
 }
 .bal-change .material-icons { font-size: 13px; }
 
-.bal-body { padding: .875rem 1.25rem 1.125rem; }
+.bal-body { padding: 1rem 1.25rem 1.125rem; display:flex; flex-direction:column; flex:1; min-height:0; }
 
 .bal-acc-row {
   display: flex; align-items: stretch;
-  margin: 1rem 0 1.125rem;
+  margin: .4rem 0 .75rem;
   border: 1px solid var(--az-border);
   border-radius: .625rem; overflow: hidden;
 }
 .bal-acc-item {
   flex: 1; display: flex; flex-direction: column;
-  padding: .625rem .75rem;
+  padding: .875rem .75rem;
   text-decoration: none;
   transition: background .15s;
 }
