@@ -353,7 +353,7 @@
   <nav class="sb-nav">
   <button class="sb-item" data-label="Quick Links" onclick="toggleSub('sQL','cQL')" style="display:none"><span class="sb-icon"><img src="../images/icons/quick_links.svg" width="18" height="18" alt=""/></span><span class="sb-label">Quick Links</span><span class="sb-chevron" id="cQL"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
   <div id="sQL" class="sb-sub" style="display:none"><a href="javascript:;" class="sb-sub-item">Favourites</a></div>
-  <a href="retail-dashboard.html" class="sb-item active-section" data-label="My Banking"><span class="sb-icon"><img src="../images/icons/dashboard.svg" width="18" height="18" alt=""/></span><span class="sb-label">My Banking</span></a>
+  <a href="retail-dashboard-innovative-earthday.html" class="sb-item active-section" data-label="My Banking"><span class="sb-icon"><img src="../images/icons/dashboard.svg" width="18" height="18" alt=""/></span><span class="sb-label">My Banking</span></a>
   <button class="sb-item" data-label="Accounts" onclick="toggleSub('sAcc','cAcc')"><span class="sb-icon"><img src="../images/icons/accounts.svg" width="18" height="18" alt=""/></span><span class="sb-label">Accounts</span><span class="sb-chevron" id="cAcc"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
   <div id="sAcc" class="sb-sub" style="display:none"><a href="accounts.html" class="sb-sub-item">My Accounts</a><a href="transaction-history.html" class="sb-sub-item">Transaction History</a><a href="account-statement.html" class="sb-sub-item">Account Statement</a><a href="general-account-opening.html" class="sb-sub-item">General Account Opening</a><a href="term-deposit-account-opening.html" class="sb-sub-item">Term Deposit Account Opening</a></div>
   <button class="sb-item" data-label="Transfers" onclick="toggleSub('sTr','cTr')"><span class="sb-icon"><img src="../images/icons/transfer.svg" width="18" height="18" alt=""/></span><span class="sb-label">Transfers</span><span class="sb-chevron" id="cTr"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
@@ -373,6 +373,7 @@
   <div id="sFin" class="sb-sub" style="display:none"><a href="financing-calculator.html" class="sb-sub-item">Financial Calculator</a><a href="financing-facility-request.html" class="sb-sub-item">Facility Request</a><a href="financing-my-facilities.html" class="sb-sub-item">My Facilities</a><a href="financing-payment.html" class="sb-sub-item">Financing Payment</a></div>
   <button class="sb-item" data-label="Services" onclick="toggleSub('sSvc','cSvc')"><span class="sb-icon"><img src="../images/icons/services.svg" width="18" height="18" alt=""/></span><span class="sb-label">Services</span><span class="sb-chevron" id="cSvc"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
   <div id="sSvc" class="sb-sub" style="display:none"><a href="report-lost-document.html" class="sb-sub-item">Report Lost Document</a><a href="e-statement-request.html" class="sb-sub-item">E-statement Request</a><a href="branches-atm.html" class="sb-sub-item">Branches &amp; ATM Location</a><a href="currency-exchange-rate.html" class="sb-sub-item">Currency Exchange Rate</a><a href="faq.html" class="sb-sub-item">Frequently Asked Questions</a><a href="islamic-utilities.html" class="sb-sub-item">Islamic Utilities</a></div>
+  <a href="partner-apps.html" class="sb-item" data-label="Partner Apps"><span class="sb-icon"><span class="material-icons" style="font-size:18px;color:#1aad6e;">apps</span></span><span class="sb-label">Partner Apps</span></a>
 </nav>
 </aside>
 
@@ -384,6 +385,8 @@
     <div class="az-bc" style="padding:.375rem 1.75rem 0;margin-top:.625rem;">
       <a href="retail-dashboard.html">Home</a><span class="sep">&#8250;</span><span class="cur">My Banking</span>
     </div>
+
+
 
     <!-- ══ DASHBOARD ══ -->
     <div class="rd-wrap">
@@ -1545,4 +1548,110 @@ function initEventBanner() {
   // Build perks HTML
   var perksHtml = event.perks.map(function(p) {
     return '<a href="' + p.href + '" class="bday-perk-btn">' +
-           '<span class="material-icons">' + p.icon + '</span>' + p.l
+           '<span class="material-icons">' + p.icon + '</span>' + p.label + '</a>';
+  }).join('');
+
+  var sparkleHtml = event.sparkle
+    ? '<div class="bday-sparkle">' + event.sparkle + '</div>' : '';
+
+  var ctaHtml = event.ctaText
+    ? '<a href="' + event.ctaHref + '" class="bday-cta"><span class="material-icons">arrow_forward</span>' + event.ctaText + '</a>' : '';
+
+  el.innerHTML =
+    '<div style="position:relative;overflow:hidden;margin:0 1.75rem .875rem;border-radius:.875rem;' +
+    'background:' + event.gradient + ';box-shadow:0 4px 20px rgba(0,0,0,.2);border:none;">' +
+    '<div class="bday-content">' +
+    '<div class="bday-icon-wrap">' +
+    '<div class="bday-cake">' + event.icon + '</div>' +
+    sparkleHtml +
+    '</div>' +
+    '<div class="bday-text">' +
+    '<div class="bday-title">' + event.title + '</div>' +
+    '<div class="bday-sub">' + event.subtitle + '</div>' +
+    '</div>' +
+    '<div class="bday-perks">' + perksHtml + '</div>' +
+    ctaHtml +
+    '<button class="bday-close" onclick="dismissEventBanner(\'' + event.id + '\')" aria-label="Dismiss">&times;</button>' +
+    '</div></div>';
+}
+
+function dismissEventBanner(id) {
+  var today = DEMO_DATE ? new Date(DEMO_DATE + 'T12:00:00') : new Date();
+  sessionStorage.setItem('banner_dismissed_' + id + '_' + today.toDateString(), '1');
+  var el = document.getElementById('eventBanner');
+  if (el) el.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', initEventBanner);
+</script>
+
+<!-- ── Leaf canvas ── -->
+<canvas id="confettiCanvas"></canvas>
+<script>
+(function() {
+  var canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var colors = ['#2d8c43','#3aaa5a','#4cca6e','#1a5c28','#56b870','#a8e6b8'];
+  var leaves = Array.from({length: 22}, function() {
+    return {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * -window.innerHeight,
+      size: 5 + Math.random() * 9,
+      speed: 0.7 + Math.random() * 1.1,
+      drift: (Math.random() - 0.5) * 0.6,
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.035,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      opacity: 0.45 + Math.random() * 0.4
+    };
+  });
+
+  function drawLeaf(l) {
+    ctx.save();
+    ctx.globalAlpha = l.opacity;
+    ctx.translate(l.x, l.y);
+    ctx.rotate(l.rot);
+    ctx.beginPath();
+    ctx.moveTo(0, -l.size);
+    ctx.bezierCurveTo(l.size * 0.8, -l.size * 0.5, l.size * 0.8, l.size * 0.5, 0, l.size);
+    ctx.bezierCurveTo(-l.size * 0.8, l.size * 0.5, -l.size * 0.8, -l.size * 0.5, 0, -l.size);
+    ctx.fillStyle = l.color;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(0, -l.size);
+    ctx.lineTo(0, l.size);
+    ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+    ctx.lineWidth = 0.7;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  var startTime = Date.now();
+  var DURATION = 6000, FADE_START = 4000;
+  var raf;
+  function animate() {
+    var elapsed = Date.now() - startTime;
+    if (elapsed >= DURATION) { ctx.clearRect(0, 0, canvas.width, canvas.height); canvas.style.opacity = 0; return; }
+    var alpha = elapsed > FADE_START ? 1 - (elapsed - FADE_START) / (DURATION - FADE_START) : 1;
+    canvas.style.opacity = alpha;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    leaves.forEach(function(l) {
+      l.y += l.speed;
+      l.x += l.drift;
+      l.rot += l.rotSpeed;
+      if (l.y > canvas.height + 20) { l.y = -20; l.x = Math.random() * canvas.width; }
+      drawLeaf(l);
+    });
+    raf = requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+
+</body>
+</html>
