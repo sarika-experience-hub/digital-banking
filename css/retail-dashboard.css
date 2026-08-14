@@ -218,26 +218,18 @@
 .bal-acc-val { font-size: .82rem; font-weight: 700; color: var(--az-navy); }
 
 .bal-actions-row {
-  display: flex; gap: .5rem;
+  display: flex; gap: .5rem; margin-top: .875rem;
 }
 .bal-action-pill {
-  display: inline-flex; align-items: center; gap: .35rem;
-  padding: .35rem .75rem;
-  border: 1.5px solid var(--az-border); border-radius: 20px;
-  background: #fff; color: var(--az-navy);
-  font-size: .72rem; font-weight: 600; text-decoration: none;
-  transition: background .12s, border-color .12s;
+  display: inline-flex; align-items: center;
+  padding: .3rem .7rem;
+  border: 1px solid var(--az-border); border-radius: 20px;
+  background: #f0f4f8; color: var(--az-navy);
+  font-size: .72rem; font-weight: 500; text-decoration: none;
+  transition: background .12s, border-color .12s, color .12s;
   white-space: nowrap;
 }
-.bal-action-pill:hover { background: #edf6f1; border-color: var(--az-green); text-decoration: none; color: var(--az-navy); }
-.bal-action-pill .material-icons { font-size: 16px; color: var(--az-navy); }
-.bal-action-pill:hover .material-icons { color: var(--az-green); }
-/* Transfer — solid navy to distinguish from Scan QR */
-.bal-actions-row .bal-action-pill:first-child {
-  background: var(--az-navy); color: #fff; border-color: var(--az-navy);
-}
-.bal-actions-row .bal-action-pill:first-child .material-icons { color: #fff; font-size: 16px; }
-.bal-actions-row .bal-action-pill:first-child:hover { background: #0f2730; border-color: #0f2730; }
+.bal-action-pill:hover { background: #f0f4f8; border-color: #cbd5e1; color: var(--az-navy); text-decoration: none; }
 
 /* legacy bal-* kept for fallback */
 .bal-hero { display: flex; flex-direction: column; }
@@ -1372,17 +1364,16 @@ a.ab-chip:active { transform: translateY(0); filter: brightness(.88); }
   border-top: 1px solid var(--az-border);
 }
 .mc-pill {
-  display: flex; flex-direction: column; align-items: center; gap: .3rem;
-  padding: .55rem .25rem;
-  background: #f8fafc; border: 1px solid var(--az-border);
-  border-radius: .5rem; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .3rem .7rem;
+  background: #f0f4f8; border: 1px solid var(--az-border);
+  border-radius: 20px; cursor: pointer;
   text-decoration: none; font-family: 'Roboto', sans-serif;
-  transition: background .15s, border-color .15s;
+  transition: background .12s, border-color .12s, color .12s;
 }
-.mc-pill:hover { background: #edf6f1; border-color: var(--az-green); }
-.mc-pill .material-icons { font-size: 18px; color: var(--az-navy); }
-.mc-pill:hover .material-icons { color: var(--az-navy); }
-.mc-pill-lbl { font-size: .6rem; color: var(--az-muted); white-space: nowrap; }
+.mc-pill:hover { background: #f0f4f8; border-color: #cbd5e1; }
+.mc-pill .material-icons { display: none; }
+.mc-pill-lbl { font-size: .72rem; font-weight: 500; color: var(--az-navy); white-space: nowrap; }
 .mc-pill:hover .mc-pill-lbl { color: var(--az-navy); }
 /* Freeze active state */
 .mc-pill-active { background: #fff8e6; border-color: #f0c040; }
