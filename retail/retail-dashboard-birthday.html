@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>azentio – My Banking (Birthday)</title>
+  <title>azentio – My Banking</title>
   <link rel="stylesheet" href="../css/bootstrap.min.css"/>
   <link rel="stylesheet" href="../css/fonts.css"/>
   <link rel="stylesheet" href="../css/flag-icons.min.css"/>
@@ -13,95 +13,138 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
   <script src="../js/theme.js"></script>
 <style>
-    .bday-banner {
-      position: relative; overflow: hidden;
-      margin: 0 1.75rem .875rem;
-      border-radius: .875rem;
-      background: linear-gradient(135deg, #16303d 0%, #0e3347 55%, #00538A 100%);
-      border: none;
-      box-shadow: 0 4px 20px rgba(22,48,61,.25);
-    }
-    .bday-deco {
-      position: absolute; top: 0; right: 0;
-      height: 100%; width: 55%; pointer-events: none;
-    }
-    .bday-content {
-      position: relative; z-index: 1;
-      display: flex; align-items: center; gap: 1rem;
-      padding: .875rem 1.25rem;
-    }
-    .bday-icon-wrap { position: relative; flex-shrink: 0; }
-    .bday-cake {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(46,216,142,.15);
-      border: 2px solid #2ed88e;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.75rem; line-height: 56px; text-align: center;
-    }
-    .bday-sparkle {
-      position: absolute; top: -4px; right: -4px;
-      font-size: .875rem; line-height: 1;
-      animation: bday-spin 3s linear infinite;
-    }
 
-    .bday-perks { display:flex; gap:.5rem; flex-shrink:0; align-items:center; }
-    .bday-perk-btn {
-      display:inline-flex; align-items:center; gap:.3rem;
-      background:#2ed88e; border:1.5px solid #2ed88e;
-      color:#16303d; border-radius:2rem;
-      padding:.25rem .75rem; font-size:.75rem; font-weight:600;
-      text-decoration:none; cursor:pointer;
-      transition:background .15s, border-color .15s;
-      white-space:nowrap;
-    }
-    .bday-perk-btn .material-icons { font-size:14px; }
-    .bday-perk-btn:hover { background:#25c47e; border-color:#25c47e; color:#16303d; }
-    @keyframes bday-spin { 0%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(180deg) scale(1.2)} 100%{transform:rotate(360deg) scale(1)} }
-    .bday-text { flex: 1; min-width: 180px; }
-    .bday-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .25rem; }
-    .bday-sub { font-size: .8125rem; color: rgba(255,255,255,.75); line-height: 1.45; margin-bottom: .5rem; }
-    .bday-tags { display: flex; gap: .5rem; flex-wrap: wrap; }
-    .bday-tag {
-      display: inline-flex; align-items: center; gap: .25rem;
-      background: rgba(96,165,250,.15); border: 1px solid rgba(96,165,250,.35);
-      border-radius: 2rem; padding: .2rem .625rem;
-      font-size: .6875rem; font-weight: 600; color: #1d4ed8;
-    }
-    .bday-cta {
-      display: inline-flex; align-items: center;
-      background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
-      border: none; color: #fff; border-radius: .5rem;
-      padding: .5rem 1.125rem; font-size: .875rem;
-      font-weight: 700; cursor: pointer; white-space: nowrap;
-      box-shadow: 0 3px 10px rgba(37,99,235,.3);
-      transition: box-shadow .2s, transform .15s; flex-shrink: 0;
-    }
-    .bday-cta:hover { box-shadow: 0 5px 16px rgba(37,99,235,.4); transform: translateY(-1px); }
-    .bday-close {
-      background: none; border: none; color: rgba(255,255,255,.5);
-      font-size: 1.375rem; line-height: 1; cursor: pointer;
-      padding: .25rem; flex-shrink: 0; align-self: flex-start;
-    }
-    .bday-close:hover { color: #fff; }
+    /* ══ NEW SECTIONS (outside rd-wrap, no grid conflict) ══ */
+    .v2-section { margin:0 0 .5rem; }
 
-    @media (max-width: 767px) {
-      .bday-banner { margin: 0 .75rem .75rem; }
-      .bday-content { flex-wrap: wrap; gap: .625rem; padding: .75rem 1rem; }
-      .bday-text { min-width: 0; flex: 1 1 100%; order: 1; }
-      .bday-icon-wrap { order: 0; }
-      .bday-perks { order: 2; flex: 1 1 100%; justify-content: flex-start; flex-wrap: wrap; }
-      .bday-close { order: 0; margin-left: auto; }
-      .bday-cta { width: 100%; justify-content: center; }
-    }
-    @media (max-width: 479px) {
-      .bday-banner { margin: 0 .5rem .625rem; }
-      .bday-perk-btn { font-size: .7rem; padding: .2rem .6rem; }
-    }
-    /* ── Unified icon color — corporate green (darkened) ── */
-    .mc-pill .material-icons { color:#1aad6e !important; }
-    .mc-pill:hover .material-icons { color:#1aad6e !important; }
+    /* Carousel */
+    .pc-outer { background:#fff; }
+    .pc-track  { display:flex; transition:transform .45s ease; }
+    .pc-slide  { min-width:100%; height:90px; display:flex; align-items:center; padding:.75rem 1.25rem; position:relative; overflow:hidden; }
+    .pc-slide-1{ background:linear-gradient(130deg,#e6f4ff 0%,#d0e9f7 60%,#e0f5ec 100%); }
+    .pc-slide-2{ background:linear-gradient(130deg,#e8f3fb 0%,#c8def2 100%); }
+    .pc-slide-3{ background:linear-gradient(130deg,#eaeff3 0%,#ccdae4 100%); }
+    .pc-slide-4{ background:linear-gradient(130deg,#e6f7f0 0%,#b8e4ce 100%); }
+    .pc-bg-circle{ position:absolute; border-radius:50%; pointer-events:none; }
+    .pc-icon{ width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0; }
+    .pc-icon .material-icons{ font-size:22px; }
+    .pc-body{ flex:1;min-width:0; }
+    .pc-tag{ display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.15rem .5rem;border-radius:20px;margin-bottom:.28rem; }
+    .pc-title{ font-size:.93rem;font-weight:700;color:#16303d;line-height:1.3;margin-bottom:.18rem; }
+    .pc-sub{ font-size:.74rem;color:#334155;line-height:1.35;font-weight:500; }
+    .pc-cta{ display:inline-flex;align-items:center;gap:.3rem;color:#fff;border:none;border-radius:2rem;padding:.32rem .85rem;font-size:.75rem;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap;transition:opacity .15s; }
+    .pc-cta:hover{ opacity:.88;color:#fff;text-decoration:none; }
+    .pc-x{ position:absolute;top:6px;right:8px;background:none;border:none;color:#64748b;font-size:1rem;cursor:pointer;padding:.15rem .3rem;line-height:1; }
+    .pc-x:hover{ color:#16303d; }
+    .pc-footer{ display:flex;align-items:center;padding:.25rem 1.25rem .3rem;background:#fff;border-top:1px solid #e2e8f0; }
+    .pc-dots{ display:flex;gap:.35rem;flex:1; }
+    .pc-dot{ width:6px;height:6px;border-radius:50%;background:#cbd5e1;cursor:pointer;transition:background .2s,transform .2s; }
+    .pc-dot.on{ background:#00538A;transform:scale(1.4); }
+    .pc-btns{ display:flex;gap:.3rem; }
+    .pc-btn{ background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer; }
+    .pc-btn:hover{ background:#e2e8f0;color:#16303d; }
+    .pc-btn .material-icons{ font-size:15px; }
+
+    /* Recently Used */
+    .ru-row{ display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem; }
+    .ru-lbl{ font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--az-muted); }
+    .ru-clr{ font-size:.73rem;color:var(--az-blue);background:none;border:none;cursor:pointer;padding:0; }
+    #ruStrip{ display:flex;flex-wrap:wrap;gap:.4rem; }
+    .ru-pill{ display:flex;align-items:center;gap:.45rem;background:#f7f9fb;border:1px solid var(--az-border);border-radius:2rem;padding:.3rem .6rem .3rem .35rem;text-decoration:none;transition:border-color .15s,box-shadow .15s;min-width:0; }
+    .ru-pill:hover{ border-color:var(--az-green);box-shadow:0 2px 8px rgba(46,216,142,.12); }
+    .ru-pill-icon{ width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+    .ru-pill-icon .material-icons{ font-size:13px; }
+    .ru-pill-name{ font-size:.75rem;font-weight:600;color:var(--az-navy);line-height:1.2; }
+    .ru-pill-time{ display:block;font-size:.63rem;color:var(--az-muted);font-weight:400;margin-top:.05rem; }
+
+
     .ins-nudge-icon { color:#1aad6e !important; }
     .d7-nudge-icon  { color:#1aad6e !important; }
+
+    /* ══ Dashboard page background ══ */
+    .pg-retail-dashboard .main-body {
+      background: #f9fafb !important;
+      padding: 1.25rem !important;
+      flex: 1 !important;
+    }
+
+    /* ══ Greeting bar: transparent on grey bg ══ */
+    .pg-retail-dashboard .rd-alert-bar {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: .25rem 0 !important;
+    }
+
+    /* ══ Carousel: white card with rounded corners ══ */
+    .pg-retail-dashboard .pc-outer {
+      border-radius: .875rem !important;
+      overflow: hidden !important;
+      border: 1px solid var(--az-border) !important;
+      box-shadow: 0 1px 6px rgba(22,48,61,.06) !important;
+    }
+
+    /* ══ rd-left: transparent — each panel is its own card ══ */
+    .pg-retail-dashboard .rd-left {
+      background: transparent !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      overflow: visible !important;
+      gap: .75rem !important;
+    }
+
+    /* ══ rd-left unified-card overrides → individual cards ══ */
+    .pg-retail-dashboard .rd-left .rd-d1,
+    .pg-retail-dashboard .rd-left .rd-d5 {
+      border: 1px solid var(--az-border) !important;
+      border-right: 1px solid var(--az-border) !important;
+      border-radius: .875rem !important;
+      background: #fff !important;
+      box-shadow: 0 1px 6px rgba(22,48,61,.06) !important;
+    }
+    .pg-retail-dashboard .rd-left .rd-d1 { align-self: stretch !important; }
+    .pg-retail-dashboard .rd-left .rd-d5 { align-self: start !important; }
+
+    /* ══ Greeting bar typography ══ */
+    .ab-greet-name { font-size: 1rem; font-weight: 600; }
+    .ab-greet-sub  { font-size: .95rem; }
+
+    /* ══ All rd-panels: white, rounded, subtle shadow ══ */
+    .pg-retail-dashboard .rd-panel {
+      background: #fff !important;
+      border-radius: .875rem !important;
+      border: 1px solid var(--az-border) !important;
+      box-shadow: 0 1px 6px rgba(22,48,61,.06) !important;
+    }
+
+    /* ══ rd-right panels gap ══ */
+    .pg-retail-dashboard .rd-right {
+      gap: .75rem !important;
+    }
+
+    /* ══ rd-wrap: transparent wrapper, gap ══ */
+    .pg-retail-dashboard .rd-wrap {
+      background: transparent !important;
+      gap: .75rem !important;
+      margin: 0 !important;
+    }
+
+    /* Partner Apps */
+    .pa-hdr{ display:flex;align-items:center;justify-content:space-between;margin-bottom:.55rem; }
+    .pa-lbl{ font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--az-muted); }
+    .pa-va{ font-size:.73rem;color:var(--az-blue);text-decoration:none;display:flex;align-items:center; }
+    .pa-va .material-icons{ font-size:14px; }
+    .pa-row{ display:flex;gap:.625rem;overflow-x:auto;scrollbar-width:none; }
+    .pa-row::-webkit-scrollbar{ display:none; }
+    .pa-grid{ display:grid;grid-template-columns:repeat(4,1fr);gap:.375rem; }
+    .pa-tile{ background:#fff;border:1px solid var(--az-border);border-radius:.75rem;padding:.5rem .25rem .4rem;display:flex;flex-direction:column;align-items:center;gap:.25rem;cursor:pointer;text-decoration:none;transition:box-shadow .15s,border-color .15s; }
+    .pa-tile:hover{ box-shadow:0 3px 10px rgba(22,48,61,.1);border-color:var(--az-green); }
+    .pa-logo{ width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#fff;font-family:'Roboto',sans-serif;letter-spacing:-.5px;overflow:hidden; }
+    .pa-logo img{ width:34px;height:34px;object-fit:contain;border-radius:8px;display:block; }
+    .pa-name{ font-size:.67rem;font-weight:600;color:var(--az-navy);text-align:center;line-height:1.2; }
+    .pa-cat{ font-size:.6rem;color:var(--az-muted);text-align:center; }
+    .pa-conn{ display:inline-flex;align-items:center;background:none;border:1px solid var(--az-border);border-radius:2rem;padding:.08rem .45rem;font-size:.62rem;font-weight:600;color:var(--az-navy);cursor:pointer;transition:border-color .15s,background .15s; }
+    .pa-conn:hover,.pa-conn.on{ border-color:#2ed88e;background:#edfaf6;color:#2a7a50; }
     /* ── Notification tabs ── */
     .nt-tabs{ display:flex;border-bottom:1px solid var(--az-border);padding:0 1rem;gap:.125rem; }
     .nt-tab{ background:none;border:none;border-bottom:2px solid transparent;padding:.5rem .625rem;font-size:.8125rem;font-weight:600;color:var(--az-muted);cursor:pointer;display:flex;align-items:center;gap:.35rem;margin-bottom:-1px;transition:color .15s,border-color .15s; }
@@ -110,10 +153,81 @@
     .nt-tab.active .nt-badge{ background:#00538A;color:#fff; }
     .nt-panel{ display:none; }
     .nt-panel.active{ display:block; }
+    .nt-ico{ font-size:14px!important;vertical-align:-3px;margin-right:.25rem; }
+    .nt-ico-alert{ color:#d97706; }
+    .nt-ico-success{ color:#16a34a; }
+    .nt-ico-info{ color:#00538A; }
+    .nt-ico-offer{ color:#7c3aed; }
     .nt-cta{ font-size:.7rem;font-weight:700;color:#00538A;text-decoration:none;white-space:nowrap;padding:.15rem .5rem;border:1px solid #00538A;border-radius:2rem;margin-left:.5rem;flex-shrink:0; }
     .notif-item{ display:flex;align-items:center; }
     .notif-content{ flex:1; }
-  </style>
+  
+    /* ══ Mobile responsive overrides ══ */
+    @media (max-width: 1100px) {
+      /* Override inline grid positions on all rd-left children */
+      .pg-retail-dashboard .rd-left > div {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        width: 100% !important;
+      }
+      .pg-retail-dashboard .rd-left .rd-d5 {
+        align-self: stretch !important;
+      }
+      .pg-retail-dashboard #pcWrap {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+      }
+      .pg-retail-dashboard .rd-right {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+      }
+    }
+    @media (max-width: 767px) {
+      .pg-retail-dashboard .main-body { padding: .75rem !important; }
+      .pg-retail-dashboard .rd-wrap   { margin: 0 !important; gap: .5rem !important; }
+      .pg-retail-dashboard .rd-left   { gap: .5rem !important; }
+      .pg-retail-dashboard .rd-right  { gap: .5rem !important; }
+      /* Carousel slide: auto height, wrap content */
+      .pg-retail-dashboard .pc-slide {
+        height: auto !important;
+        min-height: 72px;
+        padding: .625rem .875rem !important;
+        gap: .5rem;
+      }
+      /* Shift content left since icon is absolute at 20px */
+      .pg-retail-dashboard .pc-slide > div[style] {
+        padding-left: 72px !important;
+        padding-right: .75rem !important;
+      }
+      .pg-retail-dashboard .pc-cta {
+        font-size: .68rem !important;
+        padding: .22rem .55rem !important;
+        white-space: nowrap;
+      }
+      /* Stack CTA buttons if they overflow */
+      .pg-retail-dashboard .pc-slide .pc-cta + .pc-cta { margin-top: 0; }
+      /* Hide banner icons on mobile to avoid distortion */
+      .pg-retail-dashboard .pc-slide > div[style*="left:20px"] { display: none !important; }
+      /* Remove icon padding-left since icon is hidden */
+      .pg-retail-dashboard .pc-slide > div[style*="padding-left"] {
+        padding-left: .875rem !important;
+      }
+
+      /* Banner icon sizing */
+      .pg-retail-dashboard .pc-slide > div[style*="left:20px"] div {
+        width: 44px !important; height: 44px !important;
+      }
+      /* Right panel widgets full width */
+      .pg-retail-dashboard .rd-right > * { width: 100% !important; }
+      /* Explore More: single column */
+      .pg-retail-dashboard .rd-right .rd-panel a { padding: .5rem 1rem !important; }
+    }
+    @media (max-width: 479px) {
+      .pg-retail-dashboard .main-body { padding: .5rem !important; }
+      .pg-retail-dashboard .pc-cta { font-size: .65rem !important; padding: .2rem .45rem !important; }
+    }
+
+    </style>
 </head>
 <body class="pg-retail-dashboard">
 
@@ -133,19 +247,18 @@
     <div class="hdr-div" role="separator"></div>
     <div class="notif-wrap">
       <button class="hdr-icon-btn" id="notifBtn" title="Notifications" aria-label="Notifications" style="position:relative" onclick="toggleNotifPanel(event)">
-        <span class="material-icons-outlined" style="font-size:20px;">notifications</span><span class="notif-dot" id="notifBadge" aria-label="7 notifications">7</span>
+        <span class="material-icons-outlined" style="font-size:20px;">notifications</span><span class="notif-dot" id="notifBadge" aria-label="6 notifications">6</span>
       </button>
       <div class="notif-dropdown" role="dialog" aria-label="Notifications panel">
         <div class="notif-panel-hdr"><button class="notif-mobile-close" onclick="closeNotifPanel()" aria-label="Close"><span class="material-icons">arrow_back</span></button><span class="notif-panel-title">Notifications</span></div>
         <!-- Category tabs -->
         <div class="nt-tabs">
-          <button class="nt-tab active" onclick="ntSwitch('alerts',this)">Alerts<span class="nt-badge" id="ntb-alerts">3</span></button>
+          <button class="nt-tab active" onclick="ntSwitch('alerts',this)">Alerts<span class="nt-badge" id="ntb-alerts">2</span></button>
           <button class="nt-tab" onclick="ntSwitch('announcements',this)">Announcements<span class="nt-badge" id="ntb-announcements">1</span></button>
           <button class="nt-tab" onclick="ntSwitch('offers',this)">Offers<span class="nt-badge" id="ntb-offers">3</span></button>
         </div>
         <!-- Alerts -->
         <div class="nt-panel active" id="nt-alerts">
-          <div class="notif-item notif-unread" id="nto-birthday" style="background:linear-gradient(90deg,#f0fdf8 0%,#fff 100%);border-left:3px solid #1aad6e;"><div class="notif-content"><div class="notif-msg">🎂 Happy Birthday, Sarika! Exclusive perks unlocked on your Gold Mastercard</div><div class="notif-time">Today</div></div><a href="offer-dining-cashback.html" class="nt-cta">View Perks</a></div>
           <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">2 bills due this week — avoid late fees</div><div class="notif-time">Just now</div></div><span class="notif-ind"></span></div>
           <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Salary credited — AED 18,500</div><div class="notif-time">Just now</div></div><span class="notif-ind"></span></div>
           <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Scheduled transfer of AED 3,200 processed</div><div class="notif-time">1 hr ago</div></div></div>
@@ -157,11 +270,11 @@
           <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Scheduled maintenance: Sunday 3–5 AM. Services may be briefly unavailable</div><div class="notif-time">2 days ago</div></div></div>
           <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Updated Terms &amp; Conditions effective Aug 1, 2026</div><div class="notif-time">Last week</div></div></div>
         </div>
-        <!-- Offers -->
+        <!-- Offers (also shows dismissed carousel slides) -->
         <div class="nt-panel" id="nt-offers">
-          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Personal Loan at 3.49% p.a. — up to AED 500,000</div><div class="notif-time">Today</div></div><a href="financing-facility-request.html" class="nt-cta">Apply</a></div>
-          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">5.5% p.a. Fixed Deposit — 12-month term</div><div class="notif-time">Today</div></div><a href="term-deposit-account-opening.html" class="nt-cta">Open</a></div>
-          <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">10% Cashback on Dining — Gold Mastercard, valid till Dec 2026</div><div class="notif-time">Today</div></div><a href="offer-dining-cashback.html" class="nt-cta">View</a></div>
+          <div class="notif-item notif-unread" id="nto-loan"><div class="notif-content"><div class="notif-msg">Personal Loan at 3.49% p.a. — up to AED 500,000</div><div class="notif-time">Today</div></div><a href="financing-facility-request.html" class="nt-cta">Apply</a></div>
+          <div class="notif-item notif-unread" id="nto-fd"><div class="notif-content"><div class="notif-msg">5.5% p.a. Fixed Deposit — 12-month term</div><div class="notif-time">Today</div></div><a href="term-deposit-account-opening.html" class="nt-cta">Open</a></div>
+          <div class="notif-item notif-unread" id="nto-cashback"><div class="notif-content"><div class="notif-msg">10% Cashback on Dining — Gold Mastercard, valid till Dec 2026</div><div class="notif-time">Today</div></div><a href="offer-dining-cashback.html" class="nt-cta">View</a></div>
         </div>
         <div class="notif-footer"><button class="notif-view-all" onclick="location.href='all-notifications.html'">VIEW ALL NOTIFICATIONS</button></div>
       </div>
@@ -218,7 +331,9 @@
   <nav class="sb-nav">
   <button class="sb-item" data-label="Quick Links" onclick="toggleSub('sQL','cQL')" style="display:none"><span class="sb-icon"><img src="../images/icons/quick_links.svg" width="18" height="18" alt=""/></span><span class="sb-label">Quick Links</span><span class="sb-chevron" id="cQL"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
   <div id="sQL" class="sb-sub" style="display:none"><a href="javascript:;" class="sb-sub-item">Favourites</a></div>
-  <a href="retail-dashboard-birthday.html" class="sb-item active-section" data-label="My Banking"><span class="sb-icon"><img src="../images/icons/dashboard.svg" width="18" height="18" alt=""/></span><span class="sb-label">My Banking</span></a>
+  <button class="sb-item" data-label="Frequently Visited" onclick="toggleSub('sFU','cFU')"><span class="sb-icon"><img src="../images/icons/quick_links.svg" width="18" height="18" alt=""/></span><span class="sb-label">Frequently Visited</span><span class="sb-chevron" id="cFU"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+  <div id="sFU" class="sb-sub" style="display:none"><a href="cards-my-cards.html" class="sb-sub-item">My Cards</a><a href="transfer-own-accounts.html" class="sb-sub-item">Own Accounts Transfer</a></div>
+  <a href="retail-dashboard.html" class="sb-item active-section" data-label="Dashboard"><span class="sb-icon"><img src="../images/icons/dashboard.svg" width="18" height="18" alt=""/></span><span class="sb-label">Dashboard</span></a>
   <button class="sb-item" data-label="Accounts" onclick="toggleSub('sAcc','cAcc')"><span class="sb-icon"><img src="../images/icons/accounts.svg" width="18" height="18" alt=""/></span><span class="sb-label">Accounts</span><span class="sb-chevron" id="cAcc"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
   <div id="sAcc" class="sb-sub" style="display:none"><a href="accounts.html" class="sb-sub-item">My Accounts</a><a href="transaction-history.html" class="sb-sub-item">Transaction History</a><a href="account-statement.html" class="sb-sub-item">Account Statement</a><a href="general-account-opening.html" class="sb-sub-item">General Account Opening</a><a href="term-deposit-account-opening.html" class="sb-sub-item">Term Deposit Account Opening</a></div>
   <button class="sb-item" data-label="Transfers" onclick="toggleSub('sTr','cTr')"><span class="sb-icon"><img src="../images/icons/transfer.svg" width="18" height="18" alt=""/></span><span class="sb-label">Transfers</span><span class="sb-chevron" id="cTr"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
@@ -238,7 +353,7 @@
   <div id="sFin" class="sb-sub" style="display:none"><a href="financing-calculator.html" class="sb-sub-item">Financial Calculator</a><a href="financing-facility-request.html" class="sb-sub-item">Facility Request</a><a href="financing-my-facilities.html" class="sb-sub-item">My Facilities</a><a href="financing-payment.html" class="sb-sub-item">Financing Payment</a></div>
   <button class="sb-item" data-label="Services" onclick="toggleSub('sSvc','cSvc')"><span class="sb-icon"><img src="../images/icons/services.svg" width="18" height="18" alt=""/></span><span class="sb-label">Services</span><span class="sb-chevron" id="cSvc"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
   <div id="sSvc" class="sb-sub" style="display:none"><a href="report-lost-document.html" class="sb-sub-item">Report Lost Document</a><a href="e-statement-request.html" class="sb-sub-item">E-statement Request</a><a href="branches-atm.html" class="sb-sub-item">Branches &amp; ATM Location</a><a href="currency-exchange-rate.html" class="sb-sub-item">Currency Exchange Rate</a><a href="faq.html" class="sb-sub-item">Frequently Asked Questions</a><a href="islamic-utilities.html" class="sb-sub-item">Islamic Utilities</a></div>
-  <a href="partner-apps.html" class="sb-item" data-label="Partner Apps"><span class="sb-icon"><span class="material-icons" style="font-size:18px;color:#1aad6e;">apps</span></span><span class="sb-label">Partner Apps</span></a>
+  <a href="offer-dining-cashback.html" class="sb-item" data-label="Offers"><span class="sb-icon"><img src="../images/icons/quick_links.svg" width="18" height="18" alt=""/></span><span class="sb-label">Offers</span></a>
 </nav>
 </aside>
 
@@ -247,314 +362,373 @@
   <main class="main-body" role="main">
 
     <!-- Breadcrumb -->
-    <div class="az-bc" style="padding:.375rem 1.75rem 0;margin-top:.625rem;">
+    <div class="az-bc" style="padding:0;margin-top:0;">
       <a href="retail-dashboard.html">Home</a><span class="sep">&#8250;</span><span class="cur">My Banking</span>
     </div>
 
-    <!-- ── Good Morning Widget ── -->
-    <div class="rd-panel rd-reveal rd-d0 rd-alert-bar" style="margin:0 1.75rem .75rem;">
-      <div class="ab-greeting">
-        <span class="material-icons ab-greet-icon">wb_sunny</span>
-        <div>
-          <div class="ab-greet-name">Good morning, Sarika</div>
-          <div class="ab-greet-sub" id="abDate">Here's what needs your attention</div>
-        </div>
-      </div>
-      <div class="ab-chips">
-        <a href="payments-bill-report.html" class="ab-chip ab-chip-warn"><span class="material-icons">schedule</span>2 bills due this week</a>
-        <a href="transfer-pending-list.html" class="ab-chip ab-chip-info"><span class="material-icons">pending_actions</span>3 payments processing</a>
-        <a href="transfer-receipt.html" class="ab-chip ab-chip-success"><span class="material-icons">check_circle</span>Salary credited · AED 18,500</a>
-      </div>
+    <!-- Page header -->
+    <div class="page-top-bar" style="margin-bottom:.75rem;margin-top:0;padding:0 1.75rem;display:none;">
+      <h1 class="page-title">My Banking</h1>
     </div>
 
-    <!-- Birthday Banner -->
-    <div style="position:relative;overflow:hidden;margin:0 1.75rem .875rem;border-radius:.875rem;background:linear-gradient(135deg,#16303d 0%,#0e3347 55%,#00538A 100%);box-shadow:0 4px 20px rgba(0,0,0,.2);">
-      <div class="bday-content">
-        <div class="bday-icon-wrap">
-          <div class="bday-cake">🎂</div>
-          <div class="bday-sparkle">✨</div>
-        </div>
-        <div class="bday-text">
-          <div class="bday-title">Happy Birthday, Sarika!</div>
-          <div class="bday-sub">Celebrate your special day with exclusive perks on your Gold Mastercard!</div>
-        </div>
-        <div class="bday-perks">
-          <a href="offer-dining-cashback.html" class="bday-perk-btn"><span class="material-icons">restaurant</span>Dinner Deals</a>
-          <a href="movie-tickets.html" class="bday-perk-btn"><span class="material-icons">local_movies</span>Movie Tickets</a>
-        </div>
-
-        <button class="bday-close" onclick="this.closest('[style]').style.display='none';bdayDismiss();" aria-label="Dismiss">&times;</button>
-      </div>
-    </div>
 
     <!-- ══ DASHBOARD ══ -->
     <div class="rd-wrap">
 
+      <!-- ══ GREETING BAR (row 1, spans both columns) ══ -->
+      <div class="rd-alert-bar" style="grid-column:1/-1;grid-row:1;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;padding:.25rem 0;">
+        <div class="ab-greeting">
+          <div style="display:flex;align-items:center;gap:.5rem;">
+            <span class="ab-greet-name">Hi, Sarika</span>
+            <span style="color:var(--az-muted);">·</span>
+            <span class="ab-greet-sub" id="abDate">Here is what's happening with your finances today.</span>
+          </div>
+        </div>
+      </div>
+
       <!-- ── Left column: actionable ── -->
       <div class="rd-left">
 
-      <!-- ── rd-d1: Total Balance ── -->
-      <div class="rd-panel rd-reveal rd-d1" style="padding:0;overflow:hidden;">
-        <div class="bal-dark-top">
-          <div class="bal-top-row">
-            <div>
-              <div style="display:flex;align-items:center;gap:.35rem;">
-                <div class="bal-lbl">Total Balance</div>
-                <button class="eye-btn-w" id="eyeBtn" onclick="toggleBalance()" title="Show/hide balance">
-                  <span class="material-icons" id="eyeIcon">visibility</span>
-                </button>
+      <!-- ── Personalized Carousel ── -->
+      <div id="pcWrap" style="grid-column:1/-1;grid-row:1;border-radius:.875rem;overflow:hidden;background:#fff;box-shadow:0 0 0 1.5px #cbd5e1;">
+        <div class="pc-outer">
+          <div class="pc-track" id="pcTrack">
+
+            <!-- Slide 0: Birthday -->
+            <div class="pc-slide pc-slide-1">
+              <!-- Decorative bg circles -->
+              <div style="position:absolute;right:-30px;top:-30px;width:130px;height:130px;border-radius:50%;background:#00538A;opacity:.12;pointer-events:none;"></div>
+              <div style="position:absolute;right:70px;bottom:-45px;width:95px;height:95px;border-radius:50%;background:#1AAD6E;opacity:.10;pointer-events:none;"></div>
+              <div style="position:absolute;right:180px;top:-18px;width:60px;height:60px;border-radius:50%;background:#16303d;opacity:.07;pointer-events:none;"></div>
+              <!-- Icon -->
+              <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:#1AAD6E;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 14px rgba(26,173,110,.25);">
+                <span class="material-icons" style="font-size:28px;color:#fff;">cake</span>
               </div>
-              <div class="bal-sublbl"><span class="bal-dot"></span>All accounts · Live</div>
+              <!-- Content -->
+              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:88px;padding-right:1.5rem;gap:.875rem;">
+                <div style="min-width:0;flex:1;">
+                  <div class="pc-title" style="font-size:1rem;">Happy Birthday, Sarika! 🎉</div>
+                  <div class="pc-sub" style="font-size:.82rem;">Celebrate your special day with exclusive perks on your Gold Mastercard!</div>
+                </div>
+                <div style="display:flex;gap:.5rem;flex-shrink:0;">
+                  <a href="offer-dining-cashback.html" class="pc-cta" style="background:#1AAD6E;display:inline-flex;align-items:center;gap:.3rem;"><span class="material-icons" style="font-size:15px;">restaurant</span>Dinner Deals</a>
+                  <a href="movie-tickets.html" class="pc-cta" style="background:#00538A;display:inline-flex;align-items:center;gap:.3rem;"><span class="material-icons" style="font-size:15px;">movie</span>Movie Tickets</a>
+                </div>
+              </div>
             </div>
-            <a href="accounts.html" class="bal-see-all">Accounts <span class="material-icons">chevron_right</span></a>
-          </div>
-          <div class="bal-amount-row">
-            <span class="bal-currency-sym">AED</span>
-            <span class="bal-amount" id="balAmount">248,350.00</span>
-          </div>
-          <div class="bal-change">
-            <span class="material-icons">trending_up</span>
-            +AED 4,200 &nbsp;·&nbsp; +1.7% this month
+
+            <!-- Slide 1: Personal Loan -->
+            <div class="pc-slide pc-slide-2">
+              <!-- Decorative bg circles -->
+              <div style="position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:#00538A;opacity:.12;pointer-events:none;"></div>
+              <div style="position:absolute;right:60px;bottom:-40px;width:90px;height:90px;border-radius:50%;background:#00538A;opacity:.08;pointer-events:none;"></div>
+              <div style="position:absolute;right:160px;top:-20px;width:60px;height:60px;border-radius:50%;background:#00538A;opacity:.07;pointer-events:none;"></div>
+              <!-- Icon -->
+              <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:#00538A;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(0,83,138,.25);">
+                <span class="material-icons" style="font-size:30px;color:#fff;">calculate</span>
+              </div>
+              <!-- Content -->
+              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:88px;padding-right:1.5rem;gap:.875rem;">
+                <div style="min-width:0;flex:1;">
+                  <span class="pc-tag" style="background:rgba(0,83,138,.15);color:#00538A;">Limited Time</span>
+                  <div class="pc-title">Personal Loan at 3.49% p.a.</div>
+                  <div class="pc-sub">Up to AED 500,000 · Instant approval · No processing fee</div>
+                </div>
+                <a href="financing-facility-request.html" class="pc-cta" style="background:#00538A;flex-shrink:0;">Apply for Personal Loan</a>
+              </div>
+            </div>
+
+            <!-- Slide 2: Fixed Deposit -->
+            <div class="pc-slide pc-slide-3">
+              <!-- Decorative bg circles -->
+              <div style="position:absolute;right:-25px;top:-35px;width:110px;height:110px;border-radius:50%;background:#16303d;opacity:.11;pointer-events:none;"></div>
+              <div style="position:absolute;right:70px;bottom:-38px;width:85px;height:85px;border-radius:50%;background:#16303d;opacity:.08;pointer-events:none;"></div>
+              <div style="position:absolute;right:170px;top:-15px;width:55px;height:55px;border-radius:50%;background:#16303d;opacity:.07;pointer-events:none;"></div>
+              <!-- Icon -->
+              <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:#16303d;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(22,48,61,.25);">
+                <span class="material-icons" style="font-size:30px;color:#fff;">savings</span>
+              </div>
+              <!-- Content -->
+              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:88px;padding-right:1.5rem;gap:.875rem;">
+                <div style="min-width:0;flex:1;">
+                  <span class="pc-tag" style="background:rgba(22,48,61,.14);color:#16303d;">Best Rate</span>
+                  <div class="pc-title">5.5% p.a. Fixed Deposit</div>
+                  <div class="pc-sub">12-month term · No minimum balance · AED 1,218 potential earn</div>
+                </div>
+                <a href="term-deposit-account-opening.html?tenure=365&rate=5.50&amount=22150&source=bestrate" class="pc-cta" style="background:#16303d;flex-shrink:0;">Open Fixed Deposit</a>
+              </div>
+            </div>
+
+            <!-- Slide 3: Dining Cashback -->
+            <div class="pc-slide pc-slide-4">
+              <!-- Decorative bg circles -->
+              <div style="position:absolute;right:-28px;top:-32px;width:115px;height:115px;border-radius:50%;background:#1AAD6E;opacity:.14;pointer-events:none;"></div>
+              <div style="position:absolute;right:65px;bottom:-42px;width:88px;height:88px;border-radius:50%;background:#1AAD6E;opacity:.09;pointer-events:none;"></div>
+              <div style="position:absolute;right:165px;top:-18px;width:58px;height:58px;border-radius:50%;background:#1AAD6E;opacity:.08;pointer-events:none;"></div>
+              <!-- Icon -->
+              <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:#1AAD6E;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(26,173,110,.25);">
+                <span class="material-icons" style="font-size:30px;color:#fff;">restaurant</span>
+              </div>
+              <!-- Content -->
+              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:88px;padding-right:1.5rem;gap:.875rem;">
+                <div style="min-width:0;flex:1;">
+                  <span class="pc-tag" style="background:rgba(26,173,110,.15);color:#0e7a4b;">Exclusive</span>
+                  <div class="pc-title">10% Cashback on Dining</div>
+                  <div class="pc-sub">Gold Mastercard · Any restaurant · Valid till Dec 2026</div>
+                </div>
+                <a href="offer-dining-cashback.html" class="pc-cta" style="background:#1AAD6E;flex-shrink:0;">View Offer</a>
+              </div>
+            </div>
+
+          </div><!-- /pc-track -->
+          <div class="pc-footer">
+            <div class="pc-dots" id="pcDots">
+              <span class="pc-dot on" onclick="pcGo(0)"></span>
+              <span class="pc-dot" onclick="pcGo(1)"></span>
+              <span class="pc-dot" onclick="pcGo(2)"></span>
+              <span class="pc-dot" onclick="pcGo(3)"></span>
+            </div>
+            <div class="pc-btns">
+              <button class="pc-btn" onclick="pcMove(-1)"><span class="material-icons">chevron_left</span></button>
+              <button class="pc-btn" onclick="pcMove(1)"><span class="material-icons">chevron_right</span></button>
+            </div>
           </div>
         </div>
-        <div class="bal-body">
-          <div class="bal-acc-row">
-            <a href="accounts.html" class="bal-acc-item">
-              <div><div class="bal-acc-lbl">Current</div><div class="bal-acc-val" data-orig="AED 84,200">AED 84,200</div></div>
-            </a>
-            <div class="bal-acc-divider"></div>
-            <a href="accounts.html" class="bal-acc-item">
-              <div><div class="bal-acc-lbl">Savings</div><div class="bal-acc-val" data-orig="AED 142,000">AED 142,000</div></div>
-            </a>
-            <div class="bal-acc-divider"></div>
-            <a href="accounts.html" class="bal-acc-item">
-              <div><div class="bal-acc-lbl">Fixed Dep.</div><div class="bal-acc-val" data-orig="AED 22,150">AED 22,150</div></div>
-            </a>
-          </div>
-          <div class="bal-cashflow">
-            <span class="material-icons bal-cf-icon">trending_flat</span>
-            <span class="bal-cf-lbl">Next 7 days</span>
-            <span class="bal-cf-val">−AED 2,100 estimated outflow</span>
-          </div>
-          <div class="bal-actions-row">
-            <a href="transfer-own-accounts.html" class="bal-action-pill">Transfer</a>
-            <a href="term-deposit-account-opening.html" class="bal-action-pill">Open Fixed Deposit</a>
-          </div>
+      </div><!-- /carousel -->
+
+      <!-- ── Col-1 wrapper: Total Balance + Recent Transactions stacked ── -->
+      <div style="grid-column:1;grid-row:2/4;display:flex;flex-direction:column;gap:.75rem;">
+
+      <!-- ── rd-d1: Total Balance ── -->
+      <div class="rd-panel rd-reveal rd-d1" style="display:flex;flex-direction:column;min-height:0;padding:.625rem 1.25rem .75rem;">
+
+        <!-- Label row -->
+        <div style="display:flex;align-items:center;gap:.3rem;margin-bottom:.5rem;">
+          <span class="rd-ph-title">Total Balance</span>
+          <button class="eye-btn-w" id="eyeBtn" onclick="toggleBalance()" title="Show/hide balance" style="margin-right:auto;">
+            <span class="material-icons" id="eyeIcon" style="font-size:16px;">visibility</span>
+          </button>
         </div>
+
+        <!-- Amount -->
+        <div style="margin-bottom:.375rem;">
+          <div style="display:flex;align-items:baseline;gap:.375rem;margin-bottom:.2rem;">
+            <span style="font-size:.95rem;font-weight:500;color:var(--az-muted);line-height:1;">AED</span>
+            <span class="bal-amount" id="balAmount" style="font-size:clamp(1.6rem,2.4vw,2.1rem);font-weight:700;color:var(--az-navy);letter-spacing:-.02em;line-height:1;">248,350.00</span>
+          </div>
+          <div id="availBalRow" style="font-size:.75rem;color:var(--az-muted);">Available &nbsp;<span id="availBalAmt" style="font-weight:600;color:var(--az-navy);">AED 241,800</span></div>
+        </div>
+
+        <!-- Account breakdown -->
+        <div style="display:flex;align-items:stretch;border:1px solid var(--az-border);border-radius:.5rem;overflow:hidden;margin-bottom:.375rem;">
+          <a href="accounts.html" class="bal-acc-item" style="flex:1;padding:.4rem .75rem;display:flex;flex-direction:column;text-decoration:none;">
+            <span class="bal-acc-lbl">Current</span>
+            <span class="bal-acc-val" data-orig="AED 84,200">AED 84,200</span>
+          </a>
+          <div style="width:1px;background:var(--az-border);flex-shrink:0;"></div>
+          <a href="accounts.html" class="bal-acc-item" style="flex:1;padding:.4rem .75rem;display:flex;flex-direction:column;text-decoration:none;">
+            <span class="bal-acc-lbl">Savings</span>
+            <span class="bal-acc-val" data-orig="AED 142,000">AED 142,000</span>
+          </a>
+          <div style="width:1px;background:var(--az-border);flex-shrink:0;"></div>
+          <a href="accounts.html" class="bal-acc-item" style="flex:1;padding:.4rem .75rem;display:flex;flex-direction:column;text-decoration:none;">
+            <span class="bal-acc-lbl">Fixed Dep.</span>
+            <span class="bal-acc-val" data-orig="AED 22,150">AED 22,150</span>
+          </a>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex;gap:.5rem;margin-top:.375rem;margin-bottom:.375rem;">
+          <a href="transfer-own-accounts.html" style="display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--az-border);border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;background:#f8fafc;transition:background .15s;"><span class="material-icons" style="font-size:16px;color:#1AAD6E;">swap_horiz</span>Transfer</a>
+          <a href="term-deposit-account-opening.html" style="display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--az-border);border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;background:#f8fafc;transition:background .15s;"><span class="material-icons" style="font-size:16px;color:#1AAD6E;">savings</span>Open Fixed Account</a>
+        </div>
+
       </div>
 
+      <!-- ── Recent Transactions ── -->
+      <div class="rd-panel rd-reveal" id="rtPanel" style="padding:1rem 1.25rem;">
+        <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" onclick="rtToggle()">
+          <span class="rd-ph-title">Recent Transactions</span>
+          <span class="material-icons" id="rtChevron" style="font-size:18px;color:var(--az-muted);transition:transform .25s;transform:rotate(180deg);">expand_less</span>
+        </div>
+        <div id="rtList" style="display:none;margin-top:.75rem;">
+          <!-- Txn 1: Careem -->
+          <div style="display:flex;align-items:center;gap:.625rem;padding:.35rem 0;border-bottom:1px solid var(--az-border);">
+            <div style="width:32px;height:32px;border-radius:8px;background:#f0f4f8;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="material-icons" style="font-size:16px;color:#64748b;">directions_car</span></div>
+            <div style="flex:1;min-width:0;"><div style="font-size:.78rem;font-weight:600;color:#16303d;">Careem</div><div style="font-size:.68rem;color:var(--az-muted);">Transport · Today, 10:30 AM</div></div>
+            <div style="text-align:right;flex-shrink:0;"><div style="font-size:.8rem;font-weight:600;color:#e11d48;">− AED 45.00</div></div>
+          </div>
+          <!-- Txn 2: Salary Credit -->
+          <div style="display:flex;align-items:center;gap:.625rem;padding:.35rem 0;border-bottom:1px solid var(--az-border);">
+            <div style="width:32px;height:32px;border-radius:8px;background:#edf9f4;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="material-icons" style="font-size:16px;color:#1AAD6E;">account_balance</span></div>
+            <div style="flex:1;min-width:0;"><div style="font-size:.78rem;font-weight:600;color:#16303d;">Salary Credit</div><div style="font-size:.68rem;color:var(--az-muted);">Income · Yesterday, 09:15 AM</div></div>
+            <div style="text-align:right;flex-shrink:0;"><div style="font-size:.8rem;font-weight:700;color:#1AAD6E;">+ AED 8,250.00</div></div>
+          </div>
+          <!-- Txn 3: Amazon.ae -->
+          <div style="display:flex;align-items:center;gap:.625rem;padding:.35rem 0;border-bottom:1px solid var(--az-border);">
+            <div style="width:32px;height:32px;border-radius:8px;background:#f0f4f8;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="material-icons" style="font-size:16px;color:#64748b;">shopping_bag</span></div>
+            <div style="flex:1;min-width:0;"><div style="font-size:.78rem;font-weight:600;color:#16303d;">Amazon.ae</div><div style="font-size:.68rem;color:var(--az-muted);">Shopping · Yesterday, 08:45 PM</div></div>
+            <div style="text-align:right;flex-shrink:0;"><div style="font-size:.8rem;font-weight:600;color:#e11d48;">− AED 125.50</div></div>
+          </div>
+          <!-- Txn 4: DEWA -->
+          <div style="display:flex;align-items:center;gap:.625rem;padding:.35rem 0;">
+            <div style="width:32px;height:32px;border-radius:8px;background:#fff4e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="material-icons" style="font-size:16px;color:#d97706;">bolt</span></div>
+            <div style="flex:1;min-width:0;"><div style="font-size:.78rem;font-weight:600;color:#16303d;">DEWA</div><div style="font-size:.68rem;color:var(--az-muted);">Utilities · 12 May 2025</div></div>
+            <div style="text-align:right;flex-shrink:0;"><div style="font-size:.8rem;font-weight:600;color:#e11d48;">− AED 210.00</div></div>
+          </div>
+          <!-- View all button -->
+          <a href="transaction-history.html" style="display:flex;align-items:center;justify-content:center;gap:.3rem;margin-top:.75rem;padding:.5rem;border:1px solid var(--az-border);border-radius:.5rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;transition:background .15s;">View All Transactions <span class="material-icons" style="font-size:15px;">arrow_forward</span></a>
+        </div>
+      </div>
+      </div><!-- /col-1 wrapper -->
 
       <!-- ── rd-d5: My Cards ── -->
-      <div class="rd-panel rd-reveal rd-d5" style="padding:0;overflow:hidden;">
-        <div class="rd-ph" style="padding:1.25rem 1.25rem .5rem;">
+      <div class="rd-panel rd-reveal rd-d5" style="grid-column:2;grid-row:2/4;padding:0;overflow:hidden;display:flex;flex-direction:column;align-self:start;min-height:0;">
+
+        <!-- Header -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.25rem .5rem;">
           <span class="rd-ph-title">My Cards</span>
-          <a href="cards-my-cards.html" class="rd-ph-action">Card controls <span class="material-icons" style="font-size:13px;vertical-align:-2px;">chevron_right</span></a>
+          <a href="cards-my-cards.html" style="font-size:.72rem;color:var(--az-blue);font-weight:600;text-decoration:none;">View all</a>
         </div>
 
-        <!-- Carousel -->
-        <div class="mc-carousel-wrap">
-          <div class="mc-viewport">
-            <div class="mc-track" id="cardCarouselTrack">
+        <!-- Card selector list -->
+        <div style="margin:.125rem 1.25rem 0;border:1px solid var(--az-border);border-radius:.625rem;overflow:hidden;">
 
-              <!-- Card 1 -->
-              <div class="mc-slide">
-                <div class="mc-card">
-                  <div class="mc-card-top">
-                    <div><div class="mc-bank">azentio</div><div class="mc-type">Platinum Visa</div></div>
-                    <span class="mc-status-chip mc-status-active">ACTIVE</span>
-                  </div>
-                  <div class="mc-mid">
-                    <div class="mc-chip"></div>
-                    <div class="mc-num" data-masked="532 &nbsp;····&nbsp; 7841" data-full="5321 4892 6614 7841">532 &nbsp;····&nbsp; 7841</div>
-                  </div>
-                  <button class="mc-eye-btn" onclick="mcTogglePan(this)" aria-label="Show card number" title="Show/hide card number">
-                    <span class="material-icons-outlined" style="font-size:16px;">visibility</span>
-                  </button>
-                  <div class="mc-card-bot">
-                    <div><div class="mc-lbl">CARD HOLDER</div><div class="mc-holder">SARIKA DESAI</div></div>
-                    <div><div class="mc-lbl">EXPIRES</div><div class="mc-expiry">09 / 27</div></div>
-                    <div class="mc-brand-visa">VISA</div>
-                  </div>
-                  <div class="mc-frozen-overlay"><span class="material-icons">lock</span><span>Card Blocked</span></div>
-                </div>
-              </div>
-
-              <!-- Card 2 -->
-              <div class="mc-slide">
-                <div class="mc-card" style="background:linear-gradient(135deg,#1a4a6b 0%,#0d2d45 100%);">
-                  <div class="mc-card-top">
-                    <div><div class="mc-bank">azentio</div><div class="mc-type">Gold Mastercard</div></div>
-                    <span class="mc-status-chip mc-status-active">ACTIVE</span>
-                  </div>
-                  <div class="mc-mid">
-                    <div class="mc-chip"></div>
-                    <div class="mc-num" data-masked="841 &nbsp;····&nbsp; 3290" data-full="8412 5573 9901 3290">841 &nbsp;····&nbsp; 3290</div>
-                  </div>
-                  <button class="mc-eye-btn" onclick="mcTogglePan(this)" aria-label="Show card number" title="Show/hide card number">
-                    <span class="material-icons-outlined" style="font-size:16px;">visibility</span>
-                  </button>
-                  <div class="mc-card-bot">
-                    <div><div class="mc-lbl">CARD HOLDER</div><div class="mc-holder">SARIKA DESAI</div></div>
-                    <div><div class="mc-lbl">EXPIRES</div><div class="mc-expiry">12 / 26</div></div>
-                    <div class="mc-brand-mc"></div>
-                  </div>
-                  <div class="mc-frozen-overlay"><span class="material-icons">lock</span><span>Card Blocked</span></div>
-                </div>
-              </div>
-
+          <!-- Card 1 -->
+          <div class="card-sel-row" onclick="goToCard(0)" style="display:flex;align-items:center;gap:.875rem;padding:.75rem 1rem;cursor:pointer;background:#f0f7ff;border-left:3px solid var(--az-blue);transition:background .15s;">
+            <div style="width:48px;height:30px;background:linear-gradient(135deg,#1a1f71,#00378b);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <span style="font-size:.65rem;font-weight:900;color:#fff;font-style:italic;letter-spacing:.02em;">VISA</span>
             </div>
+            <div style="flex:1;min-width:0;">
+              <div class="card-sel-name" style="font-size:.8rem;font-weight:600;color:var(--az-navy);">Platinum Visa</div>
+              <div style="font-size:.68rem;color:var(--az-muted);">···· 5678 &nbsp;·&nbsp; Exp 09/27</div>
+            </div>
+            <span class="mc-status-chip mc-status-active" style="flex-shrink:0;">Active</span>
           </div>
-          <div class="mc-dots">
-            <span class="cc-dot active" onclick="goToCard(0)"></span>
-            <span class="cc-dot" onclick="goToCard(1)"></span>
+
+          <div style="height:1px;background:var(--az-border);"></div>
+
+          <!-- Card 2 -->
+          <div class="card-sel-row" onclick="goToCard(1)" style="display:flex;align-items:center;gap:.875rem;padding:.75rem 1rem;cursor:pointer;border-left:3px solid transparent;transition:background .15s;">
+            <div style="width:48px;height:30px;background:linear-gradient(135deg,#1a1f71,#0d2d45);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;overflow:hidden;">
+              <div style="width:18px;height:18px;border-radius:50%;background:#eb001b;position:absolute;left:5px;"></div>
+              <div style="width:18px;height:18px;border-radius:50%;background:#f79e1b;position:absolute;right:5px;opacity:.9;"></div>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div class="card-sel-name" style="font-size:.8rem;font-weight:600;color:var(--az-navy);">Gold Mastercard</div>
+              <div style="font-size:.68rem;color:var(--az-muted);">···· 9876 &nbsp;·&nbsp; Exp 12/26</div>
+            </div>
+            <span class="mc-status-chip mc-status-active" style="flex-shrink:0;">Active</span>
           </div>
+
         </div>
 
-        <!-- Balance + usage -->
-        <div class="mc-balance-section">
-          <div class="mc-balance-row">
-            <div><div class="mc-bal-lbl">Available</div><div class="mc-bal-amt" id="mcBalAmt">AED 8,240</div></div>
-            <div style="text-align:right"><div class="mc-bal-lbl">Spent this month</div><div class="mc-bal-spent" id="mcBalSpent">AED 4,230</div></div>
+        <!-- Available credit + usage bar -->
+        <div style="padding:.75rem 1.25rem .5rem;">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:.4rem;">
+            <div>
+              <div style="font-size:.63rem;color:var(--az-muted);text-transform:uppercase;letter-spacing:.04em;font-weight:500;margin-bottom:.2rem;">Available Credit</div>
+              <div style="font-size:.95rem;font-weight:700;color:var(--az-navy);letter-spacing:-.01em;" id="mcBalAmt">AED 8,240</div>
+            </div>
+            <div style="font-size:.68rem;color:var(--az-muted);padding-bottom:.15rem;" id="mcUsageLbl">24% of AED 35,000 total credit</div>
           </div>
-          <div class="mc-usage-track"><div class="mc-usage-fill" id="mcUsageFill" style="width:34%"></div></div>
-          <div class="mc-usage-lbl" id="mcUsageLbl">34% of AED 12,470 limit used</div>
+          <div class="mc-usage-track" style="margin-bottom:0;"><div class="mc-usage-fill" id="mcUsageFill" style="width:24%"></div></div>
+          <span id="mcBalSpent" style="display:none;">AED 8,240</span>
         </div>
 
-        <!-- Circular action pills -->
-        <div class="mc-pills">
-          <a href="cards-my-cards.html" class="mc-pill">
-            <span class="material-icons">receipt_long</span>
-            <span class="mc-pill-lbl">Details</span>
+        <!-- 2 actions -->
+        <div style="display:flex;gap:.5rem;padding:.5rem 1.25rem .875rem;">
+          <a href="cards-manage.html" style="display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--az-border);border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;background:#f8fafc;transition:background .15s;">
+            <span class="material-icons" style="font-size:16px;color:#1AAD6E;">credit_card</span>Manage Cards
           </a>
-          <button class="mc-pill" id="mcFreezeBtn" onclick="mcToggleFreeze()">
-            <span class="material-icons">credit_card_off</span>
-            <span class="mc-pill-lbl">Block Card</span>
-          </button>
-          <a href="cards-pin-change.html" class="mc-pill">
-            <span class="material-icons">pin</span>
-            <span class="mc-pill-lbl">Change PIN</span>
-          </a>
-          <a href="cards-manage.html" class="mc-pill">
-            <span class="material-icons">tune</span>
-            <span class="mc-pill-lbl">Manage</span>
+          <a href="account-statement.html" style="display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--az-border);border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;background:#f8fafc;transition:background .15s;">
+            <span class="material-icons" style="font-size:16px;color:#1AAD6E;">receipt_long</span>View Statement
           </a>
         </div>
+
       </div>
 
-      <!-- ── rd-d2: Upcoming & Alerts ── -->
-      <div class="rd-panel rd-reveal rd-d2">
-        <div class="rd-ph">
-          <span class="rd-ph-title">Upcoming &amp; Alerts</span>
-          
-        </div>
-<div class="ac-cols-wrap">
-          <div class="ac-col">
-            <div class="ac-list">
-              <div class="ac-item ac-item-urgent">
-                <div class="ac-icon" style="background:#fff4e5;"><span class="material-icons" style="color:#d97706;font-size:18px;">bolt</span></div>
-                <div class="ac-body"><div class="ac-name">Electricity (DEWA)</div><div class="ac-due ac-due-urgent">Due in 2 days</div></div>
-                <div class="ac-amt">AED 320</div>
-                <a href="payments-bill-report.html" class="ac-pay-btn-urgent">Pay</a>
-              </div>
-              <div class="ac-item">
-                <div class="ac-icon" style="background:#eef4ff;"><span class="material-icons" style="color:#1aad6e;font-size:18px;">wifi</span></div>
-                <div class="ac-body"><div class="ac-name">Internet · Etisalat</div><div class="ac-due">Due in 5 days</div></div>
-                <div class="ac-amt">AED 250</div>
-                <a href="payments-bill-report.html" class="ac-pay-btn">Pay</a>
-              </div>
-              <div class="ac-item" style="border-bottom:none;">
-                <div class="ac-icon" style="background:#f3f0ff;"><span class="material-icons" style="color:#1aad6e;font-size:18px;">credit_card</span></div>
-                <div class="ac-body"><div class="ac-name"><a href="cards-settlement-my.html" style="color:inherit;text-decoration:none;">Credit Card Bill</a></div><div class="ac-due">Due Jul 15</div></div>
-                <div class="ac-amt">AED 1,840</div>
-                <a href="cards-settlement-my.html" class="ac-pay-btn">Pay</a>
-              </div>
-            </div>
-          </div>
-          <div class="ac-col ac-col-right">
-            <div class="ac-alert" style="display:none;">
-              <span class="material-icons ac-alert-icon">warning_amber</span>
-              <div class="ac-alert-body">
-                <div class="ac-alert-title">Low balance alert</div>
-                <div class="ac-alert-sub">Current account below AED 10,000 threshold</div>
-              </div>
-              <a href="accounts.html" class="ac-alert-link">View</a>
-            </div>
-            <div class="ac-section-lbl">Pending Actions</div>
-            <div class="ac-list">
-              <a href="my-profile.html" class="ac-pending-item">
-                <span class="material-icons" style="font-size:16px;color:#d97706;">badge</span>
-                <span>Emirates ID expiring in 15 days — update documents</span>
-                <span class="material-icons" style="font-size:16px;color:#aab4ba;margin-left:auto;">chevron_right</span>
-              </a>
-              <div class="ac-pending-item" style="cursor:default;">
-                <span class="material-icons" style="font-size:16px;color:#1aad6e;">hourglass_top</span>
-                <span>Cheque AED 2,500 deposited — awaiting clearance</span>
-              </div>
-              <div class="ac-pending-item" style="cursor:default;">
-                <span class="material-icons" style="font-size:16px;color:#1aad6e;">local_shipping</span>
-                <span>New Platinum Visa card en route · Expected Aug 10</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       </div><!-- /rd-left -->
 
       <!-- ── Right column: info & alerts ── -->
       <div class="rd-right">
 
-      <!-- ── rd-d4: Recent Transactions ── -->
-      <div class="rd-panel rd-reveal rd-d4" style="padding:0;">
-        <div style="padding:1rem 1.25rem .75rem;" class="rd-ph txn-ph-row">
-          <div style="display:flex;align-items:center;gap:.625rem;">
-            <span class="rd-ph-title">Recent Transactions</span>
-            <span class="txn-collapsed-chip" id="txnCollapsedChip">4 transactions</span>
-          </div>
-          <button class="txn-toggle-btn" id="txnToggleBtn" onclick="toggleTxnCollapse()" title="Expand/collapse transactions" aria-expanded="false">
-            <span class="material-icons txn-toggle-icon" id="txnToggleIcon">expand_more</span>
-          </button>
+
+
+      <!-- ── rd-d2: Upcoming Payments ── -->
+      <div class="rd-panel rd-reveal rd-d2">
+        <div class="rd-ph" style="margin-bottom:.75rem;">
+          <span class="rd-ph-title">Upcoming Payments</span>
         </div>
-        <div class="txn-collapse-wrap" id="txnCollapseWrap">
-          <div class="txn-tabs" style="padding:0 1rem;">
-            <div class="txn-tab active" onclick="setTab(this)">All</div>
-            <div class="txn-tab" onclick="setTab(this)">Income</div>
-            <div class="txn-tab" onclick="setTab(this)">Expenses</div>
-            <div class="txn-tab" onclick="setTab(this)">Transfers</div>
+        <div class="ac-list">
+          <div class="ac-item ac-item-urgent">
+            <div class="ac-icon" style="background:#fff4e5;"><span class="material-icons" style="color:#d97706;font-size:18px;">bolt</span></div>
+            <div class="ac-body"><div class="ac-name">Electricity (DEWA)</div><div class="ac-due ac-due-urgent">Due in 2 days</div></div>
+            <div class="ac-amt">AED 210</div>
+            <a href="payments-bill-report.html" class="ac-pay-btn-urgent">Pay</a>
           </div>
-          <div class="txn-list" id="txnList">
-            <div class="txn-date-group"><span class="txn-date-lbl">Today</span><div class="txn-date-line"></div><span class="txn-date-total">+AED 18,500 &nbsp; −AED 280</span></div>
-            <div class="txn-row" data-txn="salary emirates corp income direct deposit" data-type="income" onclick="location.href='transfer-receipt.html'" style="cursor:pointer;">
-              <div class="txn-mono" style="background:#e6f9f0;color:#1a9e63;">S</div>
-              <div class="txn-body"><div class="txn-name">Salary · Emirates Corp</div><div class="txn-sub"><span class="material-icons" style="font-size:13px;vertical-align:middle;">work</span><span>Income</span><span class="txn-sep">·</span><span>Direct Deposit</span></div></div>
-              <div class="txn-right"><div class="txn-amt credit">+AED 18,500</div><div class="txn-when">08:00</div></div>
-            </div>
-            <div class="txn-row" data-txn="noon.com shopping visa contactless" data-type="expense">
-              <div class="txn-mono" style="background:#edfaf6;color:#16303d;">N</div>
-              <div class="txn-body"><div class="txn-name">Noon.com</div><div class="txn-sub"><span class="material-icons" style="font-size:13px;vertical-align:middle;">shopping_bag</span><span>Shopping</span><span class="txn-sep">·</span><span>Visa contactless</span></div></div>
-              <div class="txn-right"><div class="txn-amt debit">−AED 280</div><div class="txn-when">10:22</div></div>
-            </div>
-            <div class="txn-date-group"><span class="txn-date-lbl">Yesterday</span><div class="txn-date-line"></div><span class="txn-date-total">−AED 1,640</span></div>
-            <div class="txn-row" data-txn="emirates airlines travel flight dxb lhr" data-type="expense">
-              <div class="txn-mono" style="background:#eff6ff;color:#00538A;">E</div>
-              <div class="txn-body"><div class="txn-name">Emirates Airlines</div><div class="txn-sub"><span class="material-icons" style="font-size:13px;vertical-align:middle;">flight</span><span>Travel</span><span class="txn-sep">·</span><span>DXB → LHR</span></div></div>
-              <div class="txn-right"><div class="txn-amt debit">−AED 1,200</div><div class="txn-when">14:05</div></div>
-            </div>
-            <div class="txn-row" data-txn="carrefour market groceries dubai mall" data-type="expense">
-              <div class="txn-mono" style="background:#fef3c7;color:#d97706;">C</div>
-              <div class="txn-body"><div class="txn-name">Carrefour Market</div><div class="txn-sub"><span class="material-icons" style="font-size:13px;vertical-align:middle;">shopping_cart</span><span>Groceries</span><span class="txn-sep">·</span><span>Dubai Mall</span></div></div>
-              <div class="txn-right"><div class="txn-amt debit">−AED 440</div><div class="txn-when">18:30</div></div>
-            </div>
-            <a href="transaction-history.html" class="txn-view-all">View all transactions <span class="material-icons">arrow_forward</span></a>
+          <div class="ac-item">
+            <div class="ac-icon" style="background:#f0fdf8;"><span class="material-icons" style="color:#1aad6e;font-size:18px;">wifi</span></div>
+            <div class="ac-body"><div class="ac-name">Internet · Etisalat</div><div class="ac-due">Due in 5 days</div></div>
+            <div class="ac-amt">AED 230</div>
+            <a href="payments-bill-report.html" class="ac-pay-btn">Pay</a>
+          </div>
+          <div class="ac-item" style="border-bottom:none;">
+            <div class="ac-icon" style="background:#f0fdf8;"><span class="material-icons" style="color:#1aad6e;font-size:18px;">credit_card</span></div>
+            <div class="ac-body"><div class="ac-name"><a href="cards-settlement-my.html" style="color:inherit;text-decoration:none;">Credit Card Bill</a></div><div class="ac-due">Due in 8 days</div></div>
+            <div class="ac-amt">AED 1,440</div>
+            <a href="cards-settlement-my.html" class="ac-pay-btn">Pay</a>
           </div>
         </div>
       </div>
 
+      <!-- ── Explore More ── -->
+      <div class="rd-panel rd-reveal" style="padding:.5rem 0;overflow:hidden;">
+        <!-- Visa Airport Companion -->
+        <a href="#" style="display:flex;align-items:center;gap:.75rem;padding:.5rem 1.25rem;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+          <div style="width:38px;height:38px;border-radius:10px;background:#edf9f4;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-icons" style="font-size:20px;color:#1AAD6E;">flight</span>
+          </div>
+          <div style="min-width:0;flex:1;">
+            <div style="font-size:.82rem;font-weight:700;color:#16303d;margin-bottom:.1rem;">Visa Airport Companion</div>
+            <div style="font-size:.7rem;color:#64748b;">Airport &amp; Travel Benefits</div>
+          </div>
+          <span class="material-icons" style="font-size:18px;color:var(--az-muted);flex-shrink:0;">chevron_right</span>
+        </a>
+        <div style="border-top:1px solid var(--az-border);margin:0 1.25rem;"></div>
+        <!-- Rewards Hub -->
+        <a href="#" style="display:flex;align-items:center;gap:.75rem;padding:.5rem 1.25rem;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+          <div style="width:38px;height:38px;border-radius:10px;background:#e8f3fb;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-icons" style="font-size:20px;color:#00538A;">stars</span>
+          </div>
+          <div style="min-width:0;flex:1;">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.1rem;">
+              <span style="font-size:.82rem;font-weight:700;color:#16303d;">Rewards Hub</span>
+              <span style="font-size:.68rem;font-weight:700;color:#1AAD6E;background:#edf9f4;padding:.08rem .4rem;border-radius:20px;">17,345 pts</span>
+            </div>
+            <div style="font-size:.7rem;color:#64748b;">Travel, Shopping &amp; Lifestyle</div>
+          </div>
+          <span class="material-icons" style="font-size:18px;color:var(--az-muted);flex-shrink:0;">chevron_right</span>
+        </a>
+        <div style="border-top:1px solid var(--az-border);margin:0 1.25rem;"></div>
+        <!-- Refer a Friend -->
+        <a href="#" style="display:flex;align-items:center;gap:.75rem;padding:.5rem 1.25rem;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+          <div style="width:38px;height:38px;border-radius:10px;background:#edf9f4;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-icons" style="font-size:20px;color:#1AAD6E;">person_add</span>
+          </div>
+          <div style="min-width:0;flex:1;">
+            <div style="font-size:.82rem;font-weight:700;color:#16303d;margin-bottom:.1rem;">Invite &amp; Earn</div>
+            <div style="font-size:.7rem;color:#64748b;">Refer a friend and earn rewards</div>
+          </div>
+          <span class="material-icons" style="font-size:18px;color:var(--az-muted);flex-shrink:0;">chevron_right</span>
+        </a>
+      </div>
 
 
-
-      <!-- ── rd-d8: Smart Insights (moved down) ── -->
-      <div class="rd-panel rd-reveal rd-d8">
+      <!-- ── Smart Insights ── -->
+      <div class="rd-panel rd-reveal rd-d8" style="display:none;">
         <div class="rd-ph">
           <span class="rd-ph-title">Smart Insights</span>
           <div class="rd-d2 sb-month-nav">
@@ -582,7 +756,7 @@
             <div class="ins-bar-track"><div class="ins-bar-fill ins-bar-saved" data-w="65%"></div></div>
           </div>
         </div>
-        <div class="rd-d2 sb-stack-bar" style="margin-top:.5rem;">
+        <div class="rd-d2 sb-stack-bar" style="margin-top:.7rem;">
           <div style="width:33%;background:rgba(200,152,152,1);border-radius:3px 0 0 3px;" title="Shopping 33%"></div>
           <div style="width:27%;background:rgba(200,152,152,.78);" title="Food 27%"></div>
           <div style="width:17%;background:rgba(200,152,152,.62);" title="Travel 17%"></div>
@@ -615,12 +789,17 @@
             <div class="ins-nudge-sub">Keep spending at this pace and you'll save AED 2,000+ more than last month</div>
           </div>
         </div>
+        <div style="display:flex;justify-content:flex-end;margin-top:.625rem;padding-top:.625rem;border-top:1px solid var(--az-border);">
+          <button onclick="document.getElementById('recentTxnModal').classList.remove('hidden')" style="background:none;border:none;padding:0;font-size:.72rem;color:var(--az-muted);cursor:pointer;display:inline-flex;align-items:center;gap:.1rem;font-family:inherit;">View recent transactions <span class="material-icons" style="font-size:13px;">chevron_right</span></button>
+        </div>
       </div>
 
 
+
+
       <!-- ── rd-d3: Financial Tips ── -->
-      <div class="rd-panel rd-reveal rd-d3">
-        <div class="rd-ph" style="margin-bottom:.875rem;">
+      <div class="rd-panel rd-reveal rd-d3" style="padding:.5rem 1.25rem .875rem;display:none;">
+        <div class="rd-ph" style="margin-bottom:.5rem;">
           <div style="display:flex;align-items:center;gap:.4rem;">
             <span class="material-icons" style="font-size:18px;color:#1aad6e;">lightbulb</span>
             <span class="rd-ph-title">Financial Tips</span>
@@ -629,7 +808,7 @@
         </div>
         <div class="d7-nudge" style="border-bottom:none;border-radius:.75rem;margin-bottom:.625rem;">
           <div class="d7-nudge-head">
-            <span class="material-icons d7-nudge-icon" style="color:#1aad6e;">savings</span>
+            <span class="material-icons d7-nudge-icon">savings</span>
             <span class="d7-nudge-label">Savings Goal</span>
           </div>
           <div class="d7-nudge-text">Set up a recurring transfer of AED 1,000/month to your Emergency Fund to reach your goal 4 months earlier.</div>
@@ -637,7 +816,7 @@
         </div>
         <div class="d7-nudge" style="border-bottom:none;border-radius:.75rem;margin-bottom:1.25rem;">
           <div class="d7-nudge-head">
-            <span class="material-icons d7-nudge-icon" style="color:#1aad6e;">trending_up</span>
+            <span class="material-icons d7-nudge-icon">trending_up</span>
             <span class="d7-nudge-label">Investment</span>
           </div>
           <div class="d7-nudge-text">You have AED 22,150 idle for 60 days; moving it to a fixed deposit could earn AED 1,218.</div>
@@ -646,56 +825,14 @@
       </div>
 
 
+
       </div><!-- /rd-right -->
-
-      <!-- ── rd-d7: Offers banner strip — full width ── -->
-      <div class="rd-panel rd-reveal rd-d7 rd-offers-strip">
-        <div class="rd-offers-hdr">
-          <span class="rd-offers-lbl">Personalised Offers</span>
-          
-        </div>
-        <div class="rd-offers-row">
-
-          <a href="financing-facility-request.html" class="rd-offer-banner" style="--ob-accent:#00538A;">
-            <div class="rd-ob-icon"><span class="material-icons">account_balance</span></div>
-            <div class="rd-ob-body">
-              <div class="rd-ob-tag">Limited Time</div>
-              <div class="rd-ob-title">Personal Loan at 3.49% p.a.</div>
-              <div class="rd-ob-sub">Up to AED 500,000 · Instant approval</div>
-            </div>
-            <span class="rd-ob-cta">Apply <span class="material-icons">arrow_forward</span></span>
-          </a>
-
-          <a href="term-deposit-account-opening.html?tenure=365&rate=5.50&amount=22150&source=bestrate" class="rd-offer-banner" style="--ob-accent:#2a7a50;">
-            <div class="rd-ob-icon"><span class="material-icons">savings</span></div>
-            <div class="rd-ob-body">
-              <div class="rd-ob-tag">Best Rate</div>
-              <div class="rd-ob-title">5.5% p.a. Fixed Deposit</div>
-              <div class="rd-ob-sub">12-month term · No minimum balance</div>
-            </div>
-            <span class="rd-ob-cta">Open <span class="material-icons">arrow_forward</span></span>
-          </a>
-
-          <a href="offer-dining-cashback.html" class="rd-offer-banner" style="--ob-accent:#1a9e63;">
-            <div class="rd-ob-icon"><span class="material-icons">credit_card</span></div>
-            <div class="rd-ob-body">
-              <div class="rd-ob-tag">Exclusive</div>
-              <div class="rd-ob-title">10% Cashback on Dining</div>
-              <div class="rd-ob-sub">Gold Mastercard · Valid till Dec 2026</div>
-            </div>
-            <span class="rd-ob-cta">View <span class="material-icons">arrow_forward</span></span>
-          </a>
-
-        </div>
-      </div>
 
     </div><!-- /rd-wrap -->
 
   </main>
-
-  <!-- Footer -->
   <footer class="app-footer" role="contentinfo">
-    <div>Copyright <span id="ftYear"></span>. All Rights Reserved <a href="javascript:;">Terms and conditions</a><a href="about-app.html" target="_blank">About App</a></div>
+    <div>Copyright <span id="ftYear"></span>. All Rights Reserved <a href="#">Terms and conditions</a><a href="about-app.html" target="_blank">About App</a></div>
     <div class="d-flex align-items-center gap-2">
       <a href="accessibility-commitment.html" target="_blank">Accessibility</a>
       <div class="acc-btns">
@@ -706,26 +843,12 @@
       </div>
     </div>
   </footer>
-</div>
 
 <script src="../js/app.js?v=3"></script>
 <script src="../js/shared.js"></script>
 <script>
-// ── Birthday banner dismiss → nudge bell ──
-function bdayDismiss() {
-  // Briefly pulse the notification bell to hint perks are in notifications
-  var btn = document.getElementById('notifBtn');
-  if (!btn) return;
-  btn.style.transition = 'transform .15s';
-  var pulses = 0;
-  var iv = setInterval(function() {
-    btn.style.transform = pulses % 2 === 0 ? 'scale(1.35)' : 'scale(1)';
-    pulses++;
-    if (pulses >= 6) { clearInterval(iv); btn.style.transform = ''; }
-  }, 120);
-}
 
-// ── Notification tab switching ──
+// ── Notification tabs ──
 function ntSwitch(tab, btn) {
   document.querySelectorAll('.nt-tab').forEach(function(t){ t.classList.remove('active'); });
   document.querySelectorAll('.nt-panel').forEach(function(p){ p.classList.remove('active'); });
@@ -758,35 +881,45 @@ function ntClearTab() {
   var now = new Date();
   var dateStr = now.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' });
   var abDate = document.getElementById('abDate');
-  if (abDate) abDate.textContent = dateStr + '  ·  Here’s what needs your attention';
+  if (abDate) abDate.textContent = "Here is what's happening with your finances today.";
   var ftYear = document.getElementById('ftYear');
   if (ftYear) ftYear.textContent = now.getFullYear();
 })();
 
 // ── Clock ──
 function tick() {
-  const n = new Date();
-  const t = n.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const el = document.getElementById('ssClock');
+  var n = new Date();
+  var t = n.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  var el = document.getElementById('ssClock');
   if (el) el.textContent = t + ' · GST+4';
 }
 tick(); setInterval(tick, 1000);
 
-// ── Balance toggle (dots) ──
-const DOTS = '••••••';
-let balVisible = true;
+// ── Balance toggle ──
+var DOTS = '••••••';
+var balVisible = true;
+// ── Recent Transactions toggle ──
+function rtToggle() {
+  var list = document.getElementById('rtList');
+  var chev = document.getElementById('rtChevron');
+  if (!list || !chev) return;
+  var collapsed = list.style.display === 'none';
+  list.style.display   = collapsed ? 'block' : 'none';
+  chev.style.transform = collapsed ? '' : 'rotate(180deg)';
+}
+
 function toggleBalance() {
   balVisible = !balVisible;
-  const el  = document.getElementById('balAmount');
-  const ico = document.getElementById('eyeIcon');
-  const btn = document.getElementById('eyeBtn');
+  var el  = document.getElementById('balAmount');
+  var ico = document.getElementById('eyeIcon');
+  var btn = document.getElementById('eyeBtn');
   if (!el || !ico) return;
-
   btn.classList.add('eye-spinning');
   setTimeout(function() { btn.classList.remove('eye-spinning'); }, 300);
-
+  var availAmt = document.getElementById('availBalAmt');
   if (balVisible) {
     el.classList.remove('bal-hidden');
+    if (availAmt) { availAmt.textContent = availAmt.getAttribute('data-orig') || availAmt.textContent; }
     document.querySelectorAll('.bal-acc-val').forEach(function(v) {
       v.classList.remove('bal-hidden');
       v.textContent = v.getAttribute('data-orig') || v.textContent;
@@ -794,17 +927,15 @@ function toggleBalance() {
     setTimeout(function() { countUp(el, 248350.00, 600); }, 100);
   } else {
     if (!el.getAttribute('data-orig')) el.setAttribute('data-orig', el.textContent);
-    el.classList.add('bal-hidden');
-    el.textContent = DOTS;
+    el.classList.add('bal-hidden'); el.textContent = DOTS;
+    if (availAmt) { if (!availAmt.getAttribute('data-orig')) availAmt.setAttribute('data-orig', availAmt.textContent); availAmt.textContent = DOTS; }
     document.querySelectorAll('.bal-acc-val').forEach(function(v) {
-      v.classList.add('bal-hidden');
-      v.textContent = DOTS;
+      v.classList.add('bal-hidden'); v.textContent = DOTS;
     });
   }
   ico.textContent = balVisible ? 'visibility' : 'visibility_off';
 }
 
-// ── Balance count-up ──
 function countUp(el, target, duration) {
   const start = Date.now();
   const startVal = 0;
@@ -831,35 +962,6 @@ document.addEventListener('click', function(e) {
   setTimeout(function() { r.remove(); }, 500);
 });
 
-// ── Recent Transactions collapse ──
-var _txnExpanded = false;
-function toggleTxnCollapse() {
-  _txnExpanded = !_txnExpanded;
-  var wrap = document.getElementById('txnCollapseWrap');
-  var icon = document.getElementById('txnToggleIcon');
-  var chip = document.getElementById('txnCollapsedChip');
-  var btn  = document.getElementById('txnToggleBtn');
-  if (_txnExpanded) {
-    wrap.style.maxHeight = wrap.scrollHeight + 'px';
-    wrap.style.opacity   = '1';
-    icon.textContent     = 'expand_less';
-    chip.style.display   = 'none';
-    btn.setAttribute('aria-expanded', 'true');
-    wrap.addEventListener('transitionend', function onEnd() {
-      wrap.style.maxHeight = 'none';
-      wrap.removeEventListener('transitionend', onEnd);
-    }, { once: true });
-  } else {
-    wrap.style.maxHeight = wrap.scrollHeight + 'px';
-    requestAnimationFrame(function() {
-      wrap.style.maxHeight = '0';
-      wrap.style.opacity   = '0';
-    });
-    icon.textContent   = 'expand_more';
-    chip.style.display = '';
-    btn.setAttribute('aria-expanded', 'false');
-  }
-}
 
 // ── Transaction tabs ──
 function setTab(el) {
@@ -1031,19 +1133,21 @@ function sbClearSearch() {
   if (inp) { inp.value = ''; sbFilter(''); inp.focus(); }
 }
 
-// ── My Cards carousel ──
+// ── My Cards ──
 var _cardIdx = 0;
 var _mcData = [
-  { avail:'AED 8,240', spent:'AED 4,230', pct:34, limit:'AED 12,470' },
-  { avail:'AED 5,810', spent:'AED 2,190', pct:27, limit:'AED 8,000'  }
+  { avail:'AED 8,240', spent:'AED 4,230', pct:34, limit:'AED 12,470', frozen:false },
+  { avail:'AED 5,810', spent:'AED 2,190', pct:27, limit:'AED 8,000',  frozen:false }
 ];
 function goToCard(idx) {
-  var slides = document.querySelectorAll('#cardCarouselTrack > div');
-  var dots   = document.querySelectorAll('.cc-dot');
-  if (!slides.length) return;
-  _cardIdx = (idx + slides.length) % slides.length;
-  document.getElementById('cardCarouselTrack').style.transform = 'translateX(-' + (_cardIdx * 100) + '%)';
-  dots.forEach(function(d, i) { d.classList.toggle('active', i === _cardIdx); });
+  var rows = document.querySelectorAll('.card-sel-row');
+  if (!rows.length) return;
+  _cardIdx = (idx + rows.length) % rows.length;
+  rows.forEach(function(row, i) {
+    var sel = i === _cardIdx;
+    row.style.background    = sel ? '#f0f7ff' : '';
+    row.style.borderLeftColor = sel ? 'var(--az-blue)' : 'transparent';
+  });
   var d = _mcData[_cardIdx] || _mcData[0];
   var ba = document.getElementById('mcBalAmt');
   var bs = document.getElementById('mcBalSpent');
@@ -1053,9 +1157,7 @@ function goToCard(idx) {
   if (bs) bs.textContent = d.spent;
   if (uf) uf.style.width = d.pct + '%';
   if (ul) ul.textContent = d.pct + '% of ' + d.limit + ' limit used';
-  // sync freeze button state
-  var cards = document.querySelectorAll('#cardCarouselTrack .mc-card');
-  var frozen = cards[_cardIdx] && cards[_cardIdx].classList.contains('mc-frozen');
+  var frozen = !!d.frozen;
   var fb = document.getElementById('mcFreezeBtn');
   if (fb) {
     fb.classList.toggle('mc-pill-active', frozen);
@@ -1067,13 +1169,12 @@ function goToCard(idx) {
 }
 function shiftCard(dir) { goToCard(_cardIdx + dir); }
 function mcToggleFreeze() {
-  /* Show confirmation modal — do NOT act instantly */
-  var cards  = document.querySelectorAll('#cardCarouselTrack .mc-card');
-  var card   = cards[_cardIdx];
-  if (!card) return;
-  var frozen = card.classList.contains('mc-frozen');
+  var d = _mcData[_cardIdx];
+  if (!d) return;
+  var frozen = !!d.frozen;
   var action = frozen ? 'Unblock Card' : 'Block Card';
-  var cardName = (card.querySelector('.mc-card-num') || {}).textContent || 'this card';
+  var rows = document.querySelectorAll('.card-sel-row');
+  var cardName = rows[_cardIdx] ? (rows[_cardIdx].querySelector('.card-sel-name') || {}).textContent || 'this card' : 'this card';
   var mo = document.getElementById('freezeConfirmModal');
   if (!mo) return;
   document.getElementById('freezeModalTitle').textContent  = action;
@@ -1106,13 +1207,14 @@ function mcTogglePan(btn) {
 }
 
 function mcDoFreeze() {
-  /* Called only after user confirms */
   document.getElementById('freezeConfirmModal').classList.add('hidden');
-  var cards = document.querySelectorAll('#cardCarouselTrack .mc-card');
-  var card  = cards[_cardIdx];
-  if (!card) return;
-  var frozen = card.classList.toggle('mc-frozen');
-  var chip   = card.querySelector('.mc-status-chip');
+  var d = _mcData[_cardIdx];
+  if (!d) return;
+  d.frozen = !d.frozen;
+  var frozen = d.frozen;
+  // update selector row status chip
+  var rows = document.querySelectorAll('.card-sel-row');
+  var chip = rows[_cardIdx] && rows[_cardIdx].querySelector('.mc-status-chip');
   if (chip) { chip.textContent = frozen ? 'BLOCKED' : 'ACTIVE'; chip.className = 'mc-status-chip ' + (frozen ? 'mc-status-frozen' : 'mc-status-active'); }
   var fb = document.getElementById('mcFreezeBtn');
   if (fb) {
@@ -1124,251 +1226,150 @@ function mcDoFreeze() {
   }
 }
 
-// ── Financial Tips carousel ──
-var _tipIdx = 0;
-function goToTip(idx) {
-  var cards = document.querySelectorAll('#tipCards .tip-card');
-  var dots  = document.querySelectorAll('.tip-dot');
-  if (!cards.length) return;
-  _tipIdx = (idx + cards.length) % cards.length;
-  cards.forEach(function(c, i) { c.classList.toggle('tip-active', i === _tipIdx); });
-  dots.forEach(function(d, i) { d.classList.toggle('tip-dot-active', i === _tipIdx); });
-}
-function nextTip(e) { if (e) e.preventDefault(); goToTip(_tipIdx + 1); }
+// ── Personalised Carousel ──
+(function() {
+  var cur = 0, total = 4, timer, dismissed = false;
+  function pcRender() {
+    var track = document.getElementById('pcTrack');
+    if (!track) return;
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    document.querySelectorAll('.pc-dot').forEach(function(d,i){ d.classList.toggle('on', i===cur); });
+  }
+  window.pcMove = function(dir) { cur=(cur+dir+total)%total; pcRender(); pcResetTimer(); };
+  window.pcGo   = function(idx) { cur=idx; pcRender(); pcResetTimer(); };
+  window.pcDismiss = function() {
+    var w=document.getElementById('pcWrap');
+    if(w){w.style.display='none';dismissed=true;clearInterval(timer);}
+    var btn=document.getElementById('notifBtn');if(!btn)return;
+    btn.style.transition='transform .15s';var pulses=0;
+    var iv=setInterval(function(){btn.style.transform=pulses%2===0?'scale(1.35)':'scale(1)';pulses++;if(pulses>=6){clearInterval(iv);btn.style.transform='';}},120);
+  };
+  window.pcResetTimer = function() {
+    clearInterval(timer);
+    if(!dismissed) timer=setInterval(function(){cur=(cur+1)%total;pcRender();},7000);
+  };
+  document.addEventListener('DOMContentLoaded', function(){pcRender();pcResetTimer();});
+})();
 
-// ── Promo banner ──
-var _promoIdx = 0, _promoTimer;
-function goToPromo(idx) {
-  var cards = document.querySelectorAll('.promo-card');
-  var dots  = document.querySelectorAll('.promo-dot');
-  if (!cards.length) return;
-  _promoIdx = (idx + cards.length) % cards.length;
-  document.getElementById('promoTrack').style.transform = 'translateX(-' + (_promoIdx * 100) + '%)';
-  dots.forEach(function(d, i) { d.classList.toggle('active', i === _promoIdx); });
-}
-function shiftPromo(dir) { goToPromo(_promoIdx + dir); resetPromoTimer(); }
-function resetPromoTimer() { clearInterval(_promoTimer); _promoTimer = setInterval(function(){ goToPromo(_promoIdx + 1); }, 5000); }
-document.addEventListener('DOMContentLoaded', function() { resetPromoTimer(); });
 </script>
 
-  <!-- ── Freeze / Unfreeze confirmation modal ── -->
-  <div id="freezeConfirmModal" class="modal-ov hidden" role="dialog" aria-modal="true" aria-labelledby="freezeModalTitle" onclick="if(event.target===this)this.classList.add('hidden')">
-    <div class="az-modal modal-sm" style="max-width:400px;">
-      <div class="modal-title" id="freezeModalTitle" style="display:flex;align-items:center;gap:.5rem;">
-        <span class="material-icons" style="color:#b91c1c;font-size:20px;">block</span>
-        Block Card
+  <!-- ── Recent Transactions modal ── -->
+  <div id="recentTxnModal" class="modal-ov hidden" role="dialog" aria-modal="true" onclick="if(event.target===this)this.classList.add('hidden')">
+    <div class="az-modal" style="max-width:640px;width:95%;padding:0;overflow:hidden;display:flex;flex-direction:column;max-height:80vh;">
+
+      <!-- Modal header -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:1.125rem 1.5rem;border-bottom:1px solid var(--az-border);flex-shrink:0;">
+        <div>
+          <div style="font-size:.95rem;font-weight:700;color:var(--az-navy);">Recent Transactions</div>
+          <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Last 7 days · All accounts</div>
+        </div>
+        <button onclick="document.getElementById('recentTxnModal').classList.add('hidden')" style="background:none;border:none;cursor:pointer;color:var(--az-muted);display:flex;align-items:center;padding:0;">
+          <span class="material-icons" style="font-size:22px;">close</span>
+        </button>
       </div>
-      <p id="freezeModalBody" style="font-size:.875rem;color:#707070;margin:.75rem 0 1.5rem;line-height:1.55;"></p>
-      <div style="display:flex;justify-content:flex-end;gap:.75rem;">
-        <button class="btn-action btn-cancel" onclick="document.getElementById('freezeConfirmModal').classList.add('hidden')">Cancel</button>
-        <button class="btn-action btn-submit" id="freezeModalConfirm" onclick="mcDoFreeze()">Block Card</button>
-      </div>
-    </div>
-  </div>
-  <div id="notifBackdrop" class="notif-backdrop" onclick="closeNotifPanel()"></div>
 
-  <!-- Mobile notification overlay: lives at body level, no stacking-context issues -->
+      <!-- Scrollable transaction list -->
+      <div style="overflow-y:auto;flex:1;padding:.5rem 0;">
 
-  <script>
-  /* Inline notif overlay — works even if app.js is cached */
-  (function(){
-    function _openNotif(){
-      var ov=document.getElementById('mobileNotifOverlay');
-      if(!ov)return;
-      ov.style.display='flex';
-      ov.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-    }
-    function _closeNotif(){
-      var ov=document.getElementById('mobileNotifOverlay');
-      if(!ov)return;
-      ov.style.display='none';
-      ov.setAttribute('aria-hidden','true');
-      document.body.style.overflow='';
-    }
-    document.addEventListener('DOMContentLoaded',function(){
-      var btn=document.getElementById('notifBtn');
-      if(btn){
-        btn.removeAttribute('onclick');
-        btn.addEventListener('click',function(e){
-          if(window.innerWidth<=767){e.preventDefault();e.stopPropagation();_openNotif();}
-          else{window.location.href='all-notifications.html';}
-        });
-      }
-      var closeBtn=document.querySelector('#mobileNotifOverlay .notif-panel-hdr button');
-      if(closeBtn) closeBtn.addEventListener('click',_closeNotif);
-      /* expose globally */
-      window.openMobileNotif=_openNotif;
-      window.closeMobileNotif=_closeNotif;
-      window.toggleNotifPanel=function(e){if(e){e.preventDefault();e.stopPropagation();}var ov=document.getElementById('mobileNotifOverlay');if(!ov)return;ov.style.display==='flex'?_closeNotif():_openNotif();};
-    });
-  })();
-  </script>
-  <div id="mobileNotifOverlay" role="dialog" aria-label="Notifications" aria-hidden="true" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:#fff;z-index:99999;flex-direction:column;overflow-y:auto;">
-    <div class="notif-panel-hdr" style="position:sticky;top:0;background:#fff;z-index:2;">
-      <button onclick="closeMobileNotif()" aria-label="Close" style="background:none;border:none;cursor:pointer;color:#16303d;padding:0;margin-right:.625rem;display:inline-flex;align-items:center;"><span class="material-icons" style="font-size:22px;">arrow_back</span></button>
-      <span class="notif-panel-title">Notifications</span>
-      
-    </div>
-    <div class="notif-list" style="flex:1;">
-      <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Salary credited — AED 18,500</div><div class="notif-time">Just now</div></div><span class="notif-ind"></span></div>
-      <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Scheduled transfer processed</div><div class="notif-time">1 hr ago</div></div><span class="notif-ind"></span></div>
-      <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">Card statement ready for download</div><div class="notif-time">Yesterday</div></div><span class="notif-ind"></span></div>
-      <div class="notif-item notif-unread"><div class="notif-content"><div class="notif-msg">Emirates ID expires in 15 days — upload renewal</div><div class="notif-time">Today</div></div><span class="notif-ind"></span></div>
-      <div class="notif-item"><div class="notif-content"><div class="notif-msg notif-msg-read">DEWA bill due in 2 days — AED 320</div><div class="notif-time">Yesterday</div></div><span class="notif-ind"></span></div>
-    </div>
-    <div class="notif-footer"><button class="notif-view-all" onclick="location.href='all-notifications.html'">VIEW ALL NOTIFICATIONS</button></div>
-  </div>
+        <!-- Today -->
+        <div style="padding:.5rem 0 .25rem 1.5rem;font-size:.65rem;font-weight:700;color:var(--az-muted);text-transform:uppercase;letter-spacing:.06em;background:#fafbfc;border-bottom:1px solid var(--az-border);">Today · 4 Aug 2026</div>
 
-<!-- ══ EVENT BANNER SYSTEM ══ -->
-<script>
-/* ─────────────────────────────────────────────────────────
-   EVENT BANNER SYSTEM
-   Industry approach: config-driven, date-range aware,
-   dismissible per session, priority-ordered.
+        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;cursor:pointer;border-bottom:1px solid #f4f6f8;" onclick="location.href='transfer-receipt.html'">
+          <div style="width:40px;height:40px;border-radius:50%;background:#e6f9f0;color:#1a9e63;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">S</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">Salary · Emirates Corp</div>
+            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Income · Direct Deposit · Current A/C</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.84rem;font-weight:700;color:#1a9e63;">+AED 18,500</div>
+            <div style="font-size:.68rem;color:var(--az-muted);">08:00</div>
+          </div>
+        </div>
 
-   HOW TO USE:
-   • Set DEMO_DATE to any date string (e.g. '2026-03-08') to
-     preview that event. Set to null to use today's real date.
-   • Add/edit events in the EVENTS array below.
-   • Priority: lower number = shown first (birthday wins over
-     Women's Day if they fall on the same day).
-───────────────────────────────────────────────────────── */
+        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #f4f6f8;">
+          <div style="width:40px;height:40px;border-radius:50%;background:#edfaf6;color:#16303d;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">N</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">Noon.com</div>
+            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Shopping · Visa contactless · Platinum Visa</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.84rem;font-weight:700;color:#e53935;">−AED 280</div>
+            <div style="font-size:.68rem;color:var(--az-muted);">10:22</div>
+          </div>
+        </div>
 
-const DEMO_DATE = '2026-03-15'; // ← change to null for live / any date string to preview
-if (DEMO_DATE) sessionStorage.clear(); // auto-clear dismiss state in demo mode
+        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #f4f6f8;">
+          <div style="width:40px;height:40px;border-radius:50%;background:#f3e8ff;color:#7c3aed;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">D</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">DEWA</div>
+            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Utilities · Bill Payment · Savings A/C</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.84rem;font-weight:700;color:#e53935;">−AED 320</div>
+            <div style="font-size:.68rem;color:var(--az-muted);">13:45</div>
+          </div>
+        </div>
 
-/* ── User profile (in production: injected from session) ── */
-const USER = {
-  name: 'Sarika',
-  gender: 'F',          // 'F' | 'M' — used to target gender-specific events
-  birthday: { month: 3, day: 15 }  // March 15
-};
+        <!-- Yesterday -->
+        <div style="padding:.5rem 0 .25rem 1.5rem;font-size:.65rem;font-weight:700;color:var(--az-muted);text-transform:uppercase;letter-spacing:.06em;background:#fafbfc;border-bottom:1px solid var(--az-border);border-top:1px solid var(--az-border);">Yesterday · 3 Aug 2026</div>
 
-/* ── Event config ─────────────────────────────────────────
-   Each event:
-     id         – unique key (also used for dismiss storage)
-     priority   – lower = higher priority (1 = birthday)
-     match      – fn(date) → true/false
-     gender     – 'F' | 'M' | 'ALL'
-     gradient   – CSS gradient for banner background
-     accentColor– colour for CTA button
-     icon       – emoji icon in circle
-     sparkle    – emoji sparkle animation (optional)
-     title      – headline text
-     subtitle   – body text
-     perks      – array of { icon (material), label, href }
-     ctaText    – CTA button label (null = no CTA)
-     ctaHref    – CTA link
-────────────────────────────────────────────────────────── */
-const EVENTS = [
-  {
-    id: 'birthday',
-    priority: 1,
-    gender: 'ALL',
-    match: d => d.getMonth()+1 === USER.birthday.month && d.getDate() === USER.birthday.day,
-    gradient: 'linear-gradient(135deg,#16303d 0%,#0e3347 55%,#00538A 100%)',
-    accentColor: '#2563eb',
-    icon: '🎂', sparkle: '✨',
-    title: 'Happy Birthday, ' + USER.name + '!',
-    subtitle: 'Celebrate your special day with exclusive perks on your Gold Mastercard!',
-    perks: [
-      { icon: 'restaurant', label: 'Dinner Deals', href: 'offer-dining-cashback.html' },
-      { icon: 'local_movies', label: 'Movie Tickets', href: '#' }
-    ],
-    ctaText: 'Explore Birthday Offers', ctaHref: 'offer-dining-cashback.html'
-  },
-  {
-    id: 'womens-day',
-    priority: 2,
-    gender: 'F',
-    match: d => d.getMonth()+1 === 3 && d.getDate() === 8,
-    gradient: 'linear-gradient(135deg,#6d1f5e 0%,#a8336e 55%,#e91e8c 100%)',
-    accentColor: '#e91e8c',
-    icon: '🌸', sparkle: '💜',
-    title: "Happy Women's Day, " + USER.name + "!",
-    subtitle: 'Celebrating the strength and brilliance of every woman. Enjoy exclusive rewards today.',
-    perks: [
-      { icon: 'spa', label: 'Spa & Wellness', href: '#' },
-      { icon: 'shopping_bag', label: '10% Cashback', href: '#' }
-    ],
-    ctaText: "View Women's Day Offers", ctaHref: '#'
-  },
-  {
-    id: 'eid-al-fitr-2026',
-    priority: 3,
-    gender: 'ALL',
-    match: d => {
-      // Eid Al Fitr 2026: ~March 20–22 (3-day window)
-      var m = d.getMonth()+1, day = d.getDate();
-      return m === 3 && day >= 20 && day <= 22;
-    },
-    gradient: 'linear-gradient(135deg,#1a4731 0%,#1e6b4a 55%,#2ed88e 100%)',
-    accentColor: '#2ed88e',
-    icon: '🌙', sparkle: '⭐',
-    title: 'Eid Mubarak, ' + USER.name + '!',
-    subtitle: 'Wishing you and your family joy, peace and blessings this Eid.',
-    perks: [
-      { icon: 'card_giftcard', label: 'Send Gift Money', href: '#' },
-      { icon: 'volunteer_activism', label: 'Zakat Calculator', href: '#' }
-    ],
-    ctaText: 'Eid Transfers & Gifts', ctaHref: '#'
-  },
-  {
-    id: 'uae-national-day',
-    priority: 4,
-    gender: 'ALL',
-    match: d => d.getMonth()+1 === 12 && d.getDate() >= 1 && d.getDate() <= 2,
-    gradient: 'linear-gradient(135deg,#00732f 0%,#007a36 55%,#c8102e 100%)',
-    accentColor: '#c8102e',
-    icon: '🇦🇪', sparkle: '🎉',
-    title: 'Happy UAE National Day!',
-    subtitle: 'Proud to serve you in this great nation. Enjoy special offers today.',
-    perks: [
-      { icon: 'local_offer', label: 'National Day Deals', href: '#' },
-      { icon: 'savings', label: 'Special FD Rates', href: 'term-deposit-account-opening.html' }
-    ],
-    ctaText: 'Explore National Day Offers', ctaHref: '#'
-  },
-  {
-    id: 'new-year',
-    priority: 5,
-    gender: 'ALL',
-    match: d => d.getMonth()+1 === 1 && d.getDate() <= 2,
-    gradient: 'linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#6366f1 100%)',
-    accentColor: '#818cf8',
-    icon: '🎆', sparkle: '✨',
-    title: 'Happy New Year, ' + USER.name + '!',
-    subtitle: 'Wishing you a prosperous 2027. Start the year with smart financial goals.',
-    perks: [
-      { icon: 'trending_up', label: 'Set Savings Goal', href: '#' },
-      { icon: 'account_balance', label: 'Review Finances', href: 'account-statement.html' }
-    ],
-    ctaText: 'Plan Your Year', ctaHref: '#'
-  },
-  {
-    id: 'mothers-day',
-    priority: 6,
-    gender: 'ALL',
-    match: d => {
-      // 2nd Sunday of May
-      if (d.getMonth() !== 4) return false;
-      var firstDay = new Date(d.getFullYear(), 4, 1).getDay();
-      var secondSunday = 1 + (7 - firstDay) % 7 + 7;
-      return d.getDate() === secondSunday;
-    },
-    gradient: 'linear-gradient(135deg,#4a1942 0%,#7e3a70 55%,#f472b6 100%)',
-    accentColor: '#f472b6',
-    icon: '💐', sparkle: '💝',
-    title: "Happy Mother's Day!",
-    subtitle: 'Celebrate the special women in your life with a heartfelt gift.',
-    perks: [
-      { icon: 'redeem', label: 'Gift Vouchers', href: '#' },
-      { icon: 'send', label: 'Send Money Instantly', href: '#' }
-    ],
-    ctaText: 'Gift Ideas & Transfers', ctaHref: '#'
-  }
-];
+        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #f4f6f8;">
+          <div style="width:40px;height:40px;border-radius:50%;background:#eff6ff;color:#00538A;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">E</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">Emirates Airlines</div>
+            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Travel · DXB → LHR · Platinum Visa</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.84rem;font-weight:700;color:#e53935;">−AED 1,200</div>
+            <div style="font-size:.68rem;color:var(--az-muted);">14:05</div>
+          </div>
+        </div>
 
-/* ── Render engine ─────────────────────────────────────── */
-function initEventBanner(
+        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #f4f6f8;">
+          <div style="width:40px;height:40px;border-radius:50%;background:#fef3c7;color:#d97706;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">C</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">Carrefour Market</div>
+            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Groceries · Dubai Mall · Savings A/C</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.84rem;font-weight:700;color:#e53935;">−AED 440</div>
+            <div style="font-size:.68rem;color:var(--az-muted);">18:30</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #f4f6f8;">
+          <div style="width:40px;height:40px;border-radius:50%;background:#fce7f3;color:#be185d;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">S</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">Starbucks</div>
+            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Dining · Mall of Emirates · Platinum Visa</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.84rem;font-weight:700;color:#e53935;">−AED 48</div>
+            <div style="font-size:.68rem;color:var(--az-muted);">09:10</div>
+          </div>
+        </div>
+
+        <!-- 2 Aug -->
+        <div style="padding:.5rem 0 .25rem 1.5rem;font-size:.65rem;font-weight:700;color:var(--az-muted);text-transform:uppercase;letter-spacing:.06em;background:#fafbfc;border-bottom:1px solid var(--az-border);border-top:1px solid var(--az-border);">2 Aug 2026</div>
+
+        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #f4f6f8;">
+          <div style="width:40px;height:40px;border-radius:50%;background:#ecfdf5;color:#065f46;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">T</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">Transfer to Savings</div>
+            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Internal Transfer · Current → Savings</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.84rem;font-weight:700;color:#e53935;">−AED 5,000</div>
+            <div style="font-size:.68rem;color:var(--az-muted);">11:00</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #f4f6f8;">
+          <div style="width:40px;height:40px;border-radius:50%;background:#fff7ed;color:#c2410c;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">A</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">Amazon.ae</div>
+            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Shopping · Online · Gold Mastercard</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <div style="font-size:.84rem;font-weight:700;color:#e53935;">−AED 196</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
