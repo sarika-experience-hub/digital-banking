@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="azentio Corporate Banking – Checker Dashboard"/>
+  <title>azentio – Corporate Dashboard (Checker)</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../css/fonts.css"/>
+  <link rel="stylesheet" href="../css/flag-icons.min.css"/>
+  <link rel="stylesheet" href="../css/styles.css"/>
+  <link rel="stylesheet" href="../css/checker-dashboard.css"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
+  <style>
+    /* Action button overrides — guarantee over Bootstrap reset */
+    .mk-tbl-actions { display:flex; gap:.25rem; align-items:center; }
+    .mk-btn-tbl {
+      background:none !important; border:1px solid #e2e8ec !important;
+      border-radius:.375rem; padding:.25rem .625rem; font-size:.775rem;
+      color:#16303d; cursor:pointer; white-space:nowrap;
+      font-family:'Roboto',sans-serif; transition:border-color .12s,color .12s;
+      line-height:1.4;
+    }
+    .mk-btn-tbl:hover { border-color:#00538A !important; color:#00538A; }
+    .mk-kebab-wrap { position:relative; }
+    .mk-kebab-btn {
+      background:none !important; border:1px solid #e2e8ec !important;
+      border-radius:.375rem; width:28px; height:28px; cursor:pointer;
+      font-size:1.1rem; line-height:1; color:#707070;
+      display:inline-flex; align-items:center; justify-content:center;
+      font-family:'Roboto',sans-serif; transition:border-color .12s;
+    }
+    .mk-kebab-btn:hover { border-color:#00538A !important; color:#00538A; }
+    .mk-kebab-menu {
+      display:none; position:absolute; right:0; top:calc(100% + 4px);
+      background:#fff; border:1px solid #e2e8ec; border-radius:.5rem;
+      box-shadow:0 4px 12px rgba(0,0,0,.1); min-width:140px; z-index:300;
+      padding:.25rem 0;
+    }
+    .mk-kebab-menu.open { display:block; }
+    .mk-km-item {
+      display:block; width:100%; background:none !important; border:none !important;
+      padding:.45rem .875rem; font-size:.775rem; color:#16303d;
+      text-align:left; cursor:pointer; font-family:'Roboto',sans-serif;
+      transition:background .1s;
+    }
+    .mk-km-item:hover { background:#f5f7f9 !important; }
+    .mk-km-danger { color:#c62828 !important; }
+    .mk-km-danger:hover { background:#fdecea !important; }
+  </style>
+</head>
+<body class="pg-checker-dashboard">
+
+<!-- ████ HEADER ████ -->
+<header class="app-hdr" role="banner">
+  <button class="hdr-hamburger" id="collapseBtn" aria-label="Toggle navigation" aria-expanded="true" title="Toggle sidebar"><span class="material-icons icon-hamburger" aria-hidden="true">menu</span><span class="material-icons icon-collapsed" aria-hidden="true">menu_open</span></button>
+  <div class="hdr-logo" id="hdrLogo" onclick="location.href='checker-dashboard.html'" title="Go to dashboard" style="cursor:pointer">
+    <span class="hdr-logo-svg" aria-label="azentio" role="img">
+      <svg xmlns="http://www.w3.org/2000/svg" width="130" height="28" viewBox="0 0 152.97 40.623">
+        <g id="logo" transform="translate(0.275 -0.84)">
+          <path d="M.354,32.831c0-6.456,4.037-11.054,10.014-11.054a8.083,8.083,0,0,1,7.146,3.914h.243V22.3h3.229V39.489c0,.647.4.968,1.049.968H23V43.28h-2.06a3.025,3.025,0,0,1-3.069-3.106v-.2h-.243a7.874,7.874,0,0,1-7.025,3.833C4.589,43.807.349,39.246.349,32.833Zm17.523.043c0-5.2-3.229-8.191-7.146-8.191-4.117,0-7.106,3.39-7.106,8.191s3.109,8.07,7.146,8.07C15.172,40.944,17.877,37.273,17.877,32.873Z" transform="translate(0 -2.967)" fill="#16303d" stroke="#16303d" stroke-width="1.247"/>
+          <path d="M25.83,39.369l12.8-14.123V25H26.192V22.3H41.615v3.914l-12.8,14.123v.243h13v2.7H25.828V39.369Z" transform="translate(-1.95 -2.967)" fill="#16303d" stroke="#16303d" stroke-width="1.247"/>
+          <path d="M44.242,32.873c0-6.7,4.6-11.1,10.174-11.1,6.34,0,9.973,4.438,9.973,10.733v1.171H47.511c.04,4.681,2.785,7.3,7.146,7.3a6.249,6.249,0,0,0,6.34-4.6l3.109.727c-1.172,3.914-4.644,6.7-9.489,6.7-6.381,0-10.377-4.478-10.377-10.934ZM61.12,31.1a6.341,6.341,0,0,0-6.7-6.456A6.729,6.729,0,0,0,47.594,31.1Z" transform="translate(-3.457 -2.967)" fill="#16303d" stroke="#16303d" stroke-width="1.247"/>
+          <path d="M68.025,22.3h3.189v3.066h.243a6.855,6.855,0,0,1,6.421-3.59c4.885,0,7.833,3.67,7.833,8.311V43.28H82.522V30.288a5.314,5.314,0,0,0-5.41-5.528,5.829,5.829,0,0,0-5.9,6.012V43.28H68.027V22.3Z" transform="translate(-5.24 -2.967)" fill="#16303d" stroke="#16303d" stroke-width="1.247"/>
+          <path d="M92.49,37.311V25.006H88.534V22.3h4.16V16.211h2.988V22.3h6.46v2.7h-6.46V37.271c0,2.259.928,3.227,3.149,3.227h3.029V43.28H98.871c-3.836,0-6.381-1.735-6.381-5.972Z" transform="translate(-6.642 -2.967)" fill="#16303d" stroke="#16303d" stroke-width="1.247"/>
+          <path d="M108.721,25.006h-3.957V22.3h7.146v20.98h-3.189ZM108,16.168a2.249,2.249,0,0,1,2.3-2.3,2.319,2.319,0,1,1,0,4.638A2.235,2.235,0,0,1,108,16.168Z" transform="translate(-7.575 -2.967)" fill="#16303d" stroke="#16303d" stroke-width="1.247"/>
+          <path d="M116.271,32.79a10.962,10.962,0,1,1,21.924,0,10.962,10.962,0,1,1-21.924,0Zm18.654,0c0-4.641-3.189-8.111-7.712-8.111s-7.673,3.51-7.673,8.111,3.189,8.111,7.673,8.111S134.925,37.471,134.925,32.79Z" transform="translate(-9.244 -2.967)" fill="#16303d" stroke="#16303d" stroke-width="1.247"/>
+          <path d="M142.3,28.6V11.084A10.251,10.251,0,0,1,152.549.842v17.52A10.251,10.251,0,0,1,142.3,28.6Z" transform="translate(-11.301)" fill="#2ed88e"/>
+          <path d="M153.748,18.359V.84A10.25,10.25,0,0,1,164,11.081V28.6A10.251,10.251,0,0,1,153.748,18.359Z" transform="translate(-11.301)" fill="#2ed88e"/>
+        </g>
+      </svg>
+    </span>
+  </div>
+  <div class="hdr-right">
+    <a href="../about-us.html" target="_blank" class="hdr-icon-btn" title="About Us" aria-label="About Us">
+      <img src="../images/icons/about_us.svg" width="18" height="18" alt="about us" loading="lazy"/>
+    </a>
+    <div class="hdr-div" role="separator"></div>
+    <div class="notif-wrap">
+      <button class="hdr-icon-btn" title="Notifications" aria-label="Notifications" style="position:relative">
+        <img src="../images/icons/notification.svg" width="18" height="18" alt="notification" loading="lazy"/>
+        <span class="notif-dot" aria-label="5 notifications">5</span>
+      </button>
+      <div class="notif-dropdown" role="dialog" aria-label="Notifications panel">
+        <div class="notif-panel-hdr">
+          <span class="notif-panel-title">Notifications</span>
+          <a href="#" class="notif-clear-all">Clear all</a>
+        </div>
+        <div class="notif-list">
+          <div class="notif-item notif-unread">
+            <div class="notif-content">
+              <div class="notif-msg">REF-BP-2026-0412 awaiting your approval — SLA in 2h</div>
+              <div class="notif-time">10 min ago</div>
+            </div>
+            <span class="notif-ind"></span>
+          </div>
+          <div class="notif-item notif-unread">
+            <div class="notif-content">
+              <div class="notif-msg">REF-IT-2026-0411 submitted for review</div>
+              <div class="notif-time">42 min ago</div>
+            </div>
+            <span class="notif-ind"></span>
+          </div>
+          <div class="notif-item notif-unread">
+            <div class="notif-content">
+              <div class="notif-msg">High-value item REF-LC-2026-0407 needs review</div>
+              <div class="notif-time">1 hr ago</div>
+            </div>
+            <span class="notif-ind"></span>
+          </div>
+          <div class="notif-item">
+            <div class="notif-content">
+              <div class="notif-msg">REF-LT-2026-0410 escalated by system</div>
+              <div class="notif-time">Yesterday</div>
+            </div>
+          </div>
+        </div>
+        <div class="notif-footer">
+          <button class="notif-view-all" onclick="location.href='all-notifications.html'">VIEW ALL NOTIFICATIONS</button>
+        </div>
+      </div>
+    </div>
+    <a href="../contact-us.html" target="_blank" class="hdr-icon-btn" title="Support" aria-label="Support"><img src="../images/icons/call_us.svg" width="18" height="18" alt="services" loading="lazy"/></a>
+    <a href="../faq.html" target="_blank" class="hdr-icon-btn" title="Help" aria-label="Help"><img src="../images/icons/information.svg" width="18" height="18" alt="information" loading="lazy"/></a>
+    <div class="hdr-div" role="separator"></div>
+    <div class="hdr-lang-wrap">
+      <button class="hdr-lang" aria-label="Language: English">
+        <span class="fi fi-us"></span> <span class="lang-txt">ENG</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="6" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="#2ed88e"/></svg>
+      </button>
+      <div class="hdr-lang-drop" role="listbox" aria-label="Select language">
+        <button class="hdr-lang-opt active" onclick="setHdrLang('ENG','us',this)" role="option" aria-selected="true"><span class="fi fi-us"></span> English</button>
+        <button class="hdr-lang-opt" onclick="setHdrLang('FR','fr',this)" role="option" aria-selected="false"><span class="fi fi-fr"></span> French</button>
+        <button class="hdr-lang-opt" onclick="setHdrLang('عربي','sa',this)" role="option" aria-selected="false"><span class="fi fi-sa"></span> عربي</button>
+      </div>
+    </div>
+    <!-- Role switcher -->
+    <div class="role-switcher-wrap" id="roleSwitcherWrap">
+      <button class="role-switcher-btn" id="roleSwitcherBtn" aria-haspopup="true" aria-expanded="false" title="Switch role">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00538A" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="role-sw-label" id="roleSwitcherLabel">Checker</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="#2ed88e"/></svg>
+      </button>
+      <div class="role-switcher-drop" id="roleSwitcherDrop" role="menu">
+        <div class="role-sw-drop-title">Switch Role</div>
+        <button class="role-sw-opt" onclick="switchRole('Maker',this)" role="menuitem">
+          Maker
+          <span class="role-sw-check material-icons" style="visibility:hidden">check</span>
+        </button>
+        <button class="role-sw-opt role-sw-active" onclick="switchRole('Checker',this)" role="menuitem">
+          Checker
+          <span class="role-sw-check material-icons">check</span>
+        </button>
+      </div>
+    </div>
+    <div class="hdr-div" role="separator"></div>
+    <div class="hdr-avatar-wrap">
+      <svg class="hdr-avatar" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style="border-radius:50%;background:#334155;flex-shrink:0;"><text x="18" y="23" text-anchor="middle" font-family="Roboto,sans-serif" font-size="13" font-weight="700" fill="#fff">AM</text></svg>
+      <div class="avatar-dropdown" role="menu">
+        <div class="av-drop-top">
+          <svg class="av-drop-photo" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" style="width:52px;height:52px;border-radius:50%;background:#334155;flex-shrink:0;"><text x="36" y="46" text-anchor="middle" font-family="Roboto,sans-serif" font-size="24" font-weight="700" fill="#fff">AM</text></svg>
+          <div class="av-drop-userinfo">
+            <div class="av-drop-name">Ahmed Al-Mansouri</div>
+            <div class="av-drop-login-lbl">Last Login</div>
+            <div class="av-drop-login-time">
+              <span class="t-part">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span id="lastLoginDate"></span>
+              </span>
+              <span class="t-sep">|</span>
+              <span class="t-part">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                09:17
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="av-drop-details">
+          <div class="av-detail-row"><span class="av-detail-lbl">Username:</span><span class="av-detail-val">ahmed.almansouri</span></div>
+          <div class="av-detail-row"><span class="av-detail-lbl">Company:</span><span class="av-detail-val">Al-Noor Trading LLC</span></div>
+          <div class="av-detail-row"><span class="av-detail-lbl">Role:</span><span class="av-detail-val">Checker</span></div>
+        </div>
+        <div class="av-drop-nav">
+          <a href="../my-profile-details.html" class="av-nav-link" role="menuitem">
+            <div class="av-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            My Profile
+          </a>
+          <a href="../my-tasks.html" class="av-nav-link" role="menuitem">
+            <div class="av-nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            My Tasks
+          </a>
+          <a href="../login.html" class="av-nav-link av-nav-logout" role="menuitem">
+            <div class="av-nav-icon">
+              <span class="material-icons" style="font-size:18px;">logout</span>
+            </div>
+            Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ████ SIDEBAR ████ -->
+<aside class="app-sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+  <div class="sb-search-wrap">
+    <span class="material-icons sb-search-icon">search</span>
+    <input type="text" class="sb-search-input" id="sbSearch" placeholder="Search menu…" autocomplete="off" oninput="sbFilter(this.value)" aria-label="Search navigation"/>
+    <button class="sb-search-clear" id="sbSearchClear" onclick="sbClearSearch()" aria-label="Clear search" style="display:none">
+      <span class="material-icons">close</span>
+    </button>
+  </div>
+  <nav class="sb-nav">
+    <button class="sb-item" data-label="Frequently Visited" onclick="toggleSub('sQL','cQL')"><span class="sb-icon"><img src="../images/icons/quick_links.svg" width="18" height="18" alt=""/></span><span class="sb-label">Frequently Visited</span><span class="sb-chevron" id="cQL"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sQL" class="sb-sub" style="display:none"><a href="#" class="sb-sub-item">Favourites</a></div>
+    <a href="checker-dashboard.html" class="sb-item active-section" style="text-decoration:none"><span class="sb-icon"><img src="../images/icons/dashboard.svg" width="18" height="18" alt=""/></span><span class="sb-label">Dashboard</span></a>
+    <button class="sb-item" data-label="Accounts" onclick="toggleSub('sAcc','cAcc')"><span class="sb-icon"><img src="../images/icons/accounts.svg" width="18" height="18" alt=""/></span><span class="sb-label">Accounts</span><span class="sb-chevron" id="cAcc"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sAcc" class="sb-sub" style="display:none"><a href="../accounts.html" class="sb-sub-item">My Accounts</a><a href="../transaction-history.html" class="sb-sub-item">Transaction History</a><a href="../general-account-opening.html" class="sb-sub-item">General Account Opening</a><a href="../term-deposit-account-opening.html" class="sb-sub-item">Term Deposit Account Opening</a></div>
+    <button class="sb-item" data-label="Transfers" onclick="toggleSub('sTr','cTr')"><span class="sb-icon"><img src="../images/icons/transfer.svg" width="18" height="18" alt=""/></span><span class="sb-label">Transfers</span><span class="sb-chevron" id="cTr"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sTr" class="sb-sub" style="display:none">
+      <a href="../transfer-pending-list.html" class="sb-sub-item">Pending Transfers List</a>
+      <button class="sb-sub2-hdr" onclick="toggleSub('sImm','cImm')">Immediate Transfer <span class="sb-chev-sm" id="cImm"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+      <div id="sImm" class="sb-sub3" style="display:none"><a href="../transfer-own-accounts.html" class="sb-sub3-item">Own Accounts Transfer</a><a href="../transfer-internal.html" class="sb-sub3-item">Internal Transfer</a><a href="../transfer-local.html" class="sb-sub3-item">Local Transfer</a><a href="../transfer-international.html" class="sb-sub3-item">International Transfer</a></div>
+      <a href="../transfer-list.html" class="sb-sub-item">Transfer List</a>
+      <button class="sb-sub2-hdr" onclick="toggleSub('sSched','cSched')">Scheduled Transfer <span class="sb-chev-sm" id="cSched"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+      <div id="sSched" class="sb-sub3" style="display:none"><a href="../scheduled-transfers-list.html" class="sb-sub3-item">Scheduled Transfers List</a><a href="../scheduled-own-account.html" class="sb-sub3-item">Scheduled Own Account Transfer</a><a href="../scheduled-internal.html" class="sb-sub3-item">Scheduled Internal Transfer</a><a href="../scheduled-local.html" class="sb-sub3-item">Scheduled Local Transfer</a><a href="../scheduled-international.html" class="sb-sub3-item">Scheduled International Transfer</a></div>
+      <button class="sb-sub2-hdr" onclick="toggleSub('sBulk','cBulk')">Bulk Payment <span class="sb-chev-sm" id="cBulk"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+      <div id="sBulk" class="sb-sub3" style="display:none"><a href="../bulk-payment-offline.html" class="sb-sub3-item">Offline Bulk Payment</a><a href="../bulk-payment-upload.html" class="sb-sub3-item">Bulk Payment Upload</a><a href="../bulk-payment-list.html" class="sb-sub3-item">Bulk Payment List</a></div>
+    </div>
+    <button class="sb-item" data-label="Payments" onclick="toggleSub('sPay','cPay')"><span class="sb-icon"><img src="../images/icons/payments.svg" width="18" height="18" alt=""/></span><span class="sb-label">Payments</span><span class="sb-chevron" id="cPay"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sPay" class="sb-sub" style="display:none"><a href="../beneficiary-management.html" class="sb-sub-item">Beneficiary Management</a><a href="../transfer-cash-request.html" class="sb-sub-item">Cash Transfer Request</a><a href="../payments-favorites.html" class="sb-sub-item">Favorites Management</a><a href="../payments-bill-report.html" class="sb-sub-item">Bill Payments Report</a><a href="../payments-qr-payment.html" class="sb-sub-item">QR Code Payments</a><a href="../payments-qr-request.html" class="sb-sub-item">Request QR Code</a></div>
+    <button class="sb-item" data-label="Cards" onclick="toggleSub('sCards','cCards')"><span class="sb-icon"><img src="../images/icons/cards.svg" width="18" height="18" alt=""/></span><span class="sb-label">Cards</span><span class="sb-chevron" id="cCards"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sCards" class="sb-sub" style="display:none"><a href="../cards-my-cards.html" class="sb-sub-item">My Cards</a><a href="../cards-debit-request.html" class="sb-sub-item">Debit Card Request</a><a href="../cards-credit-request.html" class="sb-sub-item">Credit Card Request</a><a href="../cards-prepaid-request.html" class="sb-sub-item">Prepaid Card Request</a><a href="../cards-prepaid-recharge.html" class="sb-sub-item">Prepaid Card Recharge</a><button class="sb-sub2-hdr" onclick="toggleSub('sSettle','cSettle')">Credit Card Settlement <span class="sb-chev-sm" id="cSettle"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button><div id="sSettle" class="sb-sub3" style="display:none"><a href="../cards-settlement-my.html" class="sb-sub3-item">My Credit Card Settlement</a><a href="../cards-settlement-bank.html" class="sb-sub3-item">Bank Credit Card Settlement</a><a href="../cards-settlement-local.html" class="sb-sub3-item">Local Credit Card Settlement</a></div><a href="../cards-report.html" class="sb-sub-item">Card Report</a></div>
+    <button class="sb-item" data-label="Chequebook" onclick="toggleSub('sCheq','cCheq')"><span class="sb-icon"><img src="../images/icons/chequebook.svg" width="18" height="18" alt=""/></span><span class="sb-label">Chequebook</span><span class="sb-chevron" id="cCheq"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sCheq" class="sb-sub" style="display:none"><a href="../my-chequebooks.html" class="sb-sub-item">My Chequebooks</a><a href="../chequebook-request.html" class="sb-sub-item">Request Chequebook</a><a href="../chequebook-report.html" class="sb-sub-item">Chequebook Report</a></div>
+    <button class="sb-item" data-label="Remittance" onclick="toggleSub('sRem','cRem')"><span class="sb-icon"><img src="../images/icons/remittance.svg" width="18" height="18" alt=""/></span><span class="sb-label">Remittance</span><span class="sb-chevron" id="cRem"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sRem" class="sb-sub" style="display:none"><a href="../remittance-intra-bank.html" class="sb-sub-item">Intra Bank Remittance Request</a><a href="../remittance-local.html" class="sb-sub-item">Local Remittance Request</a><a href="../remittance-international.html" class="sb-sub-item">International Remittance Request</a></div>
+    <button class="sb-item" data-label="Sweeping and Pooling" onclick="toggleSub('sSP','cSP')"><span class="sb-icon"><img src="../images/icons/sweeping_and_pooling.svg" width="18" height="18" alt=""/></span><span class="sb-label">Sweeping and Pooling</span><span class="sb-chevron" id="cSP"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sSP" class="sb-sub" style="display:none"><a href="#" class="sb-sub-item">Sweeping and Pooling</a></div>
+    <button class="sb-item" data-label="Financing" onclick="toggleSub('sFin','cFin')"><span class="sb-icon"><img src="../images/icons/financing.svg" width="18" height="18" alt=""/></span><span class="sb-label">Financing</span><span class="sb-chevron" id="cFin"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sFin" class="sb-sub" style="display:none"><a href="../financing-my-facilities.html" class="sb-sub-item">My Facilities</a><a href="../financing-facility-request.html" class="sb-sub-item">Financial Facility Request</a><a href="../financing-payment.html" class="sb-sub-item">Financing Payment</a><a href="../financing-calculator.html" class="sb-sub-item">Financial Calculator</a></div>
+    <button class="sb-item" data-label="Cash Management" onclick="toggleSub('sCM','cCM')"><span class="sb-icon"><img src="../images/icons/cash_management.svg" width="18" height="18" alt=""/></span><span class="sb-label">Cash Management</span><span class="sb-chevron" id="cCM"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sCM" class="sb-sub" style="display:none"><a href="#" class="sb-sub-item">Cash Management</a></div>
+    <button class="sb-item" data-label="Trade Finance" onclick="toggleSub('sTF','cTF')"><span class="sb-icon"><img src="../images/icons/trade_finance.svg" width="18" height="18" alt=""/></span><span class="sb-label">Trade Finance</span><span class="sb-chevron" id="cTF"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sTF" class="sb-sub" style="display:none"><a href="../tf-lc-request.html" class="sb-sub-item">Request for Letter of Credit</a><a href="../tf-lc-status.html" class="sb-sub-item">LC Status and Details</a><a href="../tf-lg-request.html" class="sb-sub-item">Letter of Guarantee</a><a href="../tf-lg-status.html" class="sb-sub-item">LG Status and Details</a><a href="../tf-ob-request.html" class="sb-sub-item">Request for Outward Bill</a><a href="../tf-ob-status.html" class="sb-sub-item">OB Status and Details</a></div>
+    <button class="sb-item" data-label="Services" onclick="toggleSub('sSvc','cSvc')"><span class="sb-icon"><img src="../images/icons/services.svg" width="18" height="18" alt=""/></span><span class="sb-label">Services</span><span class="sb-chevron" id="cSvc"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="7" viewBox="0 0 10.53 7"><path d="M9.225,0L5.695,3.62,2.075.09,0,1.795,5.325,7,10.53,1.675Z" fill="currentColor"/></svg></span></button>
+    <div id="sSvc" class="sb-sub" style="display:none"><a href="#" class="sb-sub-item">Services</a></div>
+    <button class="sb-item" data-label="Corporate End User Management Reports"><span class="sb-icon"><img src="../images/icons/corporate_end_user.svg" width="18" height="18" alt=""/></span><span class="sb-label">Corporate End User Management Reports</span></button>
+  </nav>
+</aside>
+
+<!-- ████ MAIN ████ -->
+<div class="app-main" id="appMain">
+  <main class="main-body" role="main">
+    <!-- Welcome bar -->
+    <div class="welcome-bar wb-checker">
+      <div class="wb-left">
+        <h2>Hi Ahmed Al-Mansouri</h2>
+        <p><span id="wbDate"></span> &nbsp;&middot;&nbsp; Al-Noor Trading LLC</p>
+      </div>
+    </div>
+
+    <div class="cg-main">
+
+    <!-- LEFT: Approval Queue -->
+      <div class="dash-card" style="margin-bottom:0;overflow:visible;">
+        <div class="dash-card-hdr">
+          <div class="dash-card-title">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            Approval Queue
+            <span style="font-size:.75rem;font-weight:400;color:var(--az-muted);margin-left:.25rem">12 pending</span>
+          </div>
+          <a href="#" class="dash-card-link">View all ›</a>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="filter-tabs">
+          <button class="ftab active" onclick="filterQueue('all',this)">All<span class="ftab-count">12</span></button>
+          <button class="ftab" onclick="filterQueue('maker-ahmed',this)">Sara Rahman<span class="ftab-count">3</span></button>
+          <button class="ftab" onclick="filterQueue('maker-fatima',this)">Fatima Hassan<span class="ftab-count">2</span></button>
+          <button class="ftab" onclick="filterQueue('maker-other',this)">Others<span class="ftab-count">7</span></button>
+        </div>
+
+        <!-- Batch toolbar -->
+        <div class="batch-toolbar" id="batchToolbar">
+          <span class="batch-sel-count" id="batchCount">0 selected</span>
+          <button class="btn-batch btn-batch-approve" onclick="batchAction('approve')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Approve All
+          </button>
+          <button class="btn-batch btn-batch-return" onclick="batchAction('return')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+            Return All
+          </button>
+        </div>
+
+        <!-- Queue table -->
+        <div style="overflow-x:auto">
+          <table class="aq-table" id="queueTable">
+            <thead>
+              <tr>
+                <th style="width:32px"><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" title="Select all"/></th>
+                <th>Transaction</th>
+                <th>Maker</th>
+                <th>Amount</th>
+                <th>Time in Queue</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+                        <tbody>
+
+              <tr class="aq-group-row" onclick="toggleGroup('grp-ahmed',this)">
+                <td colspan="6">
+                  <span class="aq-group-chevron">&#9660;</span>
+                  &nbsp; Sara Rahman &nbsp;
+                  <span style="font-weight:400;color:var(--az-muted)">3 items &nbsp;&middot;&nbsp;</span>
+                  
+                  &nbsp;
+                  <span class="risk-badge risk-low" style="font-size:.65rem">Trusted Maker</span>
+                  &nbsp; 
+                </td>
+              </tr>
+              <tr data-group="grp-ahmed" data-status="pending" data-risk="high" data-sla="crit" data-maker="maker-ahmed" class="row-crit">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">Bulk Payment – May Salaries</div>
+                  <div class="txn-ref">REF-BP-2026-0412</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Sara Rahman</span></span>
+                  </div>
+                </td>
+                <td>USD 287,400</td>
+                <td><span class="tiq tiq-crit">4h 12m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr data-group="grp-ahmed" data-status="pending" data-risk="med" data-sla="warn" data-maker="maker-ahmed">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">International Transfer</div>
+                  <div class="txn-ref">REF-IT-2026-0411</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Sara Rahman</span></span>
+                  </div>
+                </td>
+                <td>EUR 45,000</td>
+                <td><span class="tiq tiq-warn">2h 35m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr data-group="grp-ahmed" data-status="pending" data-risk="low" data-sla="safe" data-maker="maker-ahmed">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">Internal Transfer</div>
+                  <div class="txn-ref">REF-IN-2026-0409</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Sara Rahman</span></span>
+                  </div>
+                </td>
+                <td>AED 75,000</td>
+                <td><span class="tiq">4h 08m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+
+              <tr class="aq-group-row" onclick="toggleGroup('grp-fatima',this)">
+                <td colspan="6">
+                  <span class="aq-group-chevron">&#9660;</span>
+                  &nbsp; Fatima Hassan &nbsp;
+                  <span style="font-weight:400;color:var(--az-muted)">2 items &nbsp;&middot;&nbsp;</span>
+                  
+                  &nbsp;
+                  <span class="risk-badge risk-med" style="font-size:.65rem">Moderate</span>
+                  
+                </td>
+              </tr>
+              <tr data-group="grp-fatima" data-status="pending" data-risk="high" data-sla="crit" data-maker="maker-fatima" class="row-crit">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">LC Amendment – Import</div>
+                  <div class="txn-ref">REF-LC-2026-0407</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Fatima Hassan</span></span>
+                  </div>
+                </td>
+                <td>USD 500,000</td>
+                <td><span class="tiq tiq-crit">5h 40m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr data-group="grp-fatima" data-status="pending" data-risk="med" data-sla="warn" data-maker="maker-fatima" class="row-warn">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">Local Transfer – Vendor</div>
+                  <div class="txn-ref">REF-LT-2026-0410</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Fatima Hassan</span></span>
+                  </div>
+                </td>
+                <td>AED 12,500</td>
+                <td><span class="tiq tiq-warn">4h 20m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+
+              <tr class="aq-group-row" onclick="toggleGroup('grp-others',this)">
+                <td colspan="6">
+                  <span class="aq-group-chevron">&#9660;</span>
+                  &nbsp; Other Makers &nbsp;
+                  <span style="font-weight:400;color:var(--az-muted)">7 items &nbsp;&middot;&nbsp;</span>
+                  
+                  &nbsp;
+                  <span style="font-weight:400;color:var(--az-muted)"></span>
+                  
+                </td>
+              </tr>
+              <tr data-group="grp-others" data-status="pending" data-risk="low" data-sla="safe" data-maker="other">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">Scheduled Int'l Transfer</div>
+                  <div class="txn-ref">REF-ST-2026-0406</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Khalid Al-Rashid</span></span>
+                  </div>
+                </td>
+                <td>USD 28,000</td>
+                <td><span class="tiq">1h 05m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr data-group="grp-others" data-status="pending" data-risk="med" data-sla="warn" data-maker="other" class="row-warn">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">Intra-Bank Transfer</div>
+                  <div class="txn-ref">REF-IB-2026-0404</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Rania Karimi</span></span>
+                  </div>
+                </td>
+                <td>AED 55,000</td>
+                <td><span class="tiq tiq-warn">3h 50m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr data-group="grp-others" data-status="pending" data-risk="low" data-sla="safe" data-maker="other">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">Own Account Transfer</div>
+                  <div class="txn-ref">REF-OA-2026-0403</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Mohammed Taha</span></span>
+                  </div>
+                </td>
+                <td>USD 10,000</td>
+                <td><span class="tiq">0h 55m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr data-group="grp-others" data-status="pending" data-risk="high" data-sla="crit" data-maker="other" class="row-crit">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">Trade Finance – LG</div>
+                  <div class="txn-ref">REF-LG-2026-0401</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Layla Nasser</span></span>
+                  </div>
+                </td>
+                <td>USD 1,200,000</td>
+                <td><span class="tiq tiq-crit">6h 10m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr data-group="grp-others" data-status="pending" data-risk="low" data-sla="safe" data-maker="other">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">Payroll – Contract Staff</div>
+                  <div class="txn-ref">REF-BP-2026-0400</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Khalid Al-Rashid</span></span>
+                  </div>
+                </td>
+                <td>AED 38,500</td>
+                <td><span class="tiq">2h 15m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr data-group="grp-others" data-status="pending" data-risk="med" data-sla="warn" data-maker="other">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">International Transfer</div>
+                  <div class="txn-ref">REF-IT-2026-0398</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Rania Karimi</span></span>
+                  </div>
+                </td>
+                <td>EUR 22,000</td>
+                <td><span class="tiq tiq-warn">4h 30m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+              <tr data-group="grp-others" data-status="pending" data-risk="low" data-sla="safe" data-maker="other">
+                <td><input type="checkbox" class="row-check" onchange="updateBatchCount()"/></td>
+                <td>
+                  <div class="txn-name">Bill Payment – Utilities</div>
+                  <div class="txn-ref">REF-BL-2026-0397</div>
+                </td>
+                <td>
+                  <div class="maker-rep">
+                    <span class="maker-name">Mohammed Taha</span></span>
+                  </div>
+                </td>
+                <td>AED 4,200</td>
+                <td><span class="tiq">1h 40m</span></td>
+                <td><div class="mk-tbl-actions">
+                    <button class="mk-btn-tbl">Review</button>
+                    <div class="mk-kebab-wrap">
+                      <button class="mk-kebab-btn" onclick="ckToggleKebab(this)" title="More actions" aria-label="More actions">&#8942;</button>
+                      <div class="mk-kebab-menu">
+                        <button class="mk-km-item">Approve</button>
+                        <button class="mk-km-item">View Details</button>
+                        <button class="mk-km-item mk-km-danger">Return</button>
+                      </div>
+                    </div>
+                  </div></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        </div><!-- /queue card -->
+
+      <!-- RIGHT column -->
+      <div style="display:flex;flex-direction:column;gap:1rem">
+
+        <!-- Smart Insights panel -->
+        <div class="dash-card" style="margin-bottom:0">
+          <div class="si-panel-hdr">
+            <div class="si-panel-label">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Smart Insights
+            </div>
+            <span class="si-count">3 tips</span>
+          </div>
+          <div class="si-list">
+            
+            <div class="si-item">
+              <div class="si-body">
+                <div class="si-title">REF-BP-2026-0412 SLA in 1h 52m</div>
+                <div class="si-sub">Bulk salary — 156 employees at risk</div>
+              </div>
+              <a href="#approvalQueue" class="si-cta">Review Now ›</a>
+            </div>
+            <div class="si-item">
+              <div class="si-body">
+                <div class="si-title">Your avg review time: 22 min</div>
+                <div class="si-sub">35% faster than team average</div>
+              </div>
+            </div>
+            <div class="si-item">
+              <div class="si-body">
+                <div class="si-title">2 items idle &gt;4h — escalation risk</div>
+                <div class="si-sub">REF-LT-0410 &amp; REF-IN-0409</div>
+              </div>
+              <a href="#" class="si-cta si-cta-warn">Escalate ›</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SLA Watch -->
+        
+
+        <!-- Checker Metrics -->
+        <div class="dash-card" style="margin-bottom:0">
+          <div class="dash-card-hdr">
+            <div class="dash-card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              My Performance
+            </div>
+            <a href="#" class="dash-card-link">Full report ›</a>
+          </div>
+          <div class="metrics-grid">
+            
+            <div class="metric-item">
+              <div class="metric-val" style="color:var(--ck-color)">22m</div>
+              <div class="metric-lbl">Avg review time</div>
+              <div class="metric-sub" style="color:var(--sla-safe-fg)">&#8595; 35% faster than team</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-val">134</div>
+              <div class="metric-lbl">Approved this month</div>
+              <div class="metric-sub" style="color:var(--az-muted)">USD 4.2M total</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-val" style="color:var(--sb-returned-fg)">12</div>
+              <div class="metric-lbl">Returned this month</div>
+              <div class="metric-sub" style="color:var(--az-muted)">8.2% return rate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity feed -->
+        <div class="dash-card" style="margin-bottom:0">
+          <div class="dash-card-hdr">
+            <div class="dash-card-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Recent Activity
+            </div>
+            <a href="#" class="dash-card-link">View all 12 ›</a>
+          </div>
+          <div style="padding:.5rem 1.25rem .875rem">
+
+            <div class="act-item">
+              <span class="act-dot act-dot-approved" title="Approved"></span>
+              <div class="act-body">
+                <div class="act-title">REF-OA-2026-0402 approved by you</div>
+                <div class="act-time">Today, 08:54 AM</div>
+              </div>
+            </div>
+
+            <div class="act-item">
+              <span class="act-dot act-dot-approved" title="Approved"></span>
+              <div class="act-body">
+                <div class="act-title">REF-ST-2026-0400 approved by you</div>
+                <div class="act-time">Today, 08:31 AM</div>
+              </div>
+            </div>
+
+            <div class="act-item">
+              <span class="act-dot act-dot-returned" title="Returned"></span>
+              <div class="act-body">
+                <div class="act-title">REF-LT-2026-0398 returned — missing docs</div>
+                <div class="act-time">Yesterday, 04:15 PM</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /right column -->
+    </div><!-- /cg-main -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="padding:.875rem 1.5rem;border-top:1px solid var(--az-border);display:flex;align-items:center;justify-content:space-between;font-size:.75rem;color:var(--az-muted);">
+    <span>&copy; 2026 Azentio Software. All rights reserved.</span>
+    <span>Al-Noor Trading LLC &nbsp;&middot;&nbsp; Corporate Internet Banking &nbsp;&middot;&nbsp; Checker Session</span>
+  </footer>
+</div>
+
+<!-- ████ BATCH CONFIRM MODAL ████ -->
+<div class="rm-overlay" id="batchModal" role="dialog" aria-modal="true" aria-label="Confirm Batch Action">
+  <div class="rm-modal" style="max-width:420px">
+    <div class="rm-hdr">
+      <div class="rm-title" id="batchModalTitle">Confirm Action</div>
+      <button class="rm-close" onclick="closeBatchModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="rm-body" style="padding:1.25rem 1.5rem">
+      <div id="batchModalIcon" style="margin-bottom:.875rem"></div>
+      <p id="batchModalMsg" style="margin:0 0 .75rem;font-size:.875rem;color:#16303d;line-height:1.5"></p>
+      <div id="batchModalAmounts" style="background:#f5f7fa;border:1px solid #e2e8ec;border-radius:.5rem;padding:.625rem .875rem;font-size:.8125rem;color:#4a5a66;max-height:120px;overflow-y:auto;line-height:1.7"></div>
+      <p id="batchModalNote" style="margin:.75rem 0 0;font-size:.775rem;color:#6b7280"></p>
+    </div>
+    <div class="rm-footer" style="display:flex;gap:.625rem;justify-content:flex-end;padding:.875rem 1.5rem">
+      <button class="rm-btn-sec" onclick="closeBatchModal()">Cancel</button>
+      <button class="rm-btn-pri" id="batchModalConfirmBtn" onclick="executeBatchAction()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ████ ROLE SWITCH MODAL ████ -->
+<div class="rm-overlay" id="roleModal" role="dialog" aria-modal="true" aria-label="Switch Role">
+  <div class="rm-modal">
+    <div class="rm-hdr">
+      <div class="rm-title">Switch Role</div>
+      <button class="rm-close" onclick="closeRoleModal()" aria-label="Close">&times;</button>
+    </div>
+    <div style="padding:.75rem 1.5rem 0">
+      <div class="rm-stepper">
+        <div class="rm-step-dot active" id="rdot1"></div>
+        <div class="rm-step-dot" id="rdot2"></div>
+      </div>
+    </div>
+    <div class="rm-body">
+
+      <!-- Step 1 -->
+      <div class="rm-step active" id="rmStep1">
+        <div class="rm-step-label">Step 1 of 2 — Select Role</div>
+        <div class="rm-roles">
+          <!-- Maker (selectable) -->
+          <div class="rm-role-card" id="rmCardMaker" onclick="selectRole('maker')">
+            <div class="rm-role-icon" style="background:var(--mk-bg)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mk-color)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div class="rm-role-name">Maker</div>
+            <div class="rm-role-desc">Create &amp; submit transactions</div>
+          </div>
+          <!-- Checker (current, disabled) -->
+          <div class="rm-role-card disabled" id="rmCardChecker">
+            <div class="rm-role-icon" style="background:var(--ck-bg)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--ck-color)" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <div class="rm-role-name">Checker</div>
+            <div class="rm-role-desc">Review &amp; approve transactions<br><span style="font-size:.7rem;color:var(--ck-color);font-weight:600">Current role</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="rm-step" id="rmStep2">
+        <div class="rm-step-label">Step 2 of 2 — Confirm Switch</div>
+        <div class="rm-field">
+          <label for="rmReason">Reason for switching role</label>
+          <select id="rmReason">
+            <option value="">Select a reason…</option>
+            <option>Maker role required for new transaction</option>
+            <option>Authorised dual-role access</option>
+            <option>Delegated maker duty</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="rm-step" id="rmStep3">
+        <div class="rm-success">
+          <div class="rm-success-ico">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--sla-safe-fg)" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div style="font-size:1rem;font-weight:700;color:var(--az-navy);margin-bottom:.375rem">Role switched to Maker</div>
+          <div style="font-size:.8125rem;color:var(--az-muted)">Redirecting to Maker Dashboard…</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="rm-footer" id="rmFooter">
+      <button class="btn-rm-cancel" onclick="closeRoleModal()">Cancel</button>
+      <button class="btn-rm-next" id="rmNextBtn" onclick="rmNext()">Next</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/shared.js"></script>
+<script>
+// ── Dynamic date + last login ──
+(function(){
+  var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var now=new Date();
+  var wbEl=document.getElementById('wbDate');
+  if(wbEl) wbEl.textContent=days[now.getDay()]+', '+now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear();
+  var ll=new Date(); ll.setDate(ll.getDate()-3);
+  var llEl=document.getElementById('lastLoginDate');
+  if(llEl) llEl.textContent=ll.getDate()+' '+months[ll.getMonth()]+', '+ll.getFullYear();
+})();
+</script>
+<script>
+  /* ── Kebab menu ─────────────────────────────────── */
+  function ckToggleKebab(btn) {
+    // Close any open menus and return orphaned menus to their owners
+    document.querySelectorAll('.mk-kebab-menu.open').forEach(function(m) {
+      m.classList.remove('open');
+      if (m._origParent) { m._origParent.appendChild(m); delete m._origParent; }
+    });
+    var menu = btn.nextElementSibling;
+    if (!menu) return;
+    var r = btn.getBoundingClientRect();
+    // Move to body as portal
+    menu._origParent = btn.parentElement;
+    document.body.appendChild(menu);
+    menu.style.position = 'fixed';
+    menu.style.top = (r.bottom + 4) + 'px';
+    menu.style.left = 'auto';
+    menu.style.right = (window.innerWidth - r.right) + 'px';
+    menu.style.zIndex = '99999';
+    menu.classList.add('open');
+  }
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.mk-kebab-wrap') && !e.target.closest('.mk-kebab-menu')) {
+      document.querySelectorAll('.mk-kebab-menu.open').forEach(function(m) {
+        m.classList.remove('open');
+        if (m._origParent) { m._origParent.appendChild(m); delete m._origParent; }
+      });
+    }
+  }, true);
+
+// ── KPI Count-up animations ──
+(function(){
+  var ckKpis=[
+    {id:'ckKpi1', target:12},
+    {id:'ckKpi2', target:7},
+    {id:'ckKpi3', target:3},
+    {id:'ckKpi4', target:4}
+  ];
+  function countUp(el, target){
+    var dur=1100, start=performance.now();
+    function frame(now){
+      var p=Math.min((now-start)/dur,1);
+      var ease=1-Math.pow(1-p,4);
+      el.textContent=Math.round(target*ease);
+      if(p<1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  setTimeout(function(){
+    ckKpis.forEach(function(k){
+      var el=document.getElementById(k.id);
+      if(el) countUp(el, k.target);
+    });
+  },300);
+})();
+</script>
+<script>
+  /* ── Group collapse/expand ──────────────────────── */
+  function toggleGroup(groupId, headerRow) {
+    var rows = document.querySelectorAll('[data-group="' + groupId + '"]');
+    var collapsed = headerRow.classList.toggle('collapsed');
+    rows.forEach(function(r) { r.style.display = collapsed ? 'none' : ''; });
+  }
+
+  /* ── Filter queue ───────────────────────────────── */
+  function filterQueue(type, btn) {
+    var rows = document.querySelectorAll('#queueTable tbody tr:not(.aq-group-row)');
+    var groups = document.querySelectorAll('.aq-group-row');
+    rows.forEach(function(r) {
+      var show = false;
+      if (type === 'all')            show = true;
+      else if (type === 'high')      show = r.dataset.risk === 'high';
+      else if (type === 'sla')       show = r.dataset.sla === 'crit' || r.dataset.sla === 'warn';
+      else if (type === 'maker-ahmed') show = r.dataset.maker === 'maker-ahmed';
+      else if (type === 'maker-fatima') show = r.dataset.maker === 'maker-fatima';
+      else if (type === 'maker-other')  show = r.dataset.maker === 'other';
+      r.style.display = show ? '' : 'none';
+    });
+    // Show/hide group headers based on visible rows
+    groups.forEach(function(g) {
+      var grpId = null;
+      var visibleRows = 0;
+      // find associated rows
+      var nextRow = g.nextElementSibling;
+      while (nextRow && !nextRow.classList.contains('aq-group-row')) {
+        var grp = nextRow.getAttribute('data-group');
+        if (nextRow.style.display !== 'none') visibleRows++;
+        nextRow = nextRow.nextElementSibling;
+      }
+      g.style.display = (type === 'all' || visibleRows > 0) ? '' : 'none';
+    });
+    if (btn) {
+      document.querySelectorAll('.ftab').forEach(function(t) { t.classList.remove('active'); });
+      btn.classList.add('active');
+    }
+  }
+
+  /* ── Checkbox batch handling ────────────────────── */
+  function updateBatchCount() {
+    var checked = document.querySelectorAll('.row-check:checked').length;
+    document.getElementById('batchCount').textContent = checked + ' selected';
+    document.getElementById('batchToolbar').classList.toggle('show', checked > 0);
+  }
+
+  function toggleSelectAll(cb) {
+    document.querySelectorAll('.row-check').forEach(function(c) {
+      if (c.closest('tr').style.display !== 'none') c.checked = cb.checked;
+    });
+    updateBatchCount();
+  }
+
+  function clearSelection() {
+    document.querySelectorAll('.row-check, #selectAll').forEach(function(c) { c.checked = false; });
+    updateBatchCount();
+  }
+
+  function batchSelectAll() {
+    document.querySelectorAll('.row-check').forEach(function(c) { c.checked = true; });
+    document.getElementById('selectAll').checked = true;
+    updateBatchCount();
+    document.getElementById('approvalQueue').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function batchApproveGroup(groupId) {
+    document.querySelectorAll('[data-group="' + groupId + '"] .row-check').forEach(function(c) { c.checked = true; });
+    updateBatchCount();
+  }
+
+  var _batchPendingAction = null;
+
+  function batchAction(action) {
+    var rows = document.querySelectorAll('.row-check:checked');
+    var n = rows.length;
+    if (n === 0) return;
+    var amounts = [];
+    rows.forEach(function(cb) {
+      var row = cb.closest('tr');
+      if (row && row.cells[3]) amounts.push(row.cells[3].textContent.trim());
+    });
+    _batchPendingAction = action;
+
+    var isApprove = action === 'approve';
+    document.getElementById('batchModalTitle').textContent = isApprove ? 'Approve Transactions' : 'Return for Correction';
+    document.getElementById('batchModalIcon').innerHTML = isApprove
+      ? '<span style="display:inline-flex;align-items:center;gap:.375rem;background:#e8f5e9;color:#2e7d32;border-radius:2rem;padding:.3rem .75rem;font-size:.8125rem;font-weight:600"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Approve</span>'
+      : '<span style="display:inline-flex;align-items:center;gap:.375rem;background:#fff3e0;color:#e65100;border-radius:2rem;padding:.3rem .75rem;font-size:.8125rem;font-weight:600"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>Return</span>';
+    document.getElementById('batchModalMsg').textContent = isApprove
+      ? 'You are about to approve ' + n + ' transaction' + (n > 1 ? 's' : '') + '. This action cannot be undone.'
+      : 'You are about to return ' + n + ' transaction' + (n > 1 ? 's' : '') + ' to the maker for correction.';
+    document.getElementById('batchModalAmounts').innerHTML = amounts.map(function(a) { return '<div>• ' + a + '</div>'; }).join('');
+    document.getElementById('batchModalNote').textContent = isApprove ? 'Approved transactions will be processed immediately.' : 'The maker will be notified to revise and resubmit.';
+
+    var btn = document.getElementById('batchModalConfirmBtn');
+    btn.style.background = isApprove ? 'var(--az-green)' : '#e65100';
+    btn.style.borderColor = isApprove ? 'var(--az-green)' : '#e65100';
+    btn.textContent = isApprove ? 'Approve' : 'Return';
+
+    document.getElementById('batchModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBatchModal() {
+    document.getElementById('batchModal').classList.remove('open');
+    document.body.style.overflow = '';
+    _batchPendingAction = null;
+  }
+
+  function executeBatchAction() {
+    var action = _batchPendingAction;
+    closeBatchModal();
+    if (!action) return;
+    var rows = document.querySelectorAll('.row-check:checked');
+    var n = rows.length;
+    clearSelection();
+    /* Success toast */
+    var toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;background:#16303d;color:#fff;border-radius:.5rem;padding:.75rem 1.25rem;font-size:.8375rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 4px 16px rgba(0,0,0,.18);transition:opacity .3s';
+    toast.innerHTML = (action === 'approve'
+      ? '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+      : '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff9800" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>')
+      + n + ' transaction' + (n > 1 ? 's' : '') + ' ' + (action === 'approve' ? 'approved successfully.' : 'returned for correction.');
+    document.body.appendChild(toast);
+    setTimeout(function() { toast.style.opacity = '0'; setTimeout(function() { toast.remove(); }, 300); }, 3000);
+  }
+
+  /* ── Role switch modal ──────────────────────────── */
+  var rmStep = 1;
+  var selRole = null;
+
+  function openRoleModal() {
+    rmStep = 1; selRole = null;
+    document.getElementById('rmCardMaker').classList.remove('selected');
+    ['rmStep1','rmStep2','rmStep3'].forEach(function(id,i) {
+      document.getElementById(id).classList.toggle('active', i === 0);
+    });
+    ['rdot1','rdot2'].forEach(function(id,i) {
+      document.getElementById(id).classList.toggle('active', i === 0);
+    });
+    document.getElementById('rmNextBtn').textContent = 'Next';
+    document.getElementById('rmFooter').style.display = 'flex';
+    var r = document.getElementById('rmReason'); if (r) r.value = '';
+    document.getElementById('roleModal').classList.add('open');
+  }
+
+  function closeRoleModal() {
+    document.getElementById('roleModal').classList.remove('open');
+  }
+
+  function selectRole(r) {
+    selRole = r;
+    document.querySelectorAll('.rm-role-card:not(.disabled)').forEach(function(c) { c.classList.remove('selected'); });
+    document.getElementById('rmCardMaker').classList.add('selected');
+  }
+
+  function rmNext() {
+    if (rmStep === 1) {
+      if (!selRole) { alert('Please select a role to switch to.'); return; }
+      rmStep = 2;
+      document.getElementById('rmStep1').classList.remove('active');
+      document.getElementById('rmStep2').classList.add('active');
+      document.getElementById('rdot1').classList.remove('active');
+      document.getElementById('rdot2').classList.add('active');
+      document.getElementById('rmNextBtn').textContent = 'Confirm Switch';
+    } else if (rmStep === 2) {
+      var reason = document.getElementById('rmReason').value;
+      if (!reason) { alert('Please select a reason for switching.'); return; }
+      rmStep = 3;
+      document.getElementById('rmStep2').classList.remove('active');
+      document.getElementById('rmStep3').classList.add('active');
+      document.getElementById('rdot2').classList.add('active');
+      document.getElementById('rmFooter').style.display = 'none';
+      setTimeout(function() { window.location.href = 'maker-dashboard.html'; }, 2000);
+    }
+  }
+
+  document.getElementById('roleModal').addEventListener('click', function(e) {
+    if (e.target === this) closeRoleModal();
+  });
+
+document.getElementById('roleSwitcherBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  var drop = document.getElementById('roleSwitcherDrop');
+  var open = drop.classList.toggle('open');
+  this.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.role-switcher-wrap')) {
+    var drop = document.getElementById('roleSwitcherDrop');
+    if (drop) { drop.classList.remove('open'); document.getElementById('roleSwitcherBtn').setAttribute('aria-expanded','false'); }
+  }
+});
+
+function switchRole(role, btn) {
+  document.getElementById('roleSwitcherLabel').textContent = role;
+  document.querySelectorAll('.role-sw-opt').forEach(function(o){
+    o.classList.remove('role-sw-active');
+    o.querySelector('.role-sw-check').style.visibility = 'hidden';
+  });
+  btn.classList.add('role-sw-active');
+  btn.querySelector('.role-sw-check').style.visibility = 'visible';
+  document.getElementById('roleSwitcherDrop').classList.remove('open');
+  document.getElementById('roleSwitcherBtn').setAttribute('aria-expanded','false');
+  if (role === 'Maker') {
+    setTimeout(function(){ location.href = 'maker-dashboard.html'; }, 150);
+  }
+}
+</script>
+</body>
+</html>
