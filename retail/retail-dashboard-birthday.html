@@ -21,12 +21,12 @@
     .pc-outer { background:#fff; }
     .pc-track  { display:flex; transition:transform .45s ease; }
     .pc-slide  { min-width:100%; height:90px; display:flex; align-items:center; padding:.75rem 1.25rem; position:relative; overflow:hidden; }
-    .pc-slide-1{ background:linear-gradient(135deg,rgba(13,71,161,.72) 0%,rgba(106,27,154,.65) 55%,rgba(233,30,99,.60) 100%), url('../images/banner-birthday.jpg') center/cover no-repeat; }
+    .pc-slide-1{ background:linear-gradient(to right,#9ecfde 0%,#a8d5e8 60%,#b6dcec 100%); }
     @keyframes bday-spin { 0%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(180deg) scale(1.2)} 100%{transform:rotate(360deg) scale(1)} }
     .bday-sparkle { position:absolute;top:-4px;right:-4px;font-size:.875rem;line-height:1;animation:bday-spin 3s linear infinite; }
-    .pc-slide-2{ background:linear-gradient(130deg,#e8f3fb 0%,#c8def2 100%); }
-    .pc-slide-3{ background:linear-gradient(130deg,#eaeff3 0%,#ccdae4 100%); }
-    .pc-slide-4{ background:linear-gradient(130deg,#e6f7f0 0%,#b8e4ce 100%); }
+    .pc-slide-2{ background:linear-gradient(to right,#3a8fb0 0%,#53a7c3 60%,#5aaec9 100%); }
+    .pc-slide-3{ background:linear-gradient(to right,#b7b6b2 0%,#c3c2be 50%,#cccbc7 100%); }
+    .pc-slide-4{ background:linear-gradient(to right,#120c0c 0%,#2a1e18 50%,#3a2c24 100%); }
     .pc-bg-circle{ position:absolute; border-radius:50%; pointer-events:none; }
     .pc-icon{ width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0; }
     .pc-icon .material-icons{ font-size:22px; }
@@ -301,7 +301,7 @@
             <div class="av-drop-name">Sarika Desai</div>
             <div class="av-drop-login-lbl">Last Login</div>
             <div class="av-drop-login-time">
-              <span class="t-part"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>27 Jul, 2026</span>
+              <span class="t-part"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span id="lastLoginDate">27 Jul, 2026</span></span>
               <span class="t-sep">|</span>
               <span class="t-part"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>09:42</span>
             </div>
@@ -363,10 +363,6 @@
 <div class="app-main" id="appMain">
   <main class="main-body" role="main">
 
-    <!-- Breadcrumb -->
-    <div class="az-bc" style="padding:0;margin-top:0;">
-      <a href="retail-dashboard.html">Home</a><span class="sep">&#8250;</span><span class="cur">My Banking</span>
-    </div>
 
     <!-- Page header -->
     <div class="page-top-bar" style="margin-bottom:.75rem;margin-top:0;padding:0 1.75rem;display:none;">
@@ -395,94 +391,73 @@
       <div id="pcWrap" style="grid-column:1/-1;grid-row:1;border-radius:.875rem;overflow:hidden;background:#fff;box-shadow:0 0 0 1.5px #cbd5e1;">
         <div class="pc-outer">
           <div class="pc-track" id="pcTrack">
-
-            <!-- Slide 0: Birthday -->
-            <div class="pc-slide pc-slide-1">
-              <!-- Decorative bg circles -->
-              <div style="position:absolute;right:-30px;top:-30px;width:130px;height:130px;border-radius:50%;background:#fff;opacity:.08;pointer-events:none;"></div>
-              <div style="position:absolute;right:70px;bottom:-45px;width:95px;height:95px;border-radius:50%;background:#fff;opacity:.06;pointer-events:none;"></div>
-              <div style="position:absolute;right:180px;top:-18px;width:60px;height:60px;border-radius:50%;background:#fff;opacity:.05;pointer-events:none;"></div>
-              <!-- Icon with sparkle -->
-              <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);">
-                <div style="width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:1.625rem;box-shadow:0 4px 14px rgba(0,0,0,.2);">🎂</div>
-                <div class="bday-sparkle">✨</div>
+            <!-- Slide: Birthday -->
+            <div class="pc-slide" style="background:linear-gradient(to right,#9ecfde 0%,#a8d5e8 60%,#b6dcec 100%);">
+              <div style="position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:#16303d;opacity:.08;pointer-events:none;"></div>
+              <div style="position:absolute;right:65px;bottom:-40px;width:90px;height:90px;border-radius:50%;background:#16303d;opacity:.06;pointer-events:none;"></div>
+              <div style="position:absolute;left:0;top:0;bottom:0;width:90px;overflow:hidden;border-radius:.875rem 0 0 0;background:#9ecfde;">
+                <img src="../images/banner-birthday.jpg" alt="" style="width:100%;height:100%;object-fit:contain;object-position:center center;"/>
               </div>
-              <!-- Content -->
-              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:88px;padding-right:1.5rem;gap:.875rem;">
+              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:105px;padding-right:1.5rem;gap:.875rem;">
                 <div style="min-width:0;flex:1;">
-                  <div style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.15rem;">Happy Birthday, Sarika! 🎉</div>
-                  <div style="font-size:.78rem;color:rgba(255,255,255,.82);line-height:1.4;">Celebrate your special day with exclusive perks on your Gold Mastercard!</div>
+                  <span class="pc-tag" style="background:rgba(22,48,61,.12);color:#16303d;">Birthday Special</span>
+                  <div class="pc-title" style="color:#16303d;">Happy Birthday, Sarika!</div>
+                  <div class="pc-sub" style="color:rgba(22,48,61,.7);">Exclusive birthday offers — cashback, rewards &amp; surprises just for you</div>
                 </div>
-                <div style="display:flex;gap:.5rem;flex-shrink:0;">
-                  <a href="offer-dining-cashback.html" class="pc-cta" style="background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:.3rem;"><span class="material-icons" style="font-size:15px;">restaurant</span>Dinner Deals</a>
-                  <a href="movie-tickets.html" class="pc-cta" style="background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:.3rem;"><span class="material-icons" style="font-size:15px;">movie</span>Movie Tickets</a>
-                </div>
+                <a href="#" class="pc-cta" style="background:#16303d;color:#fff;flex-shrink:0;">Claim Your Gift</a>
               </div>
             </div>
-
-            <!-- Slide 1: Personal Loan -->
+            <!-- Slide: Personal Loan -->
             <div class="pc-slide pc-slide-2">
-              <!-- Decorative bg circles -->
               <div style="position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:#00538A;opacity:.12;pointer-events:none;"></div>
               <div style="position:absolute;right:60px;bottom:-40px;width:90px;height:90px;border-radius:50%;background:#00538A;opacity:.08;pointer-events:none;"></div>
               <div style="position:absolute;right:160px;top:-20px;width:60px;height:60px;border-radius:50%;background:#00538A;opacity:.07;pointer-events:none;"></div>
-              <!-- Icon -->
-              <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:#00538A;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(0,83,138,.25);">
-                <span class="material-icons" style="font-size:30px;color:#fff;">calculate</span>
+              <div style="position:absolute;left:0;top:0;bottom:0;width:145px;overflow:hidden;border-radius:.875rem 0 0 0;">
+                <img src="../images/banner-person-cashback.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top center;"/>
               </div>
-              <!-- Content -->
-              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:88px;padding-right:1.5rem;gap:.875rem;">
+              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:157px;padding-right:1.5rem;gap:.875rem;">
                 <div style="min-width:0;flex:1;">
-                  <span class="pc-tag" style="background:rgba(0,83,138,.15);color:#00538A;">Limited Time</span>
-                  <div class="pc-title">Personal Loan at 3.49% p.a.</div>
-                  <div class="pc-sub">Up to AED 500,000 · Instant approval · No processing fee</div>
+                  <span class="pc-tag" style="background:rgba(255,255,255,.2);color:#fff;">Limited Time</span>
+                  <div class="pc-title" style="color:#fff;">Personal Loan at 3.49% p.a.</div>
+                  <div class="pc-sub" style="color:rgba(255,255,255,.85);">Up to AED 500,000 · Instant approval · No processing fee</div>
                 </div>
                 <a href="financing-facility-request.html" class="pc-cta" style="background:#00538A;flex-shrink:0;">Apply for Personal Loan</a>
               </div>
             </div>
-
-            <!-- Slide 2: Fixed Deposit -->
+            <!-- Slide: Fixed Deposit -->
             <div class="pc-slide pc-slide-3">
-              <!-- Decorative bg circles -->
-              <div style="position:absolute;right:-25px;top:-35px;width:110px;height:110px;border-radius:50%;background:#16303d;opacity:.11;pointer-events:none;"></div>
-              <div style="position:absolute;right:70px;bottom:-38px;width:85px;height:85px;border-radius:50%;background:#16303d;opacity:.08;pointer-events:none;"></div>
-              <div style="position:absolute;right:170px;top:-15px;width:55px;height:55px;border-radius:50%;background:#16303d;opacity:.07;pointer-events:none;"></div>
-              <!-- Icon -->
-              <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:#16303d;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(22,48,61,.25);">
-                <span class="material-icons" style="font-size:30px;color:#fff;">savings</span>
+              <div style="position:absolute;right:-25px;top:-35px;width:110px;height:110px;border-radius:50%;background:#16303d;opacity:.09;pointer-events:none;"></div>
+              <div style="position:absolute;right:70px;bottom:-38px;width:85px;height:85px;border-radius:50%;background:#16303d;opacity:.06;pointer-events:none;"></div>
+              <div style="position:absolute;right:170px;top:-15px;width:55px;height:55px;border-radius:50%;background:#16303d;opacity:.05;pointer-events:none;"></div>
+              <div style="position:absolute;left:0;top:0;bottom:0;width:145px;overflow:hidden;border-radius:.875rem 0 0 0;">
+                <img src="../images/banner-person-savings.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top center;"/>
               </div>
-              <!-- Content -->
-              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:88px;padding-right:1.5rem;gap:.875rem;">
+              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:157px;padding-right:1.5rem;gap:.875rem;">
                 <div style="min-width:0;flex:1;">
-                  <span class="pc-tag" style="background:rgba(22,48,61,.14);color:#16303d;">Best Rate</span>
-                  <div class="pc-title">5.5% p.a. Fixed Deposit</div>
-                  <div class="pc-sub">12-month term · No minimum balance · AED 1,218 potential earn</div>
+                  <span class="pc-tag" style="background:rgba(0,0,0,.12);color:#16303d;">Best Rate</span>
+                  <div class="pc-title" style="color:#16303d;">5.5% p.a. Fixed Deposit</div>
+                  <div class="pc-sub" style="color:#334155;">12-month term · No minimum balance · AED 1,218 potential earn</div>
                 </div>
                 <a href="term-deposit-account-opening.html?tenure=365&rate=5.50&amount=22150&source=bestrate" class="pc-cta" style="background:#16303d;flex-shrink:0;">Open Fixed Deposit</a>
               </div>
             </div>
-
-            <!-- Slide 3: Dining Cashback -->
+            <!-- Slide: Dining Cashback -->
             <div class="pc-slide pc-slide-4">
-              <!-- Decorative bg circles -->
-              <div style="position:absolute;right:-28px;top:-32px;width:115px;height:115px;border-radius:50%;background:#1AAD6E;opacity:.14;pointer-events:none;"></div>
-              <div style="position:absolute;right:65px;bottom:-42px;width:88px;height:88px;border-radius:50%;background:#1AAD6E;opacity:.09;pointer-events:none;"></div>
-              <div style="position:absolute;right:165px;top:-18px;width:58px;height:58px;border-radius:50%;background:#1AAD6E;opacity:.08;pointer-events:none;"></div>
-              <!-- Icon -->
-              <div style="position:absolute;left:20px;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:#1AAD6E;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(26,173,110,.25);">
-                <span class="material-icons" style="font-size:30px;color:#fff;">restaurant</span>
+              <div style="position:absolute;right:-28px;top:-32px;width:115px;height:115px;border-radius:50%;background:#000;opacity:.15;pointer-events:none;"></div>
+              <div style="position:absolute;right:65px;bottom:-42px;width:88px;height:88px;border-radius:50%;background:#000;opacity:.10;pointer-events:none;"></div>
+              <div style="position:absolute;right:165px;top:-15px;width:58px;height:58px;border-radius:50%;background:#000;opacity:.08;pointer-events:none;"></div>
+              <div style="position:absolute;left:0;top:0;bottom:0;width:145px;overflow:hidden;border-radius:.875rem 0 0 0;">
+                <img src="../images/banner-person-dining.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:top center;"/>
               </div>
-              <!-- Content -->
-              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:88px;padding-right:1.5rem;gap:.875rem;">
+              <div style="display:flex;align-items:center;flex:1;min-width:0;padding-left:157px;padding-right:1.5rem;gap:.875rem;">
                 <div style="min-width:0;flex:1;">
-                  <span class="pc-tag" style="background:rgba(26,173,110,.15);color:#0e7a4b;">Exclusive</span>
-                  <div class="pc-title">10% Cashback on Dining</div>
-                  <div class="pc-sub">Gold Mastercard · Any restaurant · Valid till Dec 2026</div>
+                  <span class="pc-tag" style="background:rgba(255,255,255,.15);color:#fff;">Exclusive</span>
+                  <div class="pc-title" style="color:#fff;">10% Cashback on Dining</div>
+                  <div class="pc-sub" style="color:rgba(255,255,255,.85);">Gold Mastercard · Any restaurant · Valid till Dec 2026</div>
                 </div>
-                <a href="offer-dining-cashback.html" class="pc-cta" style="background:#1AAD6E;flex-shrink:0;">View Offer</a>
+                <a href="offer-dining-cashback.html" class="pc-cta" style="background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);flex-shrink:0;">View Offer</a>
               </div>
             </div>
-
           </div><!-- /pc-track -->
           <div class="pc-footer">
             <div class="pc-dots" id="pcDots">
@@ -498,22 +473,17 @@
           </div>
         </div>
       </div><!-- /carousel -->
-
       <!-- ── Col-1 wrapper: Total Balance + Recent Transactions stacked ── -->
       <div style="grid-column:1;grid-row:2/4;display:flex;flex-direction:column;gap:.75rem;">
 
       <!-- ── rd-d1: Total Balance ── -->
       <div class="rd-panel rd-reveal rd-d1" style="display:flex;flex-direction:column;min-height:0;padding:.625rem 1.25rem .75rem;">
-
-        <!-- Label row -->
         <div style="display:flex;align-items:center;gap:.3rem;margin-bottom:.5rem;">
           <span class="rd-ph-title">Total Balance</span>
           <button class="eye-btn-w" id="eyeBtn" onclick="toggleBalance()" title="Show/hide balance" style="margin-right:auto;">
             <span class="material-icons" id="eyeIcon" style="font-size:16px;">visibility</span>
           </button>
         </div>
-
-        <!-- Amount -->
         <div style="margin-bottom:.375rem;">
           <div style="display:flex;align-items:baseline;gap:.375rem;margin-bottom:.2rem;">
             <span style="font-size:.95rem;font-weight:500;color:var(--az-muted);line-height:1;">AED</span>
@@ -521,8 +491,7 @@
           </div>
           <div id="availBalRow" style="font-size:.75rem;color:var(--az-muted);">Available &nbsp;<span id="availBalAmt" style="font-weight:600;color:var(--az-navy);">AED 241,800</span></div>
         </div>
-
-        <!-- Account breakdown -->
+        <div style="height:.75rem;"></div>
         <div style="display:flex;align-items:stretch;border:1px solid var(--az-border);border-radius:.5rem;overflow:hidden;margin-bottom:.375rem;">
           <a href="accounts.html" class="bal-acc-item" style="flex:1;padding:.4rem .75rem;display:flex;flex-direction:column;text-decoration:none;">
             <span class="bal-acc-lbl">Current</span>
@@ -539,65 +508,52 @@
             <span class="bal-acc-val" data-orig="AED 22,150">AED 22,150</span>
           </a>
         </div>
-
-        <!-- Actions -->
-        <div style="display:flex;gap:.5rem;margin-top:.375rem;margin-bottom:.375rem;">
+        <div style="display:flex;gap:.5rem;margin-top:.875rem;margin-bottom:.375rem;">
           <a href="transfer-own-accounts.html" style="display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--az-border);border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;background:#f8fafc;transition:background .15s;"><span class="material-icons" style="font-size:16px;color:#1AAD6E;">swap_horiz</span>Transfer</a>
-          <a href="term-deposit-account-opening.html" style="display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--az-border);border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;background:#f8fafc;transition:background .15s;"><span class="material-icons" style="font-size:16px;color:#1AAD6E;">savings</span>Open Fixed Account</a>
+          <a href="term-deposit-account-opening.html" style="display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--az-border);border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;background:#f8fafc;transition:background .15s;"><span class="material-icons" style="font-size:16px;color:#1AAD6E;">savings</span>Open Fixed Deposit</a>
         </div>
-
       </div>
 
       <!-- ── Recent Transactions ── -->
       <div class="rd-panel rd-reveal" id="rtPanel" style="padding:1rem 1.25rem;">
-        <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;" onclick="rtToggle()">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
           <span class="rd-ph-title">Recent Transactions</span>
-          <span class="material-icons" id="rtChevron" style="font-size:18px;color:var(--az-muted);transition:transform .25s;transform:rotate(180deg);">expand_less</span>
         </div>
-        <div id="rtList" style="display:none;margin-top:.75rem;">
-          <!-- Txn 1: Careem -->
-          <div style="display:flex;align-items:center;gap:.625rem;padding:.35rem 0;border-bottom:1px solid var(--az-border);">
+        <div id="rtList" style="display:block;margin-top:.75rem;">
+          <div style="display:flex;align-items:center;gap:.625rem;padding:.875rem 0;border-bottom:1px solid var(--az-border);">
             <div style="width:32px;height:32px;border-radius:8px;background:#f0f4f8;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="material-icons" style="font-size:16px;color:#64748b;">directions_car</span></div>
             <div style="flex:1;min-width:0;"><div style="font-size:.78rem;font-weight:600;color:#16303d;">Careem</div><div style="font-size:.68rem;color:var(--az-muted);">Transport · Today, 10:30 AM</div></div>
             <div style="text-align:right;flex-shrink:0;"><div style="font-size:.8rem;font-weight:600;color:#e11d48;">− AED 45.00</div></div>
           </div>
-          <!-- Txn 2: Salary Credit -->
-          <div style="display:flex;align-items:center;gap:.625rem;padding:.35rem 0;border-bottom:1px solid var(--az-border);">
+          <div style="display:flex;align-items:center;gap:.625rem;padding:.875rem 0;border-bottom:1px solid var(--az-border);">
             <div style="width:32px;height:32px;border-radius:8px;background:#edf9f4;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="material-icons" style="font-size:16px;color:#1AAD6E;">account_balance</span></div>
             <div style="flex:1;min-width:0;"><div style="font-size:.78rem;font-weight:600;color:#16303d;">Salary Credit</div><div style="font-size:.68rem;color:var(--az-muted);">Income · Yesterday, 09:15 AM</div></div>
-            <div style="text-align:right;flex-shrink:0;"><div style="font-size:.8rem;font-weight:700;color:#1AAD6E;">+ AED 8,250.00</div></div>
+            <div style="text-align:right;flex-shrink:0;"><div style="font-size:.8rem;font-weight:700;color:#1AAD6E;">+ AED 18,500.00</div></div>
           </div>
-          <!-- Txn 3: Amazon.ae -->
-          <div style="display:flex;align-items:center;gap:.625rem;padding:.35rem 0;border-bottom:1px solid var(--az-border);">
+          <div style="display:flex;align-items:center;gap:.625rem;padding:.875rem 0;border-bottom:1px solid var(--az-border);">
             <div style="width:32px;height:32px;border-radius:8px;background:#f0f4f8;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="material-icons" style="font-size:16px;color:#64748b;">shopping_bag</span></div>
             <div style="flex:1;min-width:0;"><div style="font-size:.78rem;font-weight:600;color:#16303d;">Amazon.ae</div><div style="font-size:.68rem;color:var(--az-muted);">Shopping · Yesterday, 08:45 PM</div></div>
             <div style="text-align:right;flex-shrink:0;"><div style="font-size:.8rem;font-weight:600;color:#e11d48;">− AED 125.50</div></div>
           </div>
-          <!-- Txn 4: DEWA -->
-          <div style="display:flex;align-items:center;gap:.625rem;padding:.35rem 0;">
+          <div style="display:none;align-items:center;gap:.625rem;padding:.875rem 0;">
             <div style="width:32px;height:32px;border-radius:8px;background:#fff4e5;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span class="material-icons" style="font-size:16px;color:#d97706;">bolt</span></div>
             <div style="flex:1;min-width:0;"><div style="font-size:.78rem;font-weight:600;color:#16303d;">DEWA</div><div style="font-size:.68rem;color:var(--az-muted);">Utilities · 12 May 2025</div></div>
             <div style="text-align:right;flex-shrink:0;"><div style="font-size:.8rem;font-weight:600;color:#e11d48;">− AED 210.00</div></div>
           </div>
-          <!-- View all button -->
           <a href="transaction-history.html" style="display:flex;align-items:center;justify-content:center;gap:.3rem;margin-top:.75rem;padding:.5rem;border:1px solid var(--az-border);border-radius:.5rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;transition:background .15s;">View All Transactions <span class="material-icons" style="font-size:15px;">arrow_forward</span></a>
         </div>
       </div>
       </div><!-- /col-1 wrapper -->
 
-      <!-- ── rd-d5: My Cards ── -->
-      <div class="rd-panel rd-reveal rd-d5" style="grid-column:2;grid-row:2/4;padding:0;overflow:hidden;display:flex;flex-direction:column;align-self:start;min-height:0;">
+      <!-- ── Col-2 wrapper: My Cards + Spending Analysis ── -->
+      <div style="grid-column:2;grid-row:2/4;display:flex;flex-direction:column;gap:.75rem;align-self:stretch;">
 
-        <!-- Header -->
+      <div class="rd-panel rd-reveal rd-d5" style="padding:0;overflow:hidden;display:flex;flex-direction:column;flex:1;min-height:0;align-self:stretch !important;border-radius:.875rem !important;">
         <div style="display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.25rem .5rem;">
           <span class="rd-ph-title">My Cards</span>
           <a href="cards-my-cards.html" style="font-size:.72rem;color:var(--az-blue);font-weight:600;text-decoration:none;">View all</a>
         </div>
-
-        <!-- Card selector list -->
         <div style="margin:.125rem 1.25rem 0;border:1px solid var(--az-border);border-radius:.625rem;overflow:hidden;">
-
-          <!-- Card 1 -->
           <div class="card-sel-row" onclick="goToCard(0)" style="display:flex;align-items:center;gap:.875rem;padding:.75rem 1rem;cursor:pointer;background:#f0f7ff;border-left:3px solid var(--az-blue);transition:background .15s;">
             <div style="width:48px;height:30px;background:linear-gradient(135deg,#1a1f71,#00378b);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
               <span style="font-size:.65rem;font-weight:900;color:#fff;font-style:italic;letter-spacing:.02em;">VISA</span>
@@ -608,10 +564,7 @@
             </div>
             <span class="mc-status-chip mc-status-active" style="flex-shrink:0;">Active</span>
           </div>
-
           <div style="height:1px;background:var(--az-border);"></div>
-
-          <!-- Card 2 -->
           <div class="card-sel-row" onclick="goToCard(1)" style="display:flex;align-items:center;gap:.875rem;padding:.75rem 1rem;cursor:pointer;border-left:3px solid transparent;transition:background .15s;">
             <div style="width:48px;height:30px;background:linear-gradient(135deg,#1a1f71,#0d2d45);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;overflow:hidden;">
               <div style="width:18px;height:18px;border-radius:50%;background:#eb001b;position:absolute;left:5px;"></div>
@@ -623,10 +576,7 @@
             </div>
             <span class="mc-status-chip mc-status-active" style="flex-shrink:0;">Active</span>
           </div>
-
         </div>
-
-        <!-- Available credit + usage bar -->
         <div style="padding:.75rem 1.25rem .5rem;">
           <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:.4rem;">
             <div>
@@ -635,12 +585,10 @@
             </div>
             <div style="font-size:.68rem;color:var(--az-muted);padding-bottom:.15rem;" id="mcUsageLbl">24% of AED 35,000 total credit</div>
           </div>
-          <div class="mc-usage-track" style="margin-bottom:0;"><div class="mc-usage-fill" id="mcUsageFill" style="width:24%"></div></div>
+          <div class="mc-usage-track" style="margin-bottom:.875rem;"><div class="mc-usage-fill" id="mcUsageFill" style="width:24%"></div></div>
           <span id="mcBalSpent" style="display:none;">AED 8,240</span>
         </div>
-
-        <!-- 2 actions -->
-        <div style="display:flex;gap:.5rem;padding:.5rem 1.25rem .875rem;">
+        <div style="display:flex;gap:.5rem;padding:0 1.25rem .875rem;">
           <a href="cards-manage.html" style="display:inline-flex;align-items:center;gap:.3rem;border:1px solid var(--az-border);border-radius:.5rem;padding:.45rem .875rem;font-size:.78rem;font-weight:600;color:var(--az-navy);text-decoration:none;background:#f8fafc;transition:background .15s;">
             <span class="material-icons" style="font-size:16px;color:#1AAD6E;">credit_card</span>Manage Cards
           </a>
@@ -648,17 +596,43 @@
             <span class="material-icons" style="font-size:16px;color:#1AAD6E;">receipt_long</span>View Statement
           </a>
         </div>
-
       </div>
 
+      <!-- ── Spending Analysis ── -->
+      <div id="spendingAnalysis" class="rd-panel rd-reveal" style="padding:1.25rem 1.25rem 1.125rem;border-radius:.875rem !important;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem;">
+          <span class="rd-ph-title">Spending Analysis</span>
+          <span style="font-size:.68rem;color:var(--az-muted);">This month</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.6rem;">
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:.25rem;"><span style="font-size:.72rem;color:var(--az-muted);">Housing</span><span style="font-size:.72rem;color:var(--az-navy);font-weight:500;">AED 1,543</span></div>
+            <div style="height:4px;background:#e8edf0;border-radius:2px;"><div style="width:32%;height:100%;background:#8fa8b8;border-radius:2px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:.25rem;"><span style="font-size:.72rem;color:var(--az-muted);">Food &amp; Dining</span><span style="font-size:.72rem;color:var(--az-navy);font-weight:500;">AED 1,158</span></div>
+            <div style="height:4px;background:#e8edf0;border-radius:2px;"><div style="width:24%;height:100%;background:#8fa8b8;border-radius:2px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:.25rem;"><span style="font-size:.72rem;color:var(--az-muted);">Transport</span><span style="font-size:.72rem;color:var(--az-navy);font-weight:500;">AED 869</span></div>
+            <div style="height:4px;background:#e8edf0;border-radius:2px;"><div style="width:18%;height:100%;background:#8fa8b8;border-radius:2px;"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:.25rem;"><span style="font-size:.72rem;color:var(--az-muted);">Shopping</span><span style="font-size:.72rem;color:var(--az-navy);font-weight:500;">AED 724</span></div>
+            <div style="height:4px;background:#e8edf0;border-radius:2px;"><div style="width:15%;height:100%;background:#8fa8b8;border-radius:2px;"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:.875rem;padding-top:.75rem;border-top:1px solid var(--az-border);display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:.72rem;color:var(--az-muted);">Monthly Budget</span>
+          <span style="font-size:.72rem;color:var(--az-navy);">AED 4,294 <span style="color:var(--az-muted);font-weight:400;">/ 6,000</span></span>
+        </div>
+      </div>
 
+      </div><!-- /col-2 wrapper -->
 
       </div><!-- /rd-left -->
-
       <!-- ── Right column: info & alerts ── -->
       <div class="rd-right">
-
-
 
       <!-- ── rd-d2: Upcoming Payments ── -->
       <div class="rd-panel rd-reveal rd-d2">
@@ -689,8 +663,7 @@
 
       <!-- ── Explore More ── -->
       <div class="rd-panel rd-reveal" style="padding:.5rem 0;overflow:hidden;">
-        <!-- Visa Airport Companion -->
-        <a href="#" style="display:flex;align-items:center;gap:.75rem;padding:.5rem 1.25rem;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <a href="#" style="display:flex;align-items:center;gap:.75rem;padding:.875rem 1.25rem;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
           <div style="width:38px;height:38px;border-radius:10px;background:#edf9f4;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
             <span class="material-icons" style="font-size:20px;color:#1AAD6E;">flight</span>
           </div>
@@ -701,8 +674,7 @@
           <span class="material-icons" style="font-size:18px;color:var(--az-muted);flex-shrink:0;">chevron_right</span>
         </a>
         <div style="border-top:1px solid var(--az-border);margin:0 1.25rem;"></div>
-        <!-- Rewards Hub -->
-        <a href="#" style="display:flex;align-items:center;gap:.75rem;padding:.5rem 1.25rem;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <a href="#" style="display:flex;align-items:center;gap:.75rem;padding:.875rem 1.25rem;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
           <div style="width:38px;height:38px;border-radius:10px;background:#e8f3fb;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
             <span class="material-icons" style="font-size:20px;color:#00538A;">stars</span>
           </div>
@@ -716,8 +688,7 @@
           <span class="material-icons" style="font-size:18px;color:var(--az-muted);flex-shrink:0;">chevron_right</span>
         </a>
         <div style="border-top:1px solid var(--az-border);margin:0 1.25rem;"></div>
-        <!-- Refer a Friend -->
-        <a href="#" style="display:flex;align-items:center;gap:.75rem;padding:.5rem 1.25rem;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <a href="#" style="display:flex;align-items:center;gap:.75rem;padding:.875rem 1.25rem;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
           <div style="width:38px;height:38px;border-radius:10px;background:#edf9f4;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
             <span class="material-icons" style="font-size:20px;color:#1AAD6E;">person_add</span>
           </div>
@@ -728,106 +699,6 @@
           <span class="material-icons" style="font-size:18px;color:var(--az-muted);flex-shrink:0;">chevron_right</span>
         </a>
       </div>
-
-
-      <!-- ── Smart Insights ── -->
-      <div class="rd-panel rd-reveal rd-d8" style="display:none;">
-        <div class="rd-ph">
-          <span class="rd-ph-title">Smart Insights</span>
-          <div class="rd-d2 sb-month-nav">
-            <button class="sb-month-btn">&#8249;</button>
-            <span class="sb-month-lbl">Jul 2026 <span style="font-size:.68rem;color:var(--az-muted);font-weight:400;">MTD</span></span>
-            <button class="sb-month-btn">&#8250;</button>
-          </div>
-        </div>
-        <div class="ins-ie-row">
-          <div class="ins-ie-item">
-            <div class="ins-ie-lbl">Income</div>
-            <div class="ins-ie-amt ins-income">AED 18,500</div>
-            <div class="ins-bar-track"><div class="ins-bar-fill ins-bar-income" data-w="100%"></div></div>
-          </div>
-          <div class="ins-ie-divider"></div>
-          <div class="ins-ie-item">
-            <div class="ins-ie-lbl">Expenses</div>
-            <div class="ins-ie-amt ins-expense">AED 6,480</div>
-            <div class="ins-bar-track"><div class="ins-bar-fill ins-bar-expense" data-w="35%"></div></div>
-          </div>
-          <div class="ins-ie-divider"></div>
-          <div class="ins-ie-item">
-            <div class="ins-ie-lbl">Saved</div>
-            <div class="ins-ie-amt ins-saved">AED 12,020</div>
-            <div class="ins-bar-track"><div class="ins-bar-fill ins-bar-saved" data-w="65%"></div></div>
-          </div>
-        </div>
-        <div class="rd-d2 sb-stack-bar" style="margin-top:.7rem;">
-          <div style="width:33%;background:rgba(200,152,152,1);border-radius:3px 0 0 3px;" title="Shopping 33%"></div>
-          <div style="width:27%;background:rgba(200,152,152,.78);" title="Food 27%"></div>
-          <div style="width:17%;background:rgba(200,152,152,.62);" title="Travel 17%"></div>
-          <div style="width:14%;background:rgba(200,152,152,.46);" title="Utilities 14%"></div>
-          <div style="width:9%;background:rgba(200,152,152,.32);" title="Other 9%"></div>
-          <div style="width:5.4%;background:rgba(200,152,152,.20);border-radius:0 3px 3px 0;" title="Other 5%"></div>
-        </div>
-        <div class="rd-d2 sb-list" style="margin-top:.625rem;">
-          <div class="sb-row">
-            <div class="sb-icon" style="background:#f5ecec;"><span class="material-icons" style="color:#c89898;font-size:17px;">shopping_bag</span></div>
-            <div class="sb-info"><div class="sb-meta"><span class="sb-cat">Shopping</span><span class="sb-amt">AED 2,150</span></div><div class="sb-track"><div class="sb-fill" style="background:rgba(200,152,152,1)" data-w="100%"></div></div></div>
-          </div>
-          <div class="sb-row">
-            <div class="sb-icon" style="background:#f5ecec;"><span class="material-icons" style="color:#c89898;font-size:17px;">restaurant</span></div>
-            <div class="sb-info"><div class="sb-meta"><span class="sb-cat">Food &amp; Dining</span><span class="sb-amt">AED 1,720</span></div><div class="sb-track"><div class="sb-fill" style="background:rgba(200,152,152,.78)" data-w="52%"></div></div></div>
-          </div>
-          <div class="sb-row">
-            <div class="sb-icon" style="background:#f5ecec;"><span class="material-icons" style="color:#c89898;font-size:17px;">flight</span></div>
-            <div class="sb-info"><div class="sb-meta"><span class="sb-cat">Travel</span><span class="sb-amt">AED 1,100</span></div><div class="sb-track"><div class="sb-fill" style="background:rgba(200,152,152,.62)" data-w="43%"></div></div></div>
-          </div>
-          <div class="sb-row">
-            <div class="sb-icon" style="background:#f5ecec;"><span class="material-icons" style="color:#c89898;font-size:17px;">bolt</span></div>
-            <div class="sb-info"><div class="sb-meta"><span class="sb-cat">Utilities</span><span class="sb-amt">AED 890</span></div><div class="sb-track"><div class="sb-fill" style="background:rgba(200,152,152,.46)" data-w="28%"></div></div></div>
-          </div>
-        </div>
-        <div class="ins-nudge">
-          <span class="material-icons ins-nudge-icon">lightbulb</span>
-          <div class="ins-nudge-body">
-            <div class="ins-nudge-title">On track — 24 days in, expenses are 35% of income</div>
-            <div class="ins-nudge-sub">Keep spending at this pace and you'll save AED 2,000+ more than last month</div>
-          </div>
-        </div>
-        <div style="display:flex;justify-content:flex-end;margin-top:.625rem;padding-top:.625rem;border-top:1px solid var(--az-border);">
-          <button onclick="document.getElementById('recentTxnModal').classList.remove('hidden')" style="background:none;border:none;padding:0;font-size:.72rem;color:var(--az-muted);cursor:pointer;display:inline-flex;align-items:center;gap:.1rem;font-family:inherit;">View recent transactions <span class="material-icons" style="font-size:13px;">chevron_right</span></button>
-        </div>
-      </div>
-
-
-
-
-      <!-- ── rd-d3: Financial Tips ── -->
-      <div class="rd-panel rd-reveal rd-d3" style="padding:.5rem 1.25rem .875rem;display:none;">
-        <div class="rd-ph" style="margin-bottom:.5rem;">
-          <div style="display:flex;align-items:center;gap:.4rem;">
-            <span class="material-icons" style="font-size:18px;color:#1aad6e;">lightbulb</span>
-            <span class="rd-ph-title">Financial Tips</span>
-          </div>
-          <a href="javascript:;" class="rd-ph-action">View more <span class="material-icons" style="font-size:13px;vertical-align:-2px;">chevron_right</span></a>
-        </div>
-        <div class="d7-nudge" style="border-bottom:none;border-radius:.75rem;margin-bottom:.625rem;">
-          <div class="d7-nudge-head">
-            <span class="material-icons d7-nudge-icon">savings</span>
-            <span class="d7-nudge-label">Savings Goal</span>
-          </div>
-          <div class="d7-nudge-text">Set up a recurring transfer of AED 1,000/month to your Emergency Fund to reach your goal 4 months earlier.</div>
-          <a href="transfer-own-accounts.html" class="d7-nudge-cta">Set up auto-transfer <span class="material-icons" style="font-size:13px;margin-left:.2rem;">arrow_forward</span></a>
-        </div>
-        <div class="d7-nudge" style="border-bottom:none;border-radius:.75rem;margin-bottom:1.25rem;">
-          <div class="d7-nudge-head">
-            <span class="material-icons d7-nudge-icon">trending_up</span>
-            <span class="d7-nudge-label">Investment</span>
-          </div>
-          <div class="d7-nudge-text">You have AED 22,150 idle for 60 days; moving it to a fixed deposit could earn AED 1,218.</div>
-          <a href="term-deposit-account-opening.html?amount=22150&tenure=60&rate=5.50&earnings=1218" class="d7-nudge-cta">Open FD <span class="material-icons" style="font-size:13px;margin-left:.2rem;">arrow_forward</span></a>
-        </div>
-      </div>
-
-
 
       </div><!-- /rd-right -->
 
@@ -879,6 +750,16 @@ function ntClearTab() {
   }
 }
 
+
+// ── Dynamic last login date (3 days before today) ──
+(function() {
+  var d = new Date();
+  d.setDate(d.getDate() - 3);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var formatted = d.getDate() + ' ' + months[d.getMonth()] + ', ' + d.getFullYear();
+  var el = document.getElementById('lastLoginDate');
+  if (el) el.textContent = formatted;
+})();
 // ── Dynamic greeting date & copyright year ──
 (function() {
   var now = new Date();
@@ -906,9 +787,9 @@ function rtToggle() {
   var list = document.getElementById('rtList');
   var chev = document.getElementById('rtChevron');
   if (!list || !chev) return;
-  var collapsed = list.style.display === 'none';
+  var collapsed = list.style.display === 'none' || list.style.display === '';
   list.style.display   = collapsed ? 'block' : 'none';
-  chev.style.transform = collapsed ? '' : 'rotate(180deg)';
+  chev.style.transform = collapsed ? 'rotate(180deg)' : 'rotate(180deg)';
 }
 
 function toggleBalance() {
@@ -1256,6 +1137,70 @@ function mcDoFreeze() {
 
 </script>
 
+<!-- ── Birthday Confetti ── -->
+<canvas id="confettiCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+<script>
+(function(){
+  var canvas = document.getElementById('confettiCanvas');
+  var ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  var colors = ['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#f7a1c4','#ff9f43','#a29bfe','#fd79a8'];
+  var pieces = [];
+  var total = 55;
+
+  function rand(min, max){ return Math.random()*(max-min)+min; }
+
+  for(var i=0;i<total;i++){
+    pieces.push({
+      x: rand(0, canvas.width),
+      y: rand(-canvas.height * 0.6, 0),
+      w: rand(4,8), h: rand(6,11),
+      color: colors[Math.floor(Math.random()*colors.length)],
+      rot: rand(0,360),
+      vx: rand(-0.8,0.8),
+      vy: rand(1.2,2.8),
+      vr: rand(-1.5,1.5),
+      opacity: rand(0.5,0.8)
+    });
+  }
+
+  var startTime = Date.now();
+  var fadeDuration = 1200;
+  var totalDuration = 4000;
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    var elapsed = Date.now() - startTime;
+    var globalAlpha = elapsed > (totalDuration - fadeDuration)
+      ? Math.max(0, 1 - (elapsed-(totalDuration-fadeDuration))/fadeDuration)
+      : 1;
+
+    pieces.forEach(function(p){
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      ctx.save();
+      ctx.globalAlpha = globalAlpha * p.opacity;
+      ctx.translate(p.x+p.w/2, p.y+p.h/2);
+      ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+
+    if(elapsed < totalDuration){
+      requestAnimationFrame(draw);
+    } else {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      canvas.style.display='none';
+    }
+  }
+  draw();
+})();
+</script>
+
   <!-- ── Recent Transactions modal ── -->
   <div id="recentTxnModal" class="modal-ov hidden" role="dialog" aria-modal="true" onclick="if(event.target===this)this.classList.add('hidden')">
     <div class="az-modal" style="max-width:640px;width:95%;padding:0;overflow:hidden;display:flex;flex-direction:column;max-height:80vh;">
@@ -1353,26 +1298,4 @@ function mcDoFreeze() {
         </div>
 
         <!-- 2 Aug -->
-        <div style="padding:.5rem 0 .25rem 1.5rem;font-size:.65rem;font-weight:700;color:var(--az-muted);text-transform:uppercase;letter-spacing:.06em;background:#fafbfc;border-bottom:1px solid var(--az-border);border-top:1px solid var(--az-border);">2 Aug 2026</div>
-
-        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #f4f6f8;">
-          <div style="width:40px;height:40px;border-radius:50%;background:#ecfdf5;color:#065f46;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">T</div>
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">Transfer to Savings</div>
-            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Internal Transfer · Current → Savings</div>
-          </div>
-          <div style="text-align:right;flex-shrink:0;">
-            <div style="font-size:.84rem;font-weight:700;color:#e53935;">−AED 5,000</div>
-            <div style="font-size:.68rem;color:var(--az-muted);">11:00</div>
-          </div>
-        </div>
-
-        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1.5rem;border-bottom:1px solid #f4f6f8;">
-          <div style="width:40px;height:40px;border-radius:50%;background:#fff7ed;color:#c2410c;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;flex-shrink:0;">A</div>
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:.84rem;font-weight:600;color:var(--az-navy);">Amazon.ae</div>
-            <div style="font-size:.72rem;color:var(--az-muted);margin-top:.15rem;">Shopping · Online · Gold Mastercard</div>
-          </div>
-          <div style="text-align:right;flex-shrink:0;">
-            <div style="font-size:.84rem;font-weight:700;color:#e53935;">−AED 196</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        <div style="padding:.5rem 0 .25rem 1.5rem;font-size:.65rem;font-weight:700;color:var(--az-mut
