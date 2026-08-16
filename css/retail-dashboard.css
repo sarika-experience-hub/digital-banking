@@ -1286,7 +1286,7 @@ a.ab-chip:active { transform: translateY(0); filter: brightness(.88); }
   font-size: .5rem; font-weight: 700; letter-spacing: .1em;
   padding: .15rem .45rem; border-radius: 2rem;
 }
-.mc-status-active { background: rgba(46,216,142,.25); color: #2ed88e; }
+.mc-status-active { background: rgba(26,173,110,.15); color: #0d7a4e; }
 .mc-status-frozen { background: rgba(180,200,220,.2); color: #90b0c8; }
 
 /* Middle: chip + number */
