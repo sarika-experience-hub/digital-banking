@@ -196,10 +196,13 @@
         padding: .625rem .875rem !important;
         gap: .5rem;
       }
-      /* Shift content left since icon is absolute at 20px */
-      .pg-retail-dashboard .pc-slide > div[style] {
-        padding-left: 72px !important;
-        padding-right: .75rem !important;
+      /* Hide carousel images and decorative icons on mobile */
+      .pg-retail-dashboard .pc-slide > div[style*="overflow:hidden"] { display: none !important; }
+      .pg-retail-dashboard .pc-slide > div[style*="left:20px"] { display: none !important; }
+      /* Reset padding since images are gone — text fills full width */
+      .pg-retail-dashboard .pc-slide > div[style*="padding-left"] {
+        padding-left: .875rem !important;
+        padding-right: .875rem !important;
       }
       .pg-retail-dashboard .pc-cta {
         font-size: .68rem !important;
@@ -208,17 +211,6 @@
       }
       /* Stack CTA buttons if they overflow */
       .pg-retail-dashboard .pc-slide .pc-cta + .pc-cta { margin-top: 0; }
-      /* Hide banner icons on mobile to avoid distortion */
-      .pg-retail-dashboard .pc-slide > div[style*="left:20px"] { display: none !important; }
-      /* Remove icon padding-left since icon is hidden */
-      .pg-retail-dashboard .pc-slide > div[style*="padding-left"] {
-        padding-left: .875rem !important;
-      }
-
-      /* Banner icon sizing */
-      .pg-retail-dashboard .pc-slide > div[style*="left:20px"] div {
-        width: 44px !important; height: 44px !important;
-      }
       /* Right panel widgets full width */
       .pg-retail-dashboard .rd-right > * { width: 100% !important; }
       /* Explore More: single column */
