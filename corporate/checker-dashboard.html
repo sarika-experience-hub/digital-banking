@@ -256,7 +256,7 @@
     <div class="welcome-bar wb-checker">
       <div class="wb-left">
         <h2>Hi Ahmed Al-Mansouri</h2>
-        <p><span id="wbDate"></span> &nbsp;&middot;&nbsp; Al-Noor Trading LLC</p>
+        <p><span id="wbDate"></span> &nbsp;&middot;&nbsp; Al-Noor Trading LLC &nbsp;&middot;&nbsp; Last login: <span id="wbLastLogin"></span> at 08:47 AM</p>
       </div>
     </div>
 
@@ -873,8 +873,11 @@
   var wbEl=document.getElementById('wbDate');
   if(wbEl) wbEl.textContent=days[now.getDay()]+', '+now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear();
   var ll=new Date(); ll.setDate(ll.getDate()-3);
+  var llStr=ll.getDate()+' '+months[ll.getMonth()]+', '+ll.getFullYear();
   var llEl=document.getElementById('lastLoginDate');
-  if(llEl) llEl.textContent=ll.getDate()+' '+months[ll.getMonth()]+', '+ll.getFullYear();
+  if(llEl) llEl.textContent=llStr;
+  var llWb=document.getElementById('wbLastLogin');
+  if(llWb) llWb.textContent=llStr;
 })();
 </script>
 <script>
