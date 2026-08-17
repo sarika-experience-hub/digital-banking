@@ -1373,6 +1373,10 @@
   .mk-act-body, .mk-draft-body { padding: .75rem 1.25rem .875rem; }
   .mk-alert-item { padding: .625rem 1.25rem; }
   .mk-corp-link { padding: .75rem 1.25rem; }
+  .mk-ftab-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; flex-wrap: nowrap; }
+  .mk-ftab { flex-shrink: 0; }
+  .mk-act-tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .mk-wb-date { font-size: .75rem; }
   .mk-upcoming-grid-2 { grid-template-columns: 1fr; }
   .mk-status {
     grid-template-columns: 1fr 1fr;
@@ -1394,5 +1398,7 @@
   .mk-status { grid-template-columns: 1fr; }
   .mk-ss-item { border-right: none; border-bottom: 1px solid var(--az-border); }
   .mk-ss-item:last-child { border-bottom: none; }
+  .mk-wb-name { font-size: 1.125rem; }
+  .mk-wb-greeting { font-size: .8rem; }
   .mk-wb-actions { flex-direction: column; align-items: flex-start; }
 }

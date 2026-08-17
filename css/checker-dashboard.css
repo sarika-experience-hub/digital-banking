@@ -219,7 +219,7 @@
   align-items: center;
   justify-content: space-between;
   padding: .875rem 1.25rem .75rem;
-  background: #f9fafb;
+  background: #fff;
   border-bottom: 1px solid var(--az-border);
   border-radius: .875rem .875rem 0 0;
 }
@@ -228,7 +228,7 @@
   color: var(--az-navy); font-size: .6875rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: .08em;
 }
-.dash-card-title svg { width: 16px; height: 16px; opacity: .65; }
+.dash-card-title svg { width: 16px; height: 16px; color: var(--az-green); }
 .dash-card-link {
   font-size: .8125rem;
   color: var(--az-blue);
@@ -404,7 +404,7 @@
   align-items: center;
   justify-content: space-between;
   padding: .875rem 1.25rem .75rem;
-  background: #f9fafb;
+  background: #fff;
   border-bottom: 1px solid var(--az-border);
   border-radius: .875rem .875rem 0 0;
 }
@@ -413,7 +413,7 @@
   color: var(--az-navy); font-size: .6875rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: .08em;
 }
-.si-panel-label svg { width: 13px; height: 13px; }
+.si-panel-label svg { width: 13px; height: 13px; color: var(--az-green); }
 .si-count { font-size: .65rem; background: #e4eaee; color: var(--az-navy); border-radius: 20px; padding: .15rem .5rem; font-weight: 600; }
 .si-list { padding: .5rem 0; }
 .si-item {
@@ -638,6 +638,8 @@
   .ck-status { flex-wrap: wrap; overflow: hidden; }
   .ck-ss-item:last-child { margin-left: 0; border-left: 1px solid var(--az-border); border-right: none; }
   .dash-card-hdr { padding: .75rem 1rem; }
+  .filter-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .filter-tab { flex-shrink: 0; }
   .filter-tabs { padding: .625rem 1rem .5rem; }
   .batch-toolbar { flex-wrap: wrap; margin: .375rem 1rem; }
   .metrics-grid { padding: .875rem 1rem; }
@@ -648,6 +650,8 @@
   .pg-checker-dashboard .main-body { padding: .5rem .5rem 0; }
   .welcome-bar { padding: .625rem .75rem; }
   .metrics-grid { grid-template-columns: 1fr; }
+  .ck-ss-item { font-size: .75rem; }
+  .welcome-bar .wb-title { font-size: 1rem; }
   .btn-quick { padding: .375rem .625rem; font-size: .75rem; }
   .page-top-bar { flex-wrap: wrap; gap: .5rem; }
 }
@@ -702,3 +706,4 @@
   box-shadow: 0 2px 8px rgba(22,48,61,.07);
   margin-bottom: 0;
 }
+      

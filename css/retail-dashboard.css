@@ -588,6 +588,13 @@
 }
 
 @media (max-width: 767px) {
+  
+  /* Mobile: hide carousel images, reset text padding */
+  .pc-slide > div[style*="overflow:hidden"] { display: none !important; }
+  .pc-slide > div[style*="padding-left"] {
+    padding-left: .875rem !important;
+    padding-right: .875rem !important;
+  }
   .rd-wrap { margin: 0 .75rem 1rem; }
   .rd-status { padding: 0 .75rem; }
   .bal-actions-row { flex-wrap: wrap; }
