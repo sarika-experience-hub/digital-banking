@@ -1093,6 +1093,12 @@ function mcDoFreeze() {
   }
 }
 
+// ── Collapse the empty banner row so the widgets sit flush at the top ──
+function pcCollapseBannerRow() {
+  var rows = document.querySelectorAll('.rd-left > div[style*="grid-row:2/4"]');
+  for (var i = 0; i < rows.length; i++) rows[i].style.gridRow = 'auto';
+}
+
 // ── Move dismissed carousel offers into the notification Offers tab ──
 function pcMoveOffersToNotifications() {
   var panel = document.getElementById('nt-offers');
@@ -1135,6 +1141,7 @@ function pcMoveOffersToNotifications() {
   window.pcDismiss = function() {
     var w=document.getElementById('pcWrap');
     if(w){w.style.display='none';dismissed=true;clearInterval(timer);}
+    pcCollapseBannerRow();
     var added = pcMoveOffersToNotifications();
     if(added){
       var b=document.getElementById('ntb-offers');
